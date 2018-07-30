@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>解析URL中的query</title>
+    <script>
+        function getQuery(queryStr) {
+            var query = {};
+            if (queryStr.indexOf('?') > -1) {
+                var index = queryStr.indexOf('?');
+                queryStr = queryStr.substr(index + 1);
+                var array = queryStr.split('&');
+                for (var i = 0; i < array.length; i++) {
+                    var tmpArr = array[i].split('=');
+                    if (tmpArr.length === 2) {
+                        query[tmpArr[0]] = tmpArr[1];
+                    }
+                }
+            }
+            return query;
+        }
+        console.log(getQuery(location.search));
+        console.log(getQuery(location.href));
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
