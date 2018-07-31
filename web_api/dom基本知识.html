@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 修改div里所有p标签的值 start  -->
+    <div id="div1">
+        <p class="pn">我是修改前的p</p>
+        <p class="pn">我是修改前的p</p>
+        <p class="pn">我是修改前的p</p>
+        <p class="pn">我是修改前的p</p>
+    </div>
+    <!-- 修改div里所有p标签的值 end -->
+
+    <!-- 修改图片的alt和title start -->
+    <div class="div2">
+        <input type="button" value="改变图片的alt和src" id="btnInDiv">
+        <img src="../images/刘雯.jpg" alt="刘雯.jpg" title="大表姐" id="imgInDiv" width="100" height="100" />
+    </div>
+    <!-- 修改图片的alt和title end   -->
+
+    <!-- 修改所有文本框的值 start-->
+    <div id="div3">
+        <input type="text" value="" />
+        <br>
+        <input type="text" value="" />
+        <br>
+        <input type="text" value="" />
+        <br>
+        <input type="text" value="" />
+        <br>
+        <input type="text" value="" />
+        <br>
+        <input type="text" value="" />
+        <br>
+        <input type="button" value="改变前面6个文本框的值" id="buttonInDiv4">
+    </div>
+    <!-- 修改所有文本框的值 end-->
+
+    <!-- 点事件 start -->
+    <input type="button" value="弹窗" onclick="alert('kon ni chi wa！')" id="btn" />
+    <!-- 点事件 end -->
+
+    <!-- 点击连接，加载图片start -->
+    <a href="#" id="ai">点击查看图片</a>
+    <img src="" alt="" id="ig">
+    <!-- 点击连接，加载图片 end-->
+
+    <!-- 点击修改p标签的内容 start -->
+    <p id="p1">原来的p内容!点我内容发生变化!</p>
+    <!-- 点击修改p标签的内容 end -->
+
+    <!-- 点击超链接改变标签的地址以及热点文字 start -->
+    <a href="#" id="a1">动态改变超链接的内容</a>
+    <!-- 点击超链接改变标签的地址以及热点文字 end -->
+
+    <p>当在页面的onclick绑定了事件，而又通过document.getElementById给元素绑定事件，后者的优先级高。</p>
+    <p>现有按钮元素，才有获取按钮，才能注册事件。如果将script片段放置在head里面，会报错。can not set property of null.</p>
+    <p>元素：页面内的所有标签都是元素。标签可以嵌套，元素中可以包含元素。</p>
+    <p>节点：页面内所有的内容都是节点。包含标签、属性、文本。</p>
+    <script>
+
+        /* 动态修改所有文本框的值 start*/
+        var divObj = document.getElementById("div3");
+        var num = 0;
+        document.getElementById("buttonInDiv4").onclick = function () {
+            var textArray = document.getElementsByTagName('input');
+            for (var i = 0; i < textArray.length; i++) {
+                var textObj = textArray[i];
+                if (textObj.type === 'button') {
+                    continue;
+                }
+                num++;
+                textObj.value = "值改变" + num;
+            }
+        }
+        /* 动态修改所有文本框的值 end*/
+
+        /* 修改图片的alt和title start */
+        var btnInDivObj = document.getElementById('btnInDiv');
+        btnInDivObj.onclick = function () {
+            var imgObj = document.getElementById('imgInDiv');
+            imgObj.width = "200";
+            imgObj.height = "100";
+            imgObj.alt = '用于图片加载不出来时显示的';
+            imgObj.title = '默默喜欢大表姐嘿嘿';
+        }
+        /* 修改图片的alt和title end */
+
+        /* 修改div里所有p标签的值 start */
+        var divObj = document.getElementById('div1');
+        divObj.onclick = function () {
+            var pnArray = divObj.getElementsByTagName('p');
+            for (var i = 0; i < pnArray.length; i++) {
+                var pObj = pnArray[i];
+                pObj.innerHTML = 'change p!';
+            }
+        }
+        /* 修改div里所有p标签的值 end */
+
+        /* 点击超链接改变标签的地址以及热点文字 start*/
+        var a1Obj = document.getElementById('a1');
+        a1Obj.onclick = function () {
+            a1Obj.href = "http://www.dangdang.com/";
+            a1Obj.innerText = "当当网";
+        }
+        /* 点击超链接改变标签的地址以及热点文字 end*/
+
+        /*  点击内容发生变化 start */
+        var pObj = document.getElementById('p1');
+        pObj.onclick = function () {
+            pObj.innerHTML = '变身啦';
+        }
+        /*  点击内容发生变化 end */
+
+        /* 点击连接，加载图片start */
+        handlerAiClick();
+        function handlerAiClick() {
+            var imgObj = document.getElementById("ig");
+            var aiObj = document.getElementById("ai");
+            aiObj.onclick = function () {
+                imgObj.src = "../images/liuwen.jpg";
+                imgObj.width = "200";
+                imgObj.height = "100";
+            }
+        }
+        /* 点击连接，加载图片end */
+
+        /*  点事件 start */
+        function f2() {
+            alert("f2 alert...");
+        }
+        document.getElementById("btn").onclick = function () {
+            alert("通过documen。getElementById()获取元素操纵元素");
+        }
+        var btn = document.getElementById("btn");
+        btn.onclick = f2;
+        /* 点事件 start */
+    </script>
+</body>
+
+</html>
