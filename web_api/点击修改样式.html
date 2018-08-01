@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="div" id="div">
+
+    </div>
+    <input type="button" value="隐藏" id="btn" />
+    <script>
+        var divObj = document.getElementById("div");
+        divObj.style.width = "100px";
+        divObj.style.height = "100px";
+        divObj.style.backgroundColor = "greenyellow";
+        divObj.onclick = function () {
+            div.style.backgroundColor = "red";
+        }
+        var btnObj = document.getElementById("btn");
+        btnObj.onclick = function () {
+            var btnValue = btnObj.value;
+            if (btnValue === "隐藏") {
+                divObj.style.display = "none";
+                btnObj.value = "显示";
+            } else {
+                divObj.style.display = "block";
+                btnObj.value = "隐藏";
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 点击图片修改自身高度宽度 start -->
+    <img src="../images/四月是你的谎言.jpg" alt="june.jpg" title="四月是你的谎言" id="img1" width="100" height="100" />
+    <!-- 点击图片修改自身高度宽度 end -->
+
+    <!-- 点击按钮修改自身的值 start -->
+    <input type="button" value="点我" id="btn1" />
+    <!-- 点击按钮修改自身的值 end -->
+
+    <!-- 排他功能实现 start -->
+    <div class="div1" id="div1">
+        <input type="button" value="点我">
+        <input type="button" value="点我">
+        <input type="button" value="被翻牌了">
+        <input type="button" value="点我">
+        <input type="button" value="点我">
+        <input type="button" value="点我">
+    </div>
+    <!-- 排他功能实现 end -->
+
+    <!-- 点击点菜 start -->
+    <div class="div2" id="div2">
+        <input type="button" value="点菜" id="pickFood">
+        <select>
+            <option value="菜品1">菜品1</option>
+            <option value="菜品2">菜品2</option>
+            <option value="菜品3" id="food3">菜品3</option>
+            <option value="菜品4">菜品4</option>
+        </select>
+        <br>
+        <input type="button" value="选择性别" id="pickSex">
+        <input type="radio" name="sex" id="1">man
+        <input type="radio" name="sex" id="2">woman
+        <input type="radio" name="sex" id="3">unknow
+    </div>
+    <!-- 点击点菜 end -->
+
+    <script>
+        /*    点击图片修改自身高度宽度 start */
+        document.getElementById("img1").onclick = function () {
+            this.width = "200";
+            this.height = "100";
+        }
+        /*    点击图片修改自身高度宽度 end */
+        /* 点击按钮修改自身的值 start  */
+        document.getElementById("btn1").onclick = function () {
+            this.value = "变变变";
+        }
+        /* 点击按钮修改自身的值 end  */
+        /* 排他功能实现 start */
+        function my$(id) {
+            return document.getElementById(id);
+        }
+
+        var divObj = my$("div1");
+        var inputArr = divObj.getElementsByTagName("input");
+        for (var i = 0; i < inputArr.length; i++) {
+            //循环为每个按钮注册点击事件
+            inputArr[i].onclick = function () {
+                //将所有按钮的值都一样
+                for (var j = 0; j < inputArr.length; j++) {
+                    inputArr[j].value = "点我!"
+                }
+                //被点击的值不一样
+                this.value = "被翻牌啦";
+            }
+        }
+        /* 排他功能实现 end */
+
+        /* 点击点菜 end */
+        my$("pickFood").onclick = function () {
+            my$("food3").selected = true;
+        }
+        my$("pickSex").onclick = function () {
+            my$("3").checked = true;
+        }
+        /* 点击点菜 start */
+    </script>
+</body>
+
+</html>
