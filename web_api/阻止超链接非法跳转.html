@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <a href="http://www.baidu.com" id="a1">前往百度</a>
+    <a href="http://www.baidu.com" id="a2" onclick="return lanJieA()">前往百度2</a>
+    <p>阻止超链接默认跳转，只需要在onclick事件时，return false，就可以阻止超链接默认跳转了。</p>
+    <script>
+        document.getElementById("a1").onclick = lanJieA;
+
+        function lanJieA() {
+            alert("被拦截啦。。。");
+            return false;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="button" value="修改列表背景颜色" class="btn">
+    <ul class="u">
+        <li>破产姐妹-生活大爆炸-海贼王</li>
+        <li>破产姐妹-生活大爆炸-海贼王</li>
+        <li>破产姐妹-生活大爆炸-海贼王</li>
+        <li>破产姐妹-生活大爆炸-海贼王</li>
+    </ul>
+    <script>
+        var btnObj = document.getElementsByClassName("btn")[0];
+        btnObj.onclick = function () {
+            var uObj = document.getElementsByClassName("u")[0];
+            uObj.style.backgroundColor = "red";
+        }
+    </script>
+</body>
+
+</html>

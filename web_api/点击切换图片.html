@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <p>切换图片只需要修改图片的src</p>
+    <p>关于src和href的区别。src会停止解析当前页面，并且下载src指向的资源，替换当前标签内容。而href会并行下载，建立当前文档与指向的资源的关系。</p>
+    <a href="https://www.jb51.net/web/77258.html">参考</a>
+    <img src="../images/liuwen.jpg" alt="大表姐" id="lImg">
+    <script>
+        var lImgObj = document.getElementById("lImg");
+        lImgObj.onclick = function() {
+            this.src = "../images/刘雯.jpg";
+        }
+    </script>
+</body>
+</html>

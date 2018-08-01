@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .images {
+            margin: 100px;
+        }
+
+        .images li {
+            display: inline-block;
+            margin: 10px 10px 0;
+        }
+
+        .images li img {
+            width: 80%;
+        }
+
+        .bigImg {
+            width: 400px;
+            height: 280px;
+        }
+
+        .bigImg img {
+            width: 400px;
+            height: 250px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="images" id="iamges">
+        <h3>相册</h3>
+        <ul>
+            <li>
+                <a href="../images/1.jpg">
+                    <img src="../images/1-small.jpg" alt="一个漂亮妹子嘿嘿嘿">
+                </a>
+            </li>
+            <li>
+                <a href="../images/2.jpg">
+                    <img src="../images/2-small.jpg" alt="两个漂亮妹子嘿嘿嘿">
+                </a>
+            </li>
+            <li>
+                <a href="../images/3.jpg">
+                    <img src="../images/3-small.jpg" alt="三个漂亮妹子嘿嘿嘿">
+                </a>
+            </li>
+            <li>
+                <a href="../images/4.jpg">
+                    <img src="../images/4-small.jpg" alt="四个漂亮妹子嘿嘿嘿">
+                </a>
+            </li>
+        </ul>
+        <div class="bigImg">
+            <img src="" alt="" id="bImg">
+        </div>
+        <div class="desc">
+            选择一张图片
+        </div>
+    </div>
+    <script>
+        var imageDivObj = document.getElementById("iamges");
+        var liArr = imageDivObj.getElementsByTagName("li");
+        for (var i = 0; i < liArr.length; i++) {
+            var liObj = liArr[i];
+            var imgObj = liObj.getElementsByTagName("img")[0];
+            var aObj = liObj.getElementsByTagName("a")[0];
+            aObj.onclick = function () {
+                var bigImgObj = document.getElementById("bImg");
+                //插入图片
+                bigImgObj.src = aObj.href;
+                document.getElementsByClassName("desc")[0].innerHTML = imgObj.alt;
+                //阻止a跳转
+                return false;
+            }
+        }
+    </script>
+</body>
+
+</html>
