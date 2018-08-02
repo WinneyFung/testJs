@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/common.js"></script>
+</head>
+
+<body>
+    <input type="button" value="改变列表样式" id="btn">
+    <ul id="u1">
+        <li>生活大爆炸-黑镜-代号蝎子-吸血鬼-破产姐妹-更多美剧关注嘿嘿嘿</li>
+        <li>生活大爆炸-黑镜-代号蝎子-吸血鬼-破产姐妹-更多美剧关注嘿嘿嘿</li>
+        <li>生活大爆炸-黑镜-代号蝎子-吸血鬼-破产姐妹-更多美剧关注嘿嘿嘿</li>
+        <li>生活大爆炸-黑镜-代号蝎子-吸血鬼-破产姐妹-更多美剧关注嘿嘿嘿</li>
+        <li>生活大爆炸-黑镜-代号蝎子-吸血鬼-破产姐妹-更多美剧关注嘿嘿嘿</li>
+        <li>生活大爆炸-黑镜-代号蝎子-吸血鬼-破产姐妹-更多美剧关注嘿嘿嘿</li>
+        <li>生活大爆炸-黑镜-代号蝎子-吸血鬼-破产姐妹-更多美剧关注嘿嘿嘿</li>
+    </ul>
+    <hr>
+    <h2>高亮显示</h2>
+    <ul id="u2">
+        <li>生活大爆炸-黑镜-代号蝎子-吸血鬼-破产姐妹-更多美剧关注嘿嘿嘿</li>
+        <li>生活大爆炸-黑镜-代号蝎子-吸血鬼-破产姐妹-更多美剧关注嘿嘿嘿</li>
+        <li>生活大爆炸-黑镜-代号蝎子-吸血鬼-破产姐妹-更多美剧关注嘿嘿嘿</li>
+        <li>生活大爆炸-黑镜-代号蝎子-吸血鬼-破产姐妹-更多美剧关注嘿嘿嘿</li>
+        <li>生活大爆炸-黑镜-代号蝎子-吸血鬼-破产姐妹-更多美剧关注嘿嘿嘿</li>
+        <li>生活大爆炸-黑镜-代号蝎子-吸血鬼-破产姐妹-更多美剧关注嘿嘿嘿</li>
+        <li>生活大爆炸-黑镜-代号蝎子-吸血鬼-破产姐妹-更多美剧关注嘿嘿嘿</li>
+    </ul>
+    <script> 
+        my$("btn").onclick = function () {
+            var liArr = my$('u1').getElementsByTagName('li');
+            for (var i = 0; i < liArr.length; i++) {
+                liArr[i].style.backgroundColor = i % 2 == 0 ? "red" : "blue";
+            }
+        }
+        var li2Arr = my$("u2").getElementsByTagName('li');
+        for (var i = 0; i < li2Arr.length; i++) {
+            var liObj = li2Arr[i];
+            liObj.onmouseout = function () {
+                this.style.backgroundColor = "";
+            };
+            liObj.onmouseover = function () {
+                this.style.backgroundColor = "yellow";
+            }
+        }
+
+    </script>
+</body>
+
+</html>

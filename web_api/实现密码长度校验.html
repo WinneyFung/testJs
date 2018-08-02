@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input type="password" name="pwd" id="pwd"> 
+    <div id="desc"></div>
+    <script src="../js/common.js"></script>
+    <script>
+        my$("pwd").onblur = function () {
+            if (this.value.length > 6) {
+            my$("desc").innerHTML = "密码长度不能超过6";
+            }
+        }
+    </script>
+</body>
+</html>

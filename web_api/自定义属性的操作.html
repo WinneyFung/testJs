@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        li {
+            list-style: none;
+            cursor: pointer;
+        }
+
+        .spec {
+            background-color: orangered;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="button" value="去掉背景色" id="btn">
+    <ul id="ul1">
+        <li>美剧日剧关注嘿嘿嘿</li>
+        <li>美剧日剧关注嘿嘿嘿</li>
+        <li>美剧日剧关注嘿嘿嘿</li>
+        <li class="spec" id="spec">美剧日剧关注嘿嘿嘿</li>
+        <li>美剧日剧关注嘿嘿嘿</li>
+        <li>美剧日剧关注嘿嘿嘿</li>
+        <li>美剧日剧关注嘿嘿嘿</li>
+        <li>美剧日剧关注嘿嘿嘿</li>
+    </ul>
+    <script>
+        var liArr = document.getElementById('ul1').getElementsByTagName('li');
+        for (var i = 0; i < liArr.length; i++) {
+            liArr[i].setAttribute('score', (i + 1) * 100);
+            liArr[i].onclick = function () {
+                alert(this.getAttribute('score'));
+            }
+        }
+
+        document.getElementById('btn').onclick = function () {
+            document.getElementById('spec').removeAttribute('class');
+        }
+    </script>
+</body>
+
+</html>

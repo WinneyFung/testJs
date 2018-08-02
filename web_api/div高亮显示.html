@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        div {
+            width: 98px;
+            height: 98px;
+            background-color: orangered;
+            border: 1px solid orangered;
+            float: left;
+            margin: 10px 0 0 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <script>
+        var divArr = document.getElementsByTagName('div');
+        for (var i = 0; i < divArr.length; i++) {
+            divArr[i].onmouseover = function () {
+                this.style.border = "1px solid black";
+            };
+            divArr[i].onmouseout = function () {
+                this.style.border = "";
+            };
+        }
+    </script>
+</body>
+
+</html>

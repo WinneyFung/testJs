@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul id="ul1">
+        <li>长河落日圆</li>
+        <li>长河落日圆</li>
+        <li>长河落日圆</li>
+        <li>长河落日圆</li>
+        <li>长河落日圆</li>
+        <li>长河落日圆</li>
+        <li>长河落日圆</li>
+        <li>长河落日圆</li>
+    </ul>
+
+    <script>
+        var nodes = document.getElementById('ul1').childNodes;
+        var count = 0;
+        for (var i = 0; i < nodes.length; i++) {
+            if (nodes[i].nodeType == 1 && nodes[i].nodeName == 'LI') {
+                nodes[i].style.backgroundColor = count % 2 == 0 ? 'red' : 'yellow';
+                count++;
+            }
+        }
+    </script>
+</body>
+
+</html>

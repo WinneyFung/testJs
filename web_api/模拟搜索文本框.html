@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/common.js"></script>
+    <style>
+        input {
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+    <p>关于onblur和onfocus的使用，onfocus在鼠标获取焦点时使用。onblur鼠标失去焦点</p>
+    <input type="text" name="keyWord" id="search" value="请输入搜索的内容">
+    <script>
+        my$("search").onblur = function () {
+            if (this.value.length === 0) {
+                //用户没有输入
+                this.value = "请输入搜索的内容";
+                this.style.color = "#ccc";
+            }
+        }
+        my$("search").onfocus = function() {
+            if (this.value === "请输入搜索的内容") {
+                //清空内容
+                this.value = "";
+                this.style.color = "#666";
+            }
+         }
+    </script>
+</body>
+</html>

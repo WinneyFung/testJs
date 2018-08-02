@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .erweimaArea {
+            position: fixed;
+            right: 0;
+            top: 50%;
+            width: 50px;
+            height: 50px;
+            background: url(../images/bgs.png) no-repeat -159px -51px;
+        }
+
+        .erweimaArea a {
+            position: absolute;
+            top: 0;
+            left: -150px;
+        }
+
+        .show {
+            display: block;
+        }
+
+        .hide {
+            display: none;
+        }
+    </style>
+    <script src="../js/common.js"></script>
+</head>
+
+<body>
+    <div class="erweimaArea" id="erweimaArea">
+        <a href="#" class="erweima hide">
+            <div>
+                <img src="../images/456.png" alt="二维码">
+            </div>
+        </a>
+    </div>
+    <script>
+        var showMaAObj = my$('erweimaArea');
+        showMaAObj.onmouseover = function () {
+            showMaAObj.getElementsByTagName('a')[0].className = "erweima show";
+        }
+        showMaAObj.onmouseout = function () {
+            showMaAObj.getElementsByTagName('a')[0].className = "erweima hide";
+        }
+    </script>
+</body>
+
+</html>

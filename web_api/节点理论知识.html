@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        ul {
+            list-style: none;
+        }
+        span {
+            background-color: orangered;
+        }
+    </style>
+
+</head>
+
+<body>
+    <ul id="uu">
+        <li>节点：节点包含标签、属性、文本。文本可以包含文字、换行符、制表符、空格等</li>
+        <li>节点的属性：可以使用标签(元素).出来，可以使用属性节点.出来，文本节点.点出来</li>
+        <li id="three">nodeType:节点类型1---标签，2--属性，3--文本</li>
+        <li>nodeName:节点名字：标签节点--大写的标签名字，属性节点--小写的属性名字，文本节点--#text</li>
+        <li>nodeValue:节点的值：标签节点--null,属性节点--属性值，文本节点--文本内容</li>
+    </ul>
+    <ul>
+        <li>总结：凡是获取节点的代码在谷歌和火狐中得到的都是 相关的节点</li>
+        <li>凡是获取元素的代码在谷歌和火狐得到的都是 相关的元素</li>
+        <li><span>从子节点和兄弟节点开始，凡是获取节点的代码在IE8中得到的 是元素；获取元素的相关代码，在IE8中得到的是undefined。</span>即获取元素的代码，IE不支持。</li>
+    </ul>
+    <script src="../js/common.js"></script>
+    <script>
+        //12行代码:都是获取节点和元素的
+        //ul
+        var ulObj = document.getElementById("uu");
+        //父级节点
+        console.log(ulObj.parentNode);
+        //父级元素
+        console.log(ulObj.parentElement);
+        //子节点
+        console.log(ulObj.childNodes);
+        //子元素
+        console.log(ulObj.children);
+        console.log("==============================================");
+        //第一个子节点
+        console.log(ulObj.firstChild); //------------------------IE8中是第一个子元素
+        //第一个子元素
+        console.log(ulObj.firstElementChild); //-----------------IE8中不支持
+        //最后一个子节点
+        console.log(ulObj.lastChild); //------------------------IE8中是第一个子元素
+        //最后一个子元素
+        console.log(ulObj.lastElementChild); //-----------------IE8中不支持
+        //某个元素的前一个兄弟节点
+        console.log(my$("three").previousSibling);
+        //某个元素的前一个兄弟元素
+        console.log(my$("three").previousElementSibling);
+        //某个元素的后一个兄弟节点
+        console.log(my$("three").nextSibling);
+        //某个元素的后一个兄弟元素
+        console.log(my$("three").nextElementSibling);
+
+
+
+        //总结:凡是获取节点的代码在谷歌和火狐得到的都是  相关的节点
+        //凡是获取元素的代码在谷歌和火狐得到的都是   相关的元素
+        //从子节点和兄弟节点开始,凡是获取节点的代码在IE8中得到的是元素,获取元素的相关代码,在IE8中得到的是undefined----元素的代码,iE中不支持
+    </script>
+</body>
+
+</html>
