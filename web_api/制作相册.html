@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en">
 
 <head>
@@ -6,84 +6,95 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="../css/css.css">
     <style>
         * {
             margin: 0;
             padding: 0;
         }
-
+        body {
+            color: #666;
+            background-color: #ccc;
+        }
         .images {
-            margin: 100px;
+            margin-left: 100px;
+            border: 1px solid #ccc;
         }
-
+        .images h1 {
+            margin: 20px 0;
+            font-size: 24px;
+        }
+        .images ul img {
+            width: 100px;
+        }
         .images li {
-            display: inline-block;
-            margin: 10px 10px 0;
+            float: left;
+            padding-right: 10px;
         }
-
-        .images li img {
-            width: 80%;
-        }
-
         .bigImg {
             width: 400px;
-            height: 280px;
-        }
-
-        .bigImg img {
-            width: 400px;
             height: 250px;
+            text-align: center;
+            line-height: 250px;
+            font-size: 40px;
+            margin: 20px 0;
+        }
+        .bigImg img {
+            width: 100%;
+            height: 100%;
+        }
+        #imgH1 {
+            font-size: 40px
         }
     </style>
 </head>
 
 <body>
-    <div class="images" id="iamges">
-        <h3>相册</h3>
+    <div class="images" id="images">
+        <h1>相册</h1>
         <ul>
             <li>
-                <a href="../images/1.jpg">
-                    <img src="../images/1-small.jpg" alt="一个漂亮妹子嘿嘿嘿">
+                <a href="../images/1.jpg" title="一个漂亮妹子嘿嘿嘿">
+                    <img src="../images/1-small.jpg">
                 </a>
             </li>
             <li>
-                <a href="../images/2.jpg">
-                    <img src="../images/2-small.jpg" alt="两个漂亮妹子嘿嘿嘿">
+                <a href="../images/2.jpg" title="两个漂亮妹子嘿嘿嘿">
+                    <img src="../images/2-small.jpg">
                 </a>
             </li>
             <li>
-                <a href="../images/3.jpg">
-                    <img src="../images/3-small.jpg" alt="三个漂亮妹子嘿嘿嘿">
+                <a href="../images/3.jpg" title="三个漂亮妹子嘿嘿嘿">
+                    <img src="../images/3-small.jpg">
                 </a>
             </li>
             <li>
-                <a href="../images/4.jpg">
-                    <img src="../images/4-small.jpg" alt="四个漂亮妹子嘿嘿嘿">
+                <a href="../images/4.jpg" title="四个漂亮妹子嘿嘿嘿">
+                    <img src="../images/4-small.jpg">
                 </a>
             </li>
         </ul>
+        <div class="cf" style="clear:both"></div>
         <div class="bigImg">
+            <h1 id="imgH1">400 x 250</h1>
             <img src="" alt="" id="bImg">
         </div>
-        <div class="desc">
+        <div id="desc">
             选择一张图片
         </div>
     </div>
     <script>
-        var imageDivObj = document.getElementById("iamges");
-        var liArr = imageDivObj.getElementsByTagName("li");
-        for (var i = 0; i < liArr.length; i++) {
-            var liObj = liArr[i];
-            var imgObj = liObj.getElementsByTagName("img")[0];
-            var aObj = liObj.getElementsByTagName("a")[0];
-            aObj.onclick = function () {
-                var bigImgObj = document.getElementById("bImg");
-                //插入图片
-                bigImgObj.src = aObj.href;
-                document.getElementsByClassName("desc")[0].innerHTML = imgObj.alt;
-                //阻止a跳转
+        //先获取所有的超链接
+        var aArr = document.getElementById('images').getElementsByTagName('a');
+        for (var i = 0; i < aArr.length; i++) {
+            //给a注册事件
+            aArr[i].onclick = function () {
+                //h3显示隐藏
+                document.getElementById('imgH1').style.display = 'none';
+                document.getElementById('bImg').src = this.href;
+                document.getElementById('desc').innerText = this.title;
                 return false;
-            }
+            };
         }
     </script>
 </body>
