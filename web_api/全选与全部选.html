@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            margin: 100px auto;
+        }
+
+        thead {
+            font-size: 16px;
+            color: #fff;
+            background-color: orangered;
+            text-align: center;
+        }
+
+        td {
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="list">
+        <table>
+            <thead>
+                <tr>
+                    <td>
+                        <input type="checkbox" name="pickAll" id="pickAll">
+                    </td>
+                    <td>美剧</td>
+                    <td>来源</td>
+                </tr>
+            </thead>
+            <tbody id="tb">
+                <tr>
+                    <td>
+                        <input type="checkbox">
+                    </td>
+                    <td>破产姐妹</td>
+                    <td>嘿嘿嘿</td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox">
+                    </td>
+                    <td>我爱上的人是奇葩</td>
+                    <td>嘿嘿嘿</td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox">
+                    </td>
+                    <td>生活大爆炸</td>
+                    <td>嘿嘿嘿</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script src="../js/common.js"></script>
+    <script>
+        //当点击全选框时
+        my$("pickAll").onclick = function () {
+            var checkboxes = my$("tb").getElementsByTagName('input');
+            for (var i = 0; i < checkboxes.length; i++) {
+                checkboxes[i].checked = my$('pickAll').checked;
+            }
+        }
+        //当下面所有的框被全选时，全选框也要被勾上
+        var checkboxes = my$("tb").getElementsByTagName('input');
+        for (var i = 0; i < checkboxes.length; i++) {
+            checkboxes[i].onclick = function () {
+                //假定点击前时全选的
+                var flag = true;
+                for (var j = 0; j <checkboxes.length; j++) {
+                    if (!checkboxes[j].checked) {
+                        flag = false;
+                        break;
+                    }
+                }
+                my$('pickAll').checked = flag;
+            }
+        }
+    </script>
+</body>
+
+</html>

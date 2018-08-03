@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>
+        对象.addEventListener("事件类型"，事件处理函数，boolean); 火狐和谷歌支持，IE8不支持。
+    </p>
+    <p>
+        对象.attachEvent("有on的事件类型"，事件处理函数);IE8支持，火狐谷歌不支持。
+    </p>
+    <div class="div">
+        <h2>addEventListener和attachEvent的不同点和相同点</h2>
+        <p>相同点都是可以为同一个元素绑定相同事件源的多个事件。</p>
+        <p>不同点：</p>
+        <ul>
+            <li>方法参数不一样.addEventListener("type",fn,false);attachEvent(on+"type",fn)</li>
+            <li>在事件类型上，attachEvent需要添加on,例如click，需要加上on变为onclick。</li>
+            <li>addEventListener支持火狐、谷歌以及IE11，attachEvent支持IE8。</li>
+            <li>addEventListener函数里面的this指向的是事件源对象，attachEvent指向的window对象。</li>
+        </ul>
+    </div>
+    <input type="button" value="添加多个事件" id="btn1">
+    <script src="../js/common.js"></script>
+    <script>
+        //为任意元素.绑定任意的事件, 任意的元素,事件的类型,事件处理函数
+        function addEventListener(element, type, fn) {
+            //判断浏览器是否支持这个方法
+            if (element.addEventListener) {
+                element.addEventListener(type, fn, false);
+            } else if (element.attachEvent) {
+                element.attachEvent("on" + type, fn);
+            } else {
+                element["on" + type] = fn;
+            }
+        }
+
+
+
+        var btnObj = my$('btn1');
+        btnObj.addEventListener('click', function () {
+            console.log('wwwwwwwww');
+        }, false);
+        btnObj.addEventListener('click', function () {
+            console.log('wwwdddddddddddddddddddddddddddddddddddddddddddwwwwww');
+        }, false);
+        btnObj.addEventListener('click', function () {
+            console.log('ooooooo');
+        }, false);
+
+
+        /*
+         *
+         * 总结绑定事件的区别:
+         * addEventListener();
+         * attachEvent()
+         *
+         * 相同点: 都可以为元素绑定事件
+         * 不同点:
+         * 1.方法名不一样
+         * 2.参数个数不一样addEventListener三个参数,attachEvent两个参数
+         * 3.addEventListener 谷歌,火狐,IE11支持,IE8不支持
+         *   attachEvent 谷歌火狐不支持,IE11不支持,IE8支持
+         * 4.this不同,addEventListener 中的this是当前绑定事件的对象
+         *   attachEvent中的this是window
+         * 5.addEventListener中事件的类型(事件的名字)没有on
+         *  attachEvent中的事件的类型(事件的名字)有on
+         */
+    </script>
+</body>
+
+</html>

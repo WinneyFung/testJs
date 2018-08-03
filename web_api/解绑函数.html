@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .div {
+            margin: 100px auto;
+            width: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="div">
+        <p>注意：用什么方式绑定事件，就应该用什么方式解绑事件。</p>
+        <p>通过 对象.on事件名称=事件处理函数-->绑定事件；那么对应的解绑事件就是：对象.on事件名称=null.</p>
+
+        <p>对象.addEventListener("没有on的事件类型"，命名函数，false)；-->绑定事件。那么对应的解绑事件：对象.removeEventListener("没有on的事件类型"，命名函数名称，false)；</p>
+        <p>对象的attachEvent("有on的事件类型"，命名函数)-->绑定事件；那么对应的解除事件函数是：对象.detachEvent("有on的事件类型"，命名函数名称);</p>
+    </div>
+    <script>
+        //解绑事件的兼容
+        //为任意的一个元素,解绑对应的事件
+        function removeEventListener(element, type, fnName) {
+            if (element.removeEventListener) {
+                element.removeEventListener(type, fnName, false);
+            } else if (element.detachEvent) {
+                element.detachEvent("on" + type, fnName);
+            } else {
+                element["on" + type] = null;
+            }
+        }
+        //解绑事件:
+        /*
+         * 注意:用什么方式绑定事件,就应该用对应的方式解绑事件
+         * 1.解绑事件
+         * 对象.on事件名字=事件处理函数--->绑定事件
+         * 对象.on事件名字=null;
+         * 2.解绑事件
+         * 对象.addEventListener("没有on的事件类型",命名函数,false);---绑定事件
+         * 对象.removeEventListener("没有on的事件类型",函数名字,false);
+         * 3.解绑事件
+         * 对象.attachEvent("on事件类型",命名函数);---绑定事件
+         * 对象.detachEvent("on事件类型",函数名字);
+         *
+         *
+         * */
+    </script>
+</body>
+
+</html>

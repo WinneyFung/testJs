@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div {
+            width: 130px;
+            border: 1px solid palegoldenrod;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="button" value="创建按钮" id="cBtn">
+    <input type="button" value="替换按钮" id="sBtn">
+    <input type="button" value="删除按钮" id="rBtn">
+    <input type="button" value="删除全部按钮" id="rAllBtn">
+
+    <div class="box" id="div1"></div>
+    <script src="../js/common.js"></script>
+    <script>
+        var i = 0;
+        my$('cBtn').onclick = function () {
+            var btnObj = document.createElement('input');
+            btnObj.type = "button";
+            btnObj.value = '按钮' + i++;
+            my$('div1').appendChild(btnObj);
+        }
+        my$('rBtn').onclick = function () {
+            my$('div1').removeChild(my$('div1').firstElementChild);
+        }
+        my$('sBtn').onclick = function () {
+            var btnObj = document.createElement('input');
+            btnObj.type = "button";
+            btnObj.value = '按钮' + i++;
+            my$('div1').replaceChild(btnObj, my$('div1').firstElementChild);
+        }
+        //删除全部元素
+        my$('rAllBtn').onclick = function () {
+            var btns = my$('div1').getElementsByTagName('input');
+            while (my$('div1').firstElementChild) {
+                my$('div1').removeChild( my$('div1').firstElementChild);
+            }
+        }
+    </script>
+</body>
+
+</html>

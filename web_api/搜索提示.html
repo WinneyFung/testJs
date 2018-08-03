@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #txt {
+            width: 250px;
+        }
+
+        #btn {
+            width: 60px;
+        }
+
+        .kDiv {
+            width: 250px;
+            border: 1px solid #666;
+            padding: 5px 5px;
+        }
+
+        .kDiv p {
+            margin: 5px 5px;
+        }
+        
+        .kDiv p.flag {
+            background-color: orangered;
+        }
+
+        .box {
+            width: 400px;
+            margin: 200px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box" id="box">
+        <input type="text" id="txt">
+        <input type="button" value="搜索" id="btn">
+    </div>
+    <script>
+
+
+
+        ///该兼容的需要兼容
+        function setInnerText(element,txt) {
+            if (element.innerText == 'undefined') {
+                //不兼容innerText
+                element.textContent = txt;
+            } else {
+                element.innerText = txt;
+            }
+        }
+
+        function getInnerText(element) {
+            if (element.innerText == 'undefined') {
+                return element.textContent;
+            } 
+            return element.innerText;
+        }
+
+
+
+
+        var keyWords = ["猪八戒睡觉", "猪八戒怕西瓜", "猪八戒背媳妇猥琐的", "猪八戒", "吸血鬼日志", "吸血鬼", "xxxxyyyy", "xxxxxx"];
+
+        document.getElementById('txt').onkeyup = function () {
+            //只要keyup就判断是否已经存在div了
+            var kDiv = document.getElementById('kDiv');
+            if (kDiv) {
+                document.getElementById('box').removeChild(kDiv);
+            }
+            var txtValue = this.value;
+            var tempArr = [];
+            if (txtValue.length != 0) {
+                //判断是否有关键词匹配
+                for (var i = 0; i < keyWords.length; i++) {
+                    //恰好有关键词的开头是输入的词
+                    if (keyWords[i].indexOf(txtValue) == 0) {
+                        tempArr.push(keyWords[i]);
+                    }
+                }
+            }
+            //再次判断输入是否为空或者匹配词是否为空
+            if (txtValue.length == 0 || tempArr.length < 1) {
+                return;
+                // var kDiv = document.getElementById('kDiv');
+                // if (kDiv) {
+                //     document.getElementById('txt').removeChild(kDiv);
+                // }
+            }
+            //创建div
+            var keyDiv = document.createElement('div');
+            keyDiv.className = 'kDiv';
+            keyDiv.id = 'kDiv';
+            for (var j = 0; j < tempArr.length; j++) {
+                var pObj = document.createElement('p');
+                pObj.onmouseover = function () {
+                    this.className = 'flag';
+                }
+                pObj.onmouseout = function () {
+                    this.className = '';
+                }
+                setInnerText(pObj,tempArr[j]);
+                pObj.onclick = function () {
+                    document.getElementById('txt').value = getInnerText(this);
+                }
+                keyDiv.appendChild(pObj);
+            }
+            document.getElementById('box').appendChild(keyDiv);
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .div {
+            width: 400px;
+            background-color: #ccc;
+        }
+        li {
+            list-style: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="div">
+        <h2>事件冒泡</h2>
+        <!-- //事件冒泡:多个元素嵌套,有层次关系,这些元素都注册了相同的事件,如果里面的元素的事件触发了,外面的元素的该事件自动的触发了. -->
+        <p>当元素有层级关系，并且都有注册相同的事件绑定。如果里面的元素的事件触发了，那么外面的元素的事件也会触发。</p>
+        <h2>事件有三个阶段：</h2>
+        <ul>
+            <li>1.事件捕获阶段：从外到内。</li>
+            <li>2.事件目标阶段：最开始选择的那个</li>
+            <li>3.事件冒泡阶段：从里向外。</li>
+        </ul>
+        <h2>为元素绑定事件</h2>
+        <p>
+            addEventListener("没有on的事件类型",事件处理函数,控制事件阶段的) 事件触发的过程中,可能会出现事件冒泡的效果,为了阻止事件冒泡---> window.event.cancelBubble=true;谷歌,IE8支持,火狐不支持
+            window.event就是一个对象,是IE中的标准 e.stopPropagation();阻止事件冒泡---->谷歌和火狐支持 window.event和e都是事件参数对象,一个是IE的标准,一个是火狐的标准 事件参数e在IE8的浏览器中是不存在,此时用window.event来代替
+            addEventListener中第三个参数是控制事件阶段的 事件的阶段有三个: 通过e.eventPhase这个属性可以知道当前的事件是什么阶段你的 如果这个属性的值是: 1---->捕获阶段 2---->目标阶段
+            3---->冒泡 一般默认都是冒泡阶段,很少用捕获阶段 冒泡阶段:从里向外 捕获阶段:从外向内
+        </p>
+    </div>
+</body>
+
+</html>

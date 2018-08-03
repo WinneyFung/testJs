@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style> 
+        div {
+            border: 1px solid pink;
+        }
+    </style>
+</head>
+<body>
+    <p>元素创建的三种方式：document.write();document.createElement();innerHTML()</p>
+    <p>document.write():在页面加载完全完成后，使用document.write()创建元素，会清除原来页面的内容.</p>
+    <input type="button" value="使用document.write()创建元素" id="btn1">
+    <input type="button" value="使用document.createElement()创建元素" id="btn2">
+    <input type="button" value="使用document.innerHTML()创建元素" id="btn3">
+    <div class="box" id="div1">
+        
+    </div>
+    <script src="../js/common.js"></script>
+    <script>
+        my$('btn1').onclick = function () {
+            document.write("<p>document.write</p>")
+        }
+        my$('btn3').onclick = function () {
+            my$('div1').innerHTML = '<p>oooooooooooooooooooooo</p>';
+        } 
+        my$('btn2').onclick = function () {
+           var p = document.createElement('p');
+           p.innerText = 'pppppppppppppppppppppp';
+           my$('div1').appendChild(p);
+        } 
+    </script>
+</body>
+</html>
