@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .div {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            background-color: red;
+            border: 2px solid deeppink;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="button" value="400" id="btn1">
+    <input type="button" value="900" id="btn2">
+    <div class="div" id="dv"></div>
+    <script>
+        var dvObj = document.getElementById('dv');
+        document.getElementById('btn1').onclick = function () {
+            animate(dvObj, 400);
+        };
+
+        document.getElementById('btn2').onclick = function () {
+            animate(dvObj, 800);
+        }
+
+        function animate(element, target) {
+            //清空原来的定时器
+            clearInterval(element.timeId);
+            //设置新的定时器
+            element.timeId = setInterval(function () {
+                //添加动画
+                var current = element.offsetLeft;
+                var step = (target - current) / 10;
+                step = step > 0 ? Math.ceil(step) : Math.floor(step);
+                current += step;
+                element.style.left = current + 'px';
+                if (current == target) {
+                    clearInterval(element.timeId)
+                }
+                //测试代码:
+                console.log("目标位置:" + target + ",当前位置:" + current + ",每次移动步数:" + step);
+            }, 10);
+        }
+    </script>
+</body>
+
+</html>

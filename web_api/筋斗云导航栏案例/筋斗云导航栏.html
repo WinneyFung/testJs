@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0
+        }
+
+        body {
+            background-color: #666;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        .nav {
+            width: 800px;
+            height: 42px;
+            margin: 100px auto;
+            border-radius: 10px;
+            background: url('./images/rss.png') right center no-repeat;
+            background-color: #fff;
+            position: relative;
+        }
+
+        .nav ul {
+            position: relative;
+        }
+
+        .nav li {
+            width: 83px;
+            height: 42px;
+            float: left;
+            text-align: center;
+            line-height: 42px;
+            cursor: pointer;
+        }
+
+        .nav .cloud {
+            background: url('./images/cloud.gif') no-repeat;
+            width: 83px;
+            height: 42px;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav" id="nav">
+        <span class="cloud" id="cloud"></span>
+        <ul>
+            <li>破产姐妹</li>
+            <li>破产姐妹</li>
+            <li>破产姐妹</li>
+            <li>破产姐妹</li>
+            <li>破产姐妹</li>
+            <li>破产姐妹</li>
+            <li>破产姐妹</li>
+            <li>破产姐妹</li>
+        </ul>
+    </div>
+</body>
+<script>
+    var lastClick = 0;
+    var spanObj = document.getElementById('cloud');
+    var ulObj = document.getElementById('nav').getElementsByTagName('ul')[0];
+    var list = ulObj.children;
+    for (var i = 0; i < list.length; i++) {
+        list[i].onclick = function() {
+            lastClick = this.offsetLeft + 'px';
+        }
+        list[i].onmouseover = function() {
+            spanObj.style.left = this.offsetLeft + 'px';
+        }
+        list[i].onmouseout = function() {
+            spanObj.style.left = lastClick;
+        }
+    }
+</script>
+</html>

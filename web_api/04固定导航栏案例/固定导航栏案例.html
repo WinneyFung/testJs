@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0
+    }
+
+    img {
+      vertical-align: top;
+    }
+
+    .main {
+      margin: 0 auto;
+      width: 1000px;
+      margin-top: 10px;
+
+    }
+
+    .fixed {
+      position: fixed;
+      top: 0;
+      left: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="top" id="topPart">
+    <img src="images/top.png" alt="" />
+  </div>
+  <div class="nav" id="navBar">
+    <img src="images/nav.png" alt="" />
+  </div>
+  <div class="main" id="mainPart">
+    <img src="images/main.png" alt="" />
+  </div>
+  <script src="common.js"></script>
+  <script>
+    function getScroll() {
+      return {
+        left: window.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft || 0,
+        top: window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0
+      };
+    }
+
+    //为文档滑动添加点击事件 
+    document.onscroll = function () {
+      var mainObj = my$('mainPart');
+      var navBarObj = my$('navBar');
+      console.log(getScroll().top)
+      //当文档的scrollTop大于topPart的高度时，navBar被固定
+      if (getScroll().top >= my$('topPart').offsetHeight) {
+        navBarObj.className = 'nav fixed';
+        //因为navBar脱标了，阻止mainPart向上
+        mainObj.style.marginTop =  navBarObj.offsetHeight + 10 + 'px';
+      } else {
+        navBarObj.className = 'nav';
+        mainObj.style.marginTop = 10 + 'px';
+      }
+    }
+  </script>
+
+</body>
+
+</html>
