@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    div {
+        height: 100px;
+        width: 100px;
+        background-color: red;
+        position: relative;
+    }
+
+    #btn {
+        position: relative;
+        left: 0;
+        top: 0;
+        width: 100px;
+        height: 100px;
+    }
+</style>
+
+<body>
+    <input type="button" value="change" id="btn">
+    <div id="dv"></div>
+    <script>
+        function getStyle3(element, attr) {
+            return window.getComputedStyle ? window.getComputedStyle(element, null)[attr] : element.currentStyle[attr];
+        }
+
+        function animate(element, json, fn) {
+            clearInterval(element.timeId);
+            element.timeId = setInterval(
+                //json 格式 {"width":400,"height":500,"left":500,"top":80}
+                function () {
+                    for (var attr in json) {
+                        console.log(attr)
+                        var flag = true;
+                        //获取当前位置值
+                        var styleValue = parseInt(getStyle3(element, attr));
+                        if (isNaN(styleValue)) {
+                            styleValue = 0;
+                        }
+                        var current = styleValue;
+                        var target = json[attr];
+                        var step = (target - current) / 10;
+                        var step = (target - current) > 0 ? Math.ceil(step) : Math.floor(step);
+                        //移动后的值
+                        current += step;
+                        element.style[attr] = current + 'px';
+                        if (current != target) {
+                            flag = false;
+                        }
+                    }
+                    if (flag) {
+                        clearInterval(element.timeId);
+                        if (fn) {
+                            fn();
+                        }
+                    }
+                    //测试代码
+                    console.log("目标:" + target + ",当前:" + current + ",每次的移动步数:" + step);
+                }, 20);
+        }
+
+        document.getElementById('btn').onclick = function () {
+            animate(document.getElementById('dv'), {
+                "width": 300,
+                "height": 200,
+                "left": 600,
+                "top": 300
+            }, function () {
+                var json3 = {
+                    "width": 45,
+                    "height": 50,
+                    "left": 50,
+                    "top": 60
+                };
+                animate(document.getElementById('dv'), json3);
+            });
+        }
+    </script>
+</body>
+
+</html>

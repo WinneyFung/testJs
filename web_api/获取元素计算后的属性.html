@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        div {
+            /* position: absolute; */
+            left: 100px;
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <p>获取元素计算后的属性</p>
+    <input type="button" value="没有属性position,left=100px" id="btn1">
+    <input type="button" value="有属性position" id="btn2">
+    <p>需要获取计算后的属性，需要做兼容:</p>
+    <p>
+
+    </p>
+    <div class="div" id="dv"></div>
+    <script>
+        document.getElementById('btn1').onclick = function () {
+            alert(document.getElementById('dv').offsetLeft);
+        }
+
+        document.getElementById('btn2').onclick = function () {
+            document.getElementById('dv').style.position = "absolute";
+            alert(document.getElementById('dv').offsetLeft);
+        }
+
+        function getStyle(element, attr) {
+            //非IE8支持的方式
+            if (window.getComputedStyle) {
+                return window.getComputedStyle(element, null)[attr];
+            } else {
+                return element.currentStyle[attr];
+            }
+        }
+
+        console.log(getStyle(document.getElementById('dv'), "left"));
+
+        function getStyle2(element, attr) {
+            //判断浏览器是否支持这个方法
+            return window.getComputedStyle ? window.getComputedStyle(element, null)[attr] : element.currentStyle[attr];
+        }
+        console.log(getStyle2(document.getElementById('dv'), "left"))
+
+        function getStyle3(element,attr) {
+           return window.getComputedStyle ? window.getComputedStyle(element,null)[attr] : element.currentStyle[attr];
+        }
+        console.log(getStyle3(document.getElementById('dv'), "left"))
+
+    </script>
+</body>
+
+</html>

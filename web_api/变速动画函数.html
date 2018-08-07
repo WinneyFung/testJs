@@ -24,24 +24,49 @@
     <script>
         var dvObj = document.getElementById('dv');
         document.getElementById('btn1').onclick = function () {
-            animate(dvObj, 400);
+            animate(dvObj, 400,"top");
         };
 
         document.getElementById('btn2').onclick = function () {
-            animate(dvObj, 800);
+            animate(dvObj, 800,"left");
         }
 
-        function animate(element, target) {
+        // function animate(element, target) {
+        //     //清空原来的定时器
+        //     clearInterval(element.timeId);
+        //     //设置新的定时器
+        //     element.timeId = setInterval(function () {
+        //         //添加动画
+        //         var current = element.offsetLeft;
+        //         var step = (target - current) / 10;
+        //         step = step > 0 ? Math.ceil(step) : Math.floor(step);
+        //         current += step;
+        //         element.style.left = current + 'px';
+        //         if (current == target) {
+        //             clearInterval(element.timeId)
+        //         }
+        //         //测试代码:
+        //         console.log("目标位置:" + target + ",当前位置:" + current + ",每次移动步数:" + step);
+        //     }, 10);
+        // }
+
+        function getStyle3(element, attr) {
+            return window.getComputedStyle ? window.getComputedStyle(element, null)[attr] : element.currentStyle[attr];
+        }
+
+        function animate(element, target, attr) {
             //清空原来的定时器
             clearInterval(element.timeId);
             //设置新的定时器
             element.timeId = setInterval(function () {
                 //添加动画
-                var current = element.offsetLeft;
+                //将字符串改为数字 例如100px变为100
+                var current = parseInt(getStyle3(element,attr));
+                console.log(current)
                 var step = (target - current) / 10;
                 step = step > 0 ? Math.ceil(step) : Math.floor(step);
                 current += step;
-                element.style.left = current + 'px';
+                element.style[attr] = current + 'px';
                 if (current == target) {
                     clearInterval(element.timeId)
                 }
