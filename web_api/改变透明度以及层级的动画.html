@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    div {
+        height: 100px;
+        width: 100px;
+        background-color: red;
+        position: relative;
+    }
+
+    #btn {
+        position: relative;
+        left: 0;
+        top: 0;
+        width: 100px;
+        height: 100px;
+    }
+</style>
+
+<body>
+    <input type="button" value="change" id="btn">
+    <div id="dv"></div>
+    <script>
+        function getStyle3(element, attr) {
+            return window.getComputedStyle ? window.getComputedStyle(element, null)[attr] : element.currentStyle[attr] ||
+                0;
+        }
+
+        function animate(element, json, fn) {
+            //根据timeId清理之前绑定的定时器
+            clearInterval(element.timeId);
+            element.timeId = setInterval(function () {
+                var flag = true;
+                //便利json的每个属性以及目标值
+                for (var attr in json) {
+                    var current = getStyle3(element, attr);
+                    //TODO 判断target是否为小数 简单处理：精确到整数位
+                    var target = json[attr];
+                    var step = 0;
+                    //判断是不是opacity
+                    if (attr == "opacity") {
+                        current *= 100;
+                        target *= 100;
+                        step = (target - current) / 10;
+                        console.log('step',step);
+                        step = step > 0 ? Math.ceil(step) : Math.floor(step);
+                        console.log('取整后step',step);
+                        current += step;
+                        element.style[attr] = current / 100;
+                    } else if (attr == "zIndex") {
+                        element.style[attr] = json[attr];
+                    } else {
+                        current = parseInt(current);
+                        step = (target - current) / 10;
+                        step = step > 0 ? Math.ceil(step) : Math.floor(step);
+                        current += step;
+                        element.style[attr] = current + 'px';
+                    }
+                    //判断是否达到目标
+                    if (current != target) {
+                        flag = false;
+                    }
+                }
+                if (flag) {
+                    clearInterval(element.timeId);
+                    if (fn) {
+                        fn();
+                    }
+                }
+            }, 10);
+        }
+
+        document.getElementById('btn').onclick = function () {
+            animate(document.getElementById('dv'), {
+                "width": 300,
+                "height": 200,
+                "left": 600,
+                "top": 300,
+                "opacity": 1,
+                "zIndex": 1
+            }, function () {
+                var json3 = {
+                    "width": 45,
+                    "height": 50.8,
+                    "left": 50,
+                    "top": 60,
+                    "opacity": 0.3,
+                    "zIndex": 2
+                };
+                animate(document.getElementById('dv'), json3);
+            });
+        }
+    </script>
+</body>
+
+</html>
