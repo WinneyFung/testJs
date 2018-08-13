@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            width: 300px;
+            height: 500px;
+            border: 1px solid red;
+            margin: 100px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .content {
+            padding: 5px 18px 5px 5px;
+            position: absolute;
+            top: 0;
+            left: 0;
+
+        }
+
+        .scroll {
+            width: 18px;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            right: 0;
+            background-color: #eee;
+        }
+
+        .bar {
+            height: 100px;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: red;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box" id="box">
+        <div class="content" id="content">
+            u不知大怎么使 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事
+            不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事
+            不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事
+            不知道怎么回事 不知道怎么回事不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事
+            不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事
+            不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事不知道怎么回事
+            不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事
+            不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事
+            不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事
+            不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事
+            不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事
+            不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事
+            不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事
+            不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事
+            不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事
+            不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事
+            不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事 不知道怎么回事
+            不知道怎么回事 不知道怎么回事 不知道怎么回事
+        </div>
+        <div class="scroll" id="scroll">
+            <div class="bar" id="bar"></div>
+        </div>
+    </div>
+</body>
+<script>
+    //获取需要的元素
+    var scroll = document.getElementById('scroll');
+    var content = document.getElementById('content');
+    var box = document.getElementById('box');
+    var bar = document.getElementById('bar');
+
+    //设置滚动条的高度 随着内容高度的增高 滚动条的高度会缩少
+    //滚动条的高/装滚动条的div的高=box的高/文字div的高
+    //滚动条的高=装滚动条的div的高*box的高/文字div的高
+    var barHeight = scroll.offsetHeight * box.offsetHeight / content.offsetHeight;
+    bar.style.height = barHeight + 'px';
+    //移动滚动条
+    bar.onmousedown = function (e) {
+        //计算可视区域和offsetTop的差距
+        var spaceY = e.clientY - bar.offsetTop;
+        //移动bar
+        document.onmousemove = function (e) {
+            var barY = e.clientY - spaceY;
+            //计算边界值  如果小于最小值取最小值
+            barY = barY < 0 ? 0 : barY;
+            //如果大于最大值，取最大值
+            var maxBarY = scroll.offsetHeight - bar.offsetHeight;
+            barY = barY > maxBarY ? maxBarY : barY;
+            bar.style.top = barY + 'px';
+            //去掉滑动时选择的文字
+            window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty();
+
+            //计算文字移动的距离 找比例值需要找定值
+            //滚动条的移动距离/文字div的移动距离=滚动条最大的移动距离/文字div的最大移动距离
+            //文字div的移动距离=滚动条的移动距离*文字div的最大移动距离/滚动条最大的移动距离
+            var maxContentY = box.offsetHeight - content.offsetHeight;
+            var contentY = barY * maxContentY / maxBarY;
+            content.style.marginTop = contentY + 'px';
+        }
+    }
+
+    //清空事件
+    document.onmouseup = function () {
+        document.onmousemove = null;
+    }
+</script>
+
+</html>
