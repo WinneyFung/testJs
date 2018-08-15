@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <h3>什么样的数据需要共享原型</h3>
+    <ul>
+        <li>需要共享的数据写在原型中。</li>
+        <li>需要共享的属性需要写在原型中，就好比Java的静态属性,但是存储的位置不是相同的。访问该属性需要用构造函数名.prototype属性访问。</div>
+        </li>
+        <li>私有成员（一般是属性）写在构造函数中，非私有成员（一般是函数）写在原型中。</li>
+        <li>没有像Java那样子严格区分静态函数和非静态函数，函数都定义在原型链，好处可以节省非公共函数占用的内存。</li>
+    </ul>
+    <script>
+        function Person(name, age) {
+            this.name = name;
+            this.age = age;
+        }
+        /*   Person.prototype.onSchoolNum = 0;
+          Person.prototype.signSchool = function() {
+              console.log('sign school incre one...');
+              Person.prototype.onSchoolNum ++;
+          } */
+
+        Person.prototype = {
+            //需要手动添加构造函数
+            constructor: Person,
+            onSchoolNum: 0,
+            signSchool: function () {
+                console.log('sign school incre one...');
+                //this指向的仍然是实例对象  此时相当于onSchoolNum不是作为静态属性调用
+                // this.onSchoolNum++; 
+                Person.prototype.onSchoolNum++;
+            }
+        }
+
+        var p1 = new Person('xiaoming', 12);
+        p1.signSchool();
+        var p2 = new Person('xiaohong', 11);
+        p2.signSchool();
+        console.log(Person.prototype.onSchoolNum);
+        var p3 = new Person('xiaohong', 11);
+        p3.signSchool();
+        console.log(p2.onSchoolNum);
+        p2.signSchool();
+        console.log(p2.onSchoolNum);
+        p3.signSchool();
+        console.log(p3.onSchoolNum);
+        console.log(Person.prototype.onSchoolNum);
+    </script>
+</body>
+
+</html>

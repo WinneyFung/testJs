@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .map {
+            width: 600px;
+            height: 400px;
+            background-color: #ccc;
+            border: 1px solid #666;
+            position: relative;
+            margin: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="map">
+
+    </div>
+    <script>
+        //在函数执行时，生成一个随机数对象的构造函数 并且将构造函数挂到window下，变为全局函数
+        //函数自调用
+        (function () {
+            //无参构造函数
+            function Random() {};
+            //原型函数 Math.random()返回0-1之间的小数
+            Random.prototype.getRandom = function (min, max) {
+                return Math.floor((Math.random() * (max - min) + min));
+            }
+            //将Random构造函数挂载到window下
+            window.Random = Random;
+        })();
+        //初始化Random对象
+        var random = new Random();
+        console.log(random.getRandom(1, 20));
+
+        //添加Food构造函数，并且实例化food
+        (function (window) {
+            var map = document.querySelector('.map');
+
+            //定义food的构造函数
+            function Food(width, height, color) {
+                //定义属性 
+                //默认20
+                this.width = width || 20;
+                this.height = height || 20;
+                this.element = document.createElement('div');
+                this.x = 0;
+                this.y = 0;
+                this.color = color;
+                this.position = 'absolute';
+            }
+
+            Food.prototype = {
+                init: function () {
+                    //this指向Food的示例对象 
+                    var div = this.element;
+                    div.style.position = this.position;
+                    div.style.width = this.width + 'px';
+                    div.style.height = this.height + 'px';
+                    div.style.left = this.x;
+                    div.style.top = this.y;
+                    div.style.backgroundColor = this.color;
+                    map.appendChild(div);
+                    this.render();
+                },
+                render: function () {
+                    var div = this.element;
+                    //获取随机函数
+                    var random = new Random();
+                    //获取最大的份数
+                    var x = random.getRandom(0, map.offsetWidth / this.width) * this.width;
+                    var y = random.getRandom(0, map.offsetHeight / this.height) * this.height;
+                    div.style.left = x + 'px';
+                    div.style.top = y + 'px';
+                    console.log('x: ', x, 'y: ', y);
+                }
+            };
+            new Food(20, 20, 'green').init();
+        })();
+    </script>
+</body>
+
+</html>

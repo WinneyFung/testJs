@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <p>通过prototype解决数据共享，让多个示例对象指向同一个函数，节省内存空间。</p>
+    <script>
+        function Person(name,age) {
+            this.name = name;
+            this.age = age;
+        }
+
+        Person.prototype.eat = function() {
+            console.log('eat something...');
+        }
+
+        var p1 = new Person('wi',19);
+        var p2 = new Person('ooo',90);
+        console.dir(p1);
+        console.dir(p2);
+        console.log('p1 instanceof Person',p1 instanceof Person);
+    </script>
+</body>
+</html>
