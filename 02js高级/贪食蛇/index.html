@@ -15,14 +15,22 @@
     </div>
     <script src="js/Food.js"></script>
     <script src="js/Snake.js"></script>
+    <script src="js/Game.js"></script>
     <script>
         var map = document.querySelector(".map");
-        var food = new Food();
-        food.init(map);
-        var food1 = new Food();
-        food1.init(map);
-        var sk = new Snake();
-        sk.init(map);
+        /*      var food = new Food();
+             food.init(map);
+             var food1 = new Food();
+             food1.init(map);
+             var sk = new Snake();
+             sk.init(map);
+             setInterval(function () {
+                 sk.init(map);
+                 sk.move(map);
+             }, 120) */
+        var game = new Game(map);
+        game.init();
+        game.bindKey();
     </script>
 </body>
 
