@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>
+        apply和call方法都是能够改变函数内部的this指向的对象。不同点是apply用数组的方式传入函数本来的参数，而call 方法用的直接在绑定的对象的参数后，加入函数原来的参数。
+    </p>
+    <p>
+        apply方法和call方法不存在函数这个示例对象中的，而是存在构造函数Function的prototype对象，通过函数的__prototype__指向。
+    </p>
+    <p>
+        bind方法是复制的意思,参数可以在复制的时候传进去,也可以在复制之后调用的时候传入进去
+
+    </p>
+    <script>
+        var f1 = function (num1, num2) {
+            console.log(this);
+            return num1 + num2;
+        }
+
+        var res1 = f1.call(this, 10, 20);
+        var res2 = f1.apply(this, [100, 200]);
+        console.log(res1, '  res2: ', res2);
+
+        //bind是用来复制一份 //使用的语法: 
+        /* * 函数名字.bind(对象,参数1,参数2,...);---->返回值是复制之后的这个函数 * 方法名字.bind(对象,参数1,参数2,...);---->返回值是复制之后的这个方法
+         * * */
+        f1.bind(this);
+        console.log(f1(10, 200));
+    </script>
+</body>
+
+</html>

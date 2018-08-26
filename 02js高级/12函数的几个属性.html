@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>
+        name:只读属性，不能通过.操作改变函数值。 arguments:函数实参属性 caller：函数的调用者
+    </p>
+    <script>
+        var f1 = function (num1, num2) {
+            //不能用this代替f1 因为this指向的是window 严格模式下是undefined
+            console.log('name:', f1.name);
+            console.log('args:', f1.arguments);
+            console.log('args.length:', f1.arguments.length);
+            console.log('length:', f1.length);
+            console.log('caller:', f1.caller);
+        }
+
+        var f2 = function () {
+            console.log('执行函数2....');
+            f1(2, 222);
+        }
+
+        f2();
+    </script>
+</body>
+
+</html>
