@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>浅拷贝的对于简单类型直接复制，对于属性类型是对象、数组等类型，只是复制引用地址。</p>
+    <p>深拷贝与浅拷贝的不同点是：深拷贝处理把属性类型为对象、数组的地址复制，还把对象、数组的指向的数据也复制。</p>
+</body>
+<script>
+    //浅拷贝
+    var src = {
+        name: '猪八戒',
+        sex: '男',
+        xiFu: {
+            name: '猪八戒媳妇',
+            sex: '女'
+        },
+        childer: [{
+                name: '女儿',
+                sex: '女'
+            },
+            {
+                name: '小女儿',
+                sex: '女'
+            }
+        ]
+    };
+
+    var dist1 = {};
+
+    //浅拷贝 
+    var smallExtend = function (src, dist) {
+        for (key in src) {
+            dist[key] = src[key];
+        }
+    }
+    smallExtend(src, dist1);
+
+    console.log(src);
+    console.log(dist1);
+
+    //深拷贝
+    var extend = function (src, dist) {
+        for (key in src) {
+            var item = src[key];
+            if (item instanceof Array) {
+                //递归调用
+                dist[key] = [];
+                extend(item, dist[key]);
+            } else if (item instanceof Object) {
+                dist[key] = {};
+                extend(item, dist[key]);
+            } else {
+                dist[key] = item;
+            }
+        }
+    }
+
+    dist2 = {};
+    extend(src, dist2);
+    console.log(dist2);
+</script>
+
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //构造函数 严格模式
+        var regex2 = /^\d{0,3}$/;
+        console.log(regex2.test('number:1'));
+        //字面量 非严格模式
+        var regex1 = new RegExp(/\d{0,3}/);
+        console.log(regex1.test('number:1'));
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var sum = function (n) {
+            if (n == 1) {
+                return 1;
+            } else {
+                return n + sum(n - 1);
+            }
+        }
+
+        console.log(sum(5));
+
+        var sumEvery = function (num) {
+            if (num < 10) {
+                return num;
+            } else {
+                return num % 10 + sumEvery(parseInt(num / 10));
+            }
+        }
+
+        console.log(sumEvery(12131));
+
+        var fbi = function (n) {
+            if (n == 1 || n == 2) {
+                return 1;
+            } else {
+                return fbi(n - 1) + fbi(n - 2);
+            }
+        }
+
+        console.log(fbi(12));
+    </script>
+</body>
+
+</html>

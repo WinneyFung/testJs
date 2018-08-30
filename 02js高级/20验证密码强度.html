@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 300px;
+            height: 300px;
+            border: 1px solid #666;
+            margin: 100px auto;
+            text-align: center;
+        }
+        .pwdLvl0 {
+            margin: 10px auto 0px;
+            display:inline-block;
+            height: 8px;
+            width: 150px;
+            border: 1px solid #666;
+        }
+        .pwdLvl2 {
+            background-color: #eaee0b;
+            margin: 10px auto 0px;
+            display:inline-block;
+            height: 8px;
+            width: 100px;
+            border: 1px solid #666;
+        }
+        .pwdLvl1 {
+        background-color: #d43109;
+        margin: 10px auto 0px;
+        display:inline-block;
+        height: 8px;
+        width: 50px;
+        border: 1px solid #666;
+        }
+        .pwdLvl3,.pwdLvl3 {
+        background-color: #439b09;
+        margin: 10px auto 0px;
+        display:inline-block;
+        height: 8px;
+        width: 150px;
+        border: 1px solid #666;
+        }
+        #pwd {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <span>密码： </span><input type="pwd" name="pwd" id="pwd">
+        <br>
+        <span>密码强度: </span><span class="pwdLvl0" id="press"></span>
+
+
+        <br>
+        <span>邮箱： </span><input type="text" name="mail" id="mail">
+        <br>
+    </div>
+    <script>
+        var pwdObj = document.getElementById('pwd');
+        pwdObj.onkeyup = function () {
+            console.log(pwdObj.value);
+            document.getElementById('press').className = "pwdLvl" + getLevel(pwdObj.value);
+        }
+
+        var mailObj = document.getElementById('mail');
+        mailObj.onfocus = function () {
+            if (this.value.length == 0) {
+                this.style.backgroundColor = "#ffffff";
+            }
+        }
+
+        mailObj.onblur = function () {
+            if (/^[\w]+[@][\w]+([.][\w]+){1,2}$/.test(this.value)) {
+                this.style.backgroundColor = "green";
+            } else {
+                this.style.backgroundColor = "red";
+            }
+        }
+
+        var getLevel = function (pwd) {
+            var level = 0;
+            if (/[0-9]/.test(pwd)) {
+                level++;
+            }
+            if (/[a-z]/.test(pwd)) {
+                level++;
+            }
+            if (/[A-Z]/.test(pwd)) {
+                level++;
+            }
+            if (/[/W]/.test(pwd)) {
+                level++;
+            }
+            return level;
+        }
+    </script>
+</body>
+
+</html>

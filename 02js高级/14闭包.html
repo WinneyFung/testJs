@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>闭包的概念：一个函数A中有函数B，函数B引用了函数A定义的变量；或者一个函数A中有对象B，对象B引用了函数A定义的变量，此时形成闭包。</p>
+    <p>如果需要缓存数据的话，可以将数据定义在外层函数和内层函数中间，即缓存的数据定义在外层函数中。</p>
+    <p>闭包的优点是缓存数据；缺点也是缓存数据。</p>
+    <p>在函数中的局部变量，函数使用完后会释放，但是在闭包的时候，里面的局部变量的使用作用链会变长。</p>
+    <script>
+        var f1 = function () {
+            var num = 0;
+
+            function f2() {
+                num++;
+                console.log('直接闭包调用：', num);
+            }
+            f2();
+        }
+
+        f1();
+        f1();
+        f1();
+
+        var fb = function () {
+            var num = 0;
+            return function () {
+                num++;
+                console.log('获得闭包返回的函数调用：', num);
+            }
+        }
+        var fbr = fb();
+        fbr();
+        fbr();
+        fbr();
+
+        //对象闭包
+        var fb2 = function () {
+            var num = 100;
+            var obj = {
+                monney: num
+            };
+            console.log(obj.monney);
+        }
+
+        fb2();
+    </script>
+</body>
+
+</html>

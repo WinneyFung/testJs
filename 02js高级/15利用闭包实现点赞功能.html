@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        li {
+            float: left;
+            margin-right: 20px;
+            text-align: center;
+            list-style: none;
+        }
+
+        img {
+            display: block;
+        }
+
+        a {
+            color: orangered;
+
+        }
+
+        a:active,
+        a:hover {
+            text-decoration: none;
+            color: brown;
+
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li>
+            <img src="../images/liuwen.jpg" alt="liuwen">
+            <a href="javascript:void(0)">(0)赞</a>
+        </li>
+        <li>
+            <img src="../images/liuwen.jpg" alt="liuwen">
+            <a href="javascript:void(0)">(0)赞</a>
+        </li>
+        <li>
+            <img src="../images/liuwen.jpg" alt="liuwen">
+            <a href="javascript:void(0)">(0)赞</a>
+        </li>
+    </ul>
+</body>
+<script>
+    //给所有的a添加点击事件 每个图片由自己对应的缓存数据
+    var getValue = function () {
+        var num = 0;
+        return function () {
+            num++;
+            if (this.innerText) {
+                this.innerText = "(" + num + ")赞";
+            } else {
+                this.contentText = "(" + num + ")赞";
+            }
+
+        }
+    }
+
+    var aArr = document.getElementsByTagName('a');
+    var len = aArr.length;
+    for (var i = 0; i < len; i++) {
+        aArr[i].onclick = getValue();
+    }
+</script>
+
+</html>

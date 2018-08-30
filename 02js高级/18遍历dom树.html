@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>遍历dom树</h1>
+    <p>用递归遍历dom树</p>
+    <script>
+        var fn = function (node) {
+            console.log(node.nodeName);
+        }
+        var forDom = function (parent) {
+            var children = parent.children;
+            forChildren(children);
+        }
+        var forChildren = function (children) {
+            var len = children.length;
+            for (var i = 0; i < len; i++) {
+                var child = children[i];
+                fn(child);
+                //判断child下面有没有子节点,如果还有子节点,那么就继续的遍历
+                child.children && forChildren(child.children)
+            }
+        }
+        var root = document.documentElement;
+        forDom(root);
+    </script>
+</body>
+
+</html>
