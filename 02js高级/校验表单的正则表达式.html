@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .container {
+            font-size: 14px;
+            height: 140px;
+            width: 400px;
+            border: 1px solid #ccc;
+            margin: 100px auto;
+            padding:30px 30px;
+            background-color: #ccc;
+        }
+
+        label {
+            font-size: 18px;
+            width: 40px;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .error {
+            color: red;
+        }
+
+        .right {
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container" id="dv">
+        <label for="qq">Q Q</label><input type="text" id="qq"><span></span><br />
+        <label>手机</label><input type="text" id="phone"><span></span><br />
+        <label>邮箱</label><input type="text" id="e-mail"><span></span><br />
+        <label>座机</label><input type="text" id="telephone"><span></span><br />
+        <label>姓名</label><input type="text" id="fullName"><span></span><br />
+    </div>
+    <script>
+        function check(checkEle, regexp) {
+            checkEle.onblur = function () {
+                if (regexp.test(checkEle.value)) {
+                    this.nextElementSibling.innerText = "填写正确";
+                    this.nextElementSibling.className = "right";
+                } else {
+                    this.nextElementSibling.innerText = "填写格式不正确";
+                    this.nextElementSibling.className = "error";
+                }
+            }
+        }
+
+        //添加qq校验
+        check(document.getElementById('qq'), /^[\d]{6,11}$/);
+        check(document.getElementById('phone'), /^[\d]{11}$/);
+        check(document.getElementById('e-mail'), /^[\w_\.-]+@[\w]+([\.][\w]+){1,2}$/);
+        check(document.getElementById('telephone'), /^[\d]{3}[-][\d]{8}$/);
+        check(document.getElementById('fullName'), /^[\u4e00-\u9fa5]{2,6}$/);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+</head>
+
+<body>
+    姓名：*<input type="text" name="name" id="name">
+    <script>
+        document.getElementById('name').onblur = function () {
+            var regx = /^[\u4e00-\u9fa5]{2,6}$/
+            if (regx.test(this.value)) {
+                this.style.backgroundColor = 'green';
+            } else {
+                this.style.backgroundColor = 'red';
+            }
+        }
+    </script>
+</body>
+
+</html>
