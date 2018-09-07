@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul {
+            list-style: none;
+        }
+        .box {
+            width: 420px;
+            height: 280px;
+            border: 1px solid #666;
+            padding: 40px;
+            text-align: center; 
+            margin: 100px auto;
+        }
+        #comments {
+            width: 300px;
+            height: 180px;
+            border: 1px solid #666;
+            resize: none;
+            outline: none;
+            padding: 8px;
+        }
+
+        .sendedTxt li{
+            border-bottom: 1px dashed #666;
+        }
+    </style>
+    <script src="../js/jquery/jquery-1.12.4.js"></script>
+    <script>
+        $(document).ready(()=>{
+            $('.send').click(()=>{
+                let txt = $('#comments').val();
+                if (txt.trim().length == 0) {
+                    return;
+                }
+                console.log(txt);
+                $('<li></li>').text(txt).appendTo($('.sendedTxt'));
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div class="box">
+        <textarea name="comments" id="comments" cols="30" rows="10"></textarea>
+        <input type="button" value="发布" class="send">
+        <ul class="sendedTxt"></ul>
+    </div>
+</body>
+
+</html>

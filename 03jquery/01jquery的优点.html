@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <style>
+        div {
+            height: 100px;
+            border: 1px solid orangered;
+            background-color: orange;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <p>jq的优点:
+        <ol>
+            <li>直接写代码、不需要考虑兼容；1.x.x.x版本兼容ie678，其他版本开始不兼容</li>
+            <li>多样的选择器</li>
+            <li>隐式循环</li>
+            <li>js的指向不等其他js、图片文件资源加载就执行</li>
+        </ol>
+    </p>
+
+    <p>DOM对象与jq对象相互转化：
+        <ol>
+            <li>DOM对象：用js获取的对象</li>
+            <li>jq对象：用jq获取的对象</li>
+            <li>DOM对象转换为jq对象：$(需要转换的DOM对象)</li>
+            <li>jquery对象转换为DOM对象：jq对象[index]或者jq对象.get(index)</li>
+            <li>jq选择器将符合条件的DOM对象封装为一个伪数组，所以jq对象里面的伪数组元素是可以使用DOM对象的方法的</li>
+        </ol>
+    </p>
+    <input type="button" value="展示" id="showBtn">
+    <input type="button" value="加入内容" id="textBtn">
+    <div id="dv"></div>
+    <div></div>
+    <div></div>
+    <script src="../js/jquery/jquery-1.12.4.js"></script>
+    <script>
+        $(document).ready(function () {
+            console.log($("#showBtn"));
+            console.log($("div"));
+            console.log($("div")[0] === document.getElementById('dv'));
+            $("#showBtn").click(function () {
+                $("div").fadeIn();
+            });
+
+            $("#textBtn").click(() => $("div").text("加入文本内容~~"));
+        });
+
+
+        window.onload = () => {
+            console.log('document.onload执行...');
+        };
+        //入口函数
+        $(document).ready(() => console.log('jq的入口方式一：ready'));
+        $(() => console.log('jq的入口方式二：$(匿名函数))'));
+    </script>
+</body>
+
+</html>

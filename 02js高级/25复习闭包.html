@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /****
+                                                        函数方法中的i绑定的是数组索引
+                                                        */
+        var arr = [10, 20, 30]
+        for (var i = 0; i < arr.length; i++) {
+            arr[i] = function () {
+                console.log(i)
+            }
+        }
+        for (var i = 0; i < arr.length; i++) {
+            //输出结果分别是0 、 1、2
+            arr[i]();
+        }
+
+
+
+
+        /*
+         **这里的j形成闭包
+         **/
+        var i = 0;
+        for (var j = 0; j < arr.length; j++) {
+            arr[i] = function () {
+                console.log(j)
+            }
+            i++;
+        }
+        for (var i = 0; i < arr.length; i++) {
+            //输出结果分别是3、3、3
+            arr[i]();
+        }
+
+        {
+            /***
+            先输出111 ，接着输出222 最后输出3、3、3
+            即使setTimeout的时间为0，函数还是没有立即执行 形成闭包
+            **/
+            console.log(111)
+
+            for (var i = 0; i < 3; i++) {
+                setTimeout(function () {
+                    console.log(i)
+                }, 0)
+            }
+            console.log(222)
+        }
+    </script>
+</body>
+
+</html>

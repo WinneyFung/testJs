@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .slider {
+            width: 790px;
+            height: 340px;
+            position: relative;
+            margin: 100px auto;
+        }
+
+        .slider .firstImg {
+            display: block;
+        }
+
+        .slider li {
+            display: none;
+            position: absolute;
+        }
+
+        .arrow-left,
+        .arrow-right {
+            position: absolute;
+            font-family: "SimSun", "宋体";
+            width: 30px;
+            height: 60px;
+            background-color: rgba(0, 0, 0, 0.1);
+            font-weight: 700;
+            top: 50%;
+            margin-top: -30px;
+            cursor: pointer;
+            text-align: center;
+            line-height: 60px;
+            color: #fff;
+            font-weight: 700;
+            font-size: 30px;
+        }
+
+        .arrow-left:hover,
+        .arrow-right:hover {
+            background-color: rgba(0, 0, 0, .5);
+        }
+
+        .arrow-left {
+            left: 0;
+        }
+
+        .arrow-right {
+            right: 0;
+        }
+    </style>
+    <script src="../../js/jquery/jquery-1.12.4.js"></script>
+    <script>
+        $(function () {
+            {
+                const MAX = $('.slider li').length;
+                let count = 0;
+                $('.arrow-left').click(function () {
+                    count--;
+                    if (count < 0) {
+                        count = MAX;
+                    }
+                    console.log($('.slider li'));
+                    //$('.slider').children('li')获取为空 因为children获取的只是子代 不是后代
+                    // $('.slider').children('li').eq(count).show(200).siblings().hide(200);
+                    $('.slider li').eq(count).fadeIn().siblings('li').fadeOut();
+                });
+
+                $('.arrow-right').click(function () {
+                    count++;
+                    if (count > MAX) {
+                        count = 0;
+                    }
+                    console.log($('.slider li'));
+                    //$('.slider').children('li')获取为空 因为children获取的只是子代 不是后代
+                    // $('.slider').children('li').eq(count).show(200).siblings().hide(200);
+                    $('.slider li').eq(count).fadeIn().siblings('li').fadeOut();
+                });
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <div class="slider">
+        <ul>
+            <li class="firstImg"><a href="#"><img src="./images/1.jpg" alt=""></a></li>
+            <li><a href="#"><img src="./images/2.jpg" alt=""></a></li>
+            <li><a href="#"><img src="./images/3.jpg" alt=""></a></li>
+            <li><a href="#"><img src="./images/4.jpg" alt=""></a></li>
+            <li><a href="#"><img src="./images/5.jpg" alt=""></a></li>
+            <li><a href="#"><img src="./images/6.jpg" alt=""></a></li>
+            <li><a href="#"><img src="./images/7.jpg" alt=""></a></li>
+            <li><a href="#"><img src="./images/8.jpg" alt=""></a></li>
+        </ul>
+        <!--箭头-->
+        <div class="arrow">
+            <span class="arrow-left">&lt;</span>
+            <span class="arrow-right">&gt;</span>
+        </div>
+    </div>
+</body>
+
+</html>

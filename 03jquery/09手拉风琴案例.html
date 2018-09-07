@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        .menu {
+            width: 200px;
+            margin: 100px auto 0;
+            height: 400px;
+        }
+
+        .title {
+            display: block;
+            background-color: #ccc;
+            border: 1px solid #666;
+            width: 200px;
+            height: 20px;
+            line-height: 20px;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .content {
+            height: 80px;
+            width: 200px;
+            border: 1px solid #ccc;
+            display: none;
+        }
+    </style>
+    <script src="../js/jquery/jquery-1.12.4.js"></script>
+    <script>
+        $(document).ready(() => {
+            $('.title').click(function () {
+                $(this).next().slideDown(100).parent().siblings().children('.content').slideUp();
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <ul class="menu">
+        <li class="subMenu">
+            <span class="title">副标题</span>
+            <div class="content">弹出来的div的内容</div>
+        </li>
+        <li class="subMenu">
+            <span class="title">副标题</span>
+            <div class="content">弹出来的div的内容</div>
+        </li>
+        <li class="subMenu">
+            <span class="title">副标题</span>
+            <div class="content">弹出来的div的内容</div>
+        </li>
+        <li class="subMenu">
+            <span class="title">副标题</span>
+            <div class="content">弹出来的div的内容</div>
+        </li>
+    </ul>
+</body>
+
+</html>

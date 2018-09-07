@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .citySelector {
+            width: 460px;
+            position: relative;
+        }
+
+        .citySelector select {
+            float: left;
+        }
+
+        .citySelector option:hover,
+        .citySelector option [selected] {
+            background-color: hotpink;
+        }
+
+        .btn-box {
+            width: 40px;
+            height: 240px;
+            float: left;
+            margin: 0 10px;
+        }
+
+        .selector {
+            width: 200px;
+            height: 240px;
+            background-color: pink;
+            color: deeppink;
+        }
+
+        .btn-box button {
+            width: 40px;
+        }
+    </style>
+    <script src="../js/jquery/jquery-1.12.4.js"></script>
+    <script>
+        $(document).ready(() => {
+            $('#btn1').click(() => {
+                $('#srcSelector>option').appendTo($('#disSelector'));
+            });
+            $('#btn2').click(() => {
+                $('#srcSelector').append($('#disSelector>option'));
+            });
+            $('#btn3').click(() => {
+                $('#srcSelector>option:selected').appendTo($('#disSelector'));
+            });
+            $('#btn4').click(() => {
+                $('#srcSelector').append($('#disSelector>option:selected'));
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div class="citySelector">
+        <h3>选择城市:</h3>
+        <select name="srcSelector" id="srcSelector" class="selector" multiple>
+            <option value="1">北京</option>
+            <option value="2">上海</option>
+            <option value="3">深圳</option>
+            <option value="4">广州</option>
+        </select>
+        <div class="btn-box">
+            <!--实体字符-->
+            <button id="btn1"> &gt;&gt; </button>
+            <button id="btn2"> &lt;&lt; </button>
+            <button id="btn3"> &gt;</button>
+            <button id="btn4"> &lt; </button>
+        </div>
+        <select name="disSelector" id="disSelector" class="selector" multiple></select>
+    </div>
+</body>
+
+</html>

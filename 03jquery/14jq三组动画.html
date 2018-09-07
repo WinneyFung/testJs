@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .div{
+            width: 100px;
+            height: 100px;
+            background-color: orangered;
+            display: none;
+        }
+    </style>
+    <script src="../js/jquery/jquery-1.12.4.js"></script>
+    <script>
+        $(function(){
+            $('input[type="button"]').eq(0).click(function(){
+                $('.div').slideDown(200);
+            });
+
+            $('input[type="button"]').eq(1).click(function(){
+                $('.div').slideUp(200);
+            });
+
+            $('input[type="button"]').eq(2).click(function(){
+            $('.div').slideToggle();
+            });
+
+
+            //淡入淡出
+            $('input[type="button"]').eq(3).click(function(){
+                $('.div').fadeIn(200);
+            });
+
+            $('input[type="button"]').eq(4).click(function(){
+                $('.div').fadeOut(200);
+            });
+
+            $('input[type="button"]').eq(5).click(function(){
+            $('.div').fadeToggle();
+            });
+
+            //如果show或者hide没有参数 就没有动画
+            $('input[type="button"]').eq(6).click(function(){
+            $('.div').show(200);
+            });
+
+            $('input[type="button"]').eq(7).click(function(){
+            $('.div').hide(200);
+            });
+
+            $('input[type="button"]').eq(8).click(function(){
+            $('.div').fadeToggle();
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <input type="button" value="滑入">
+    <input type="button" value="滑出">
+    <input type="button" value="滑入与滑出切换">
+    <br>
+    <input type="button" value="淡入">
+    <input type="button" value="淡出">
+    <input type="button" value="淡入与淡出切换">
+    <br>
+    <input type="button" value="show">
+    <input type="button" value="hide">
+    <br>
+    <div class="div"></div>
+</body>
+
+</html>

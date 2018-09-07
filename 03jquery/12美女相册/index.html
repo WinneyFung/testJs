@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        body {
+            font-family: "Helvetica", "Arial", serif;
+            color: #333;
+            background-color: #ccc;
+            margin: 1em 10% 0;
+        }
+
+        .wrap li {
+            float: left;
+            margin-left: 10px;
+        }
+    </style>
+    <script src="../../js/jquery/jquery-1.12.4.js"></script>
+    <script>
+        $(() => {
+            $('.wrap li').mouseenter(function () {
+                let href = $(this).children('a').attr('href');
+                let alt = $(this).children('a').children('img').attr('alt');
+                $('#image').attr('src', href);
+                $('.desc').text(alt);
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div class="wrap">
+        <h3>我的相册</h3>
+        <ul>
+            <li style="margin-left:0px;"><a href="./images/1.jpg"><img src="./images/1-small.jpg" alt="woman1" srcset=""
+                        width="100"></a></li>
+            <li><a href="./images/2.jpg"><img src="./images/2-small.jpg" alt="woman2" srcset="" width="100"></a></li>
+            <li><a href="./images/3.jpg"><img src="./images/3-small.jpg" alt="woman3" srcset="" width="100"></a></li>
+            <li><a href="./images/4.jpg"><img src="./images/4-small.jpg" alt="woman4" srcset="" width="100"></a></li>
+        </ul>
+        <div style="clear:both"></div>
+        <img id="image" src="images/placeholder.png" alt="" width="430px" />
+        <p class="desc">请选择图片</p>
+    </div>
+</body>
+
+</html>

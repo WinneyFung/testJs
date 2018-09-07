@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
+        .wrapper {
+            width: 1000px;
+            height: 475px;
+            margin: 0 auto;
+            margin-top: 100px;
+        }
+
+        .tab {
+            border: 1px solid #ddd;
+            border-bottom: 0;
+            height: 36px;
+            width: 320px;
+        }
+
+        .wrapper .tab li.active {
+            border-top-color: red;
+        }
+
+        .wrapper .tab li {
+            float: left;
+            width: 80px;
+            height: 34px;
+            display: block;
+            border-top: 4px solid white;
+            position: relative;
+            text-align: center;
+            line-height: 34px;
+            overflow: hidden;
+        }
+
+        .tab span {
+            background-color: #ccc;
+            right: 0;
+            width: 1px;
+            height: 14px;
+            position: absolute;
+            top: 10px;
+        }
+
+        .main.selected {
+            display: block;
+        }
+
+        .main {
+            float: left;
+            display: none;
+        }
+
+        .products {
+            width: 1002px;
+            border: 1px solid #ddd;
+            height: 476px;
+        }
+    </style>
+    <script src="../../js/jquery/jquery-1.12.4.js"></script>
+    <script>
+        $(document).ready(() => {
+            $('.tab').children('li').mouseenter(function () {
+                let index = $(this).index();
+                $(this).addClass('active').siblings().removeClass('active');
+                $('.products').children('.main').eq(index).addClass('selected').siblings().removeClass(
+                    'selected');
+            });
+        });
+    </script>
+
+</head>
+
+<body>
+    <div class="wrapper">
+        <ul class="tab">
+            <li class="tab-item active">国际大牌<span>◆</span></li>
+            <li class="tab-item">国妆名牌<span>◆</span></li>
+            <li class="tab-item">清洁用品<span>◆</span></li>
+            <li class="tab-item">男士精品</li>
+        </ul>
+        <div class="products">
+            <div class="main selected">
+                <a href="###"><img src="imgs/guojidapai.jpg" alt="" /></a>
+            </div>
+            <div class="main">
+                <a href="###"><img src="imgs/guozhuangmingpin.jpg" alt="" /></a>
+            </div>
+            <div class="main">
+                <a href="###"><img src="imgs/qingjieyongpin.jpg" alt="" /></a>
+            </div>
+            <div class="main">
+                <a href="###"><img src="imgs/nanshijingpin.jpg" alt="" /></a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

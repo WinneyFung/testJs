@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul>
+        <li>我是第1行</li>
+        <li>我是第2行</li>
+        <li>我是第3行</li>
+        <li>我是第4行</li>
+        <li>我是第5行</li>
+        <li>我是第6行</li>
+        <li>我是第7行</li>
+        <li>我是第8行</li>
+        <li>我是第9行</li>
+    </ul>
+    <script src="../js/jquery/jquery-1.12.4.js"></script>
+    <script>
+        $("li:even").css('backgroundColor', 'hotpink');
+        $("li:odd").css('backgroundColor', 'pink');
+        $("li:eq(3)").css('color', 'green');
+        $("li:first").css('color', 'red');
+        $("li:last").css('color', 'blue');
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        span {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="outDv">
+        <p class='outter'>div->p</p>
+        <p>div->p</p>
+        <p>div->p</p>
+        <div class="innerDv">
+            <span>div->div->span</span>
+            <span>div->div->span</span>
+            <span>div->div->span</span>
+            <p>div->div->p</p>
+            <p>div->div->p</p>
+            <p class="inner">div->div->p</p>
+            <p class="inner innerp">div->div->p</p>
+        </div>
+    </div>
+    <script src="../js/jquery/jquery-1.12.4.js"></script>
+    <script>
+        //后代选择器
+        $('#outDv p').css('color', 'red');
+        //子代选择器
+        $(".innerDv>span").css('color', 'green');
+        //交集选择器
+        $('.inner.innerp').css('backgroundColor', 'pink');
+        //并集选择器
+        $(".inner,.outter").css('backgroundColor', 'hotpink');
+    </script>
+</body>
+
+</html>

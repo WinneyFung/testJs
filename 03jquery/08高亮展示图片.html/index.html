@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        body {
+            background-color: #000000;
+        }
+
+        .box {
+            width: 640px;
+            height: 402px;
+            border: 1px solid white;
+            background-color: #000000;
+            margin: 100px auto 0;
+        }
+
+        .box li {
+            float: left;
+            margin: 10px 0 0 10px;
+            width: 200px;
+            height: 186px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <li><img src="./images/01.jpg" alt="图片"></li>
+        <li><img src="./images/02.jpg" alt="图片"></li>
+        <li><img src="./images/03.jpg" alt="图片"></li>
+        <li><img src="./images/04.jpg" alt="图片"></li>
+        <li><img src="./images/05.jpg" alt="图片"></li>
+        <li><img src="./images/06.jpg" alt="图片"></li>
+    </div>
+    <script src="../../js/jquery/jquery-1.12.4.js"></script>
+    <script>
+        //mouseover与mouseenter的区别:mouseover经过指定元素会触发事件、经过指定元素的子元素也会触发事件；
+        //mouseenter则只经过指定元素会触发
+        //mouseout与mouseleave的区别：mouseout离开指定元素或者离开指定元素的子元素会触发事件，mouseleave则只离开指定元素会触发
+        //总的来说，mouseout比mouseleave触发得多次；mouseover比mouseenter触发得多次
+        $(document).ready(() => {
+            $('.box>li').mouseenter(function () {
+                //先将其他变暗
+                $('.box').children().css('opacity', 0.4);
+                $(this).css('opacity', 1);
+            });
+
+            $('.box>li').mouseleave(function () {
+                //先将其他变暗
+                $('.box').children().css('opacity', 1);
+            });
+        });
+    </script>
+</body>
+
+</html>

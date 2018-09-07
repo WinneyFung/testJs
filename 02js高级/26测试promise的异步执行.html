@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+    <style>
+        .test-promise-log {
+            width: 400px;
+            height: 400px;
+            border: 1px solid orangered;
+            margin: 100px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="test-promise-log" id="test-promise-log">
+
+    </div>
+    <script>
+        //清除log
+        var logArr = document.getElementById("test-promise-log");
+        var len = logArr.children.length;
+        while (len > 1) {
+            logArr.removeChild[len - 1];
+        }
+
+        //输出log到页面
+        function log(s) {
+            var p = document.createElement("p");
+            p.innerHTML = s;
+            logArr.appendChild(p);
+        }
+
+        log('....');
+
+        //异步操作
+        new Promise(function (resolve, reject) {
+            log('new Promise...开始...');
+            var timeOut = Math.random() * 2;
+            log('设置执行时间为：' + timeOut + '秒...');
+            setTimeout(function () {
+                if (timeOut < 1) {
+                    log('响应成功，执行resolve()函数...');
+                    resolve('200 Ok');
+                } else {
+                    log('响应失败，执行reject()函数...');
+                    resolve('Failed');
+                }
+            }, timeOut * 1000);
+
+        }).then(function (r) {
+            log('Done: ' + r);
+        }).catch(function (r) {
+            log(r);
+        });
+    </script>
+</body>
+
+</html>
