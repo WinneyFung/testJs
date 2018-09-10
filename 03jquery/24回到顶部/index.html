@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            height: 8000px;
+        }
+
+        .actGotop {
+            position: fixed;
+            bottom: 50px;
+            right: 50px;
+            width: 150px;
+            height: 195px;
+            display: none;
+            z-index: 1000;
+            cursor: pointer;
+        }
+
+        .actGotop a {
+            display: inline-block;
+            height: 195px;
+            width: 150px;
+            background-image: url('./images/gotop.png');
+            outline: none;
+        }
+
+        .actGotop a:hover {
+            display: inline-block;
+            height: 195px;
+            width: 150px;
+            background-image: url('./images/gotop.gif');
+        }
+    </style>
+    <script src="../../js/jquery/jquery-1.12.4.js"></script>
+    <script>
+        $(() => {
+            $(window).scroll(() => {
+                if ($(window).scrollTop() >= 2000) {
+                    $('.actGotop').stop().fadeIn();
+                } else {
+                    $('.actGotop').stop().fadeOut();
+                }
+            });
+
+            function getScroll() {
+                return {
+                    left: window.pageYOffset || document.documentElement.scrollLeft || document.body.scrollLeft ||
+                        0,
+                    top: window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop ||
+                        0
+                }
+            }
+
+            $('.actGotop').click(() => {
+                $('html,body').stop().animate({
+                    scrollTop: 0
+                });
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div class="actGotop"><a href="javascript:;" title="Top"></a></div>
+</body>
+
+</html>

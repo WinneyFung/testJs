@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            border: 1px solid #c0c0c0;
+        }
+
+        .wrap {
+            margin: 100px auto 0;
+            /* background-color: #ccc; */
+            width: 300px;
+        }
+
+        .wrap td,
+        .wrap th {
+            border: 1px solid #666;
+            color: black;
+            padding: 10px;
+        }
+
+        .wrap th {
+            background-color: darkcyan;
+        }
+
+        tbody tr {
+            background-color: #f0f0f0;
+        }
+
+        tbody tr:hover {
+            cursor: pointer;
+            background-color: #fafafa;
+        }
+
+        tbody  a{
+            text-decoration: none;
+        }
+
+        tbody a:hover {
+            text-decoration: underline;
+        }
+
+       .btnAdd {
+        width: 110px;
+        height: 30px;
+        font-size: 20px;
+        font-weight: bold;
+        }
+    </style>
+    <script src="../js/jquery/jquery-1.12.4.js"></script>
+    <script>
+        $(()=>{
+            //清空
+            $('#btn').click(()=>{
+                $('tbody').empty();
+            });
+
+            //添加
+            $('#btnAdd').click(()=>{
+                $('tbody').append('<tr><td>00333331</td> <td>安徒生童话盗版</td> <td><a href="javaScript:;">删除</a></td></tr>')
+            });
+
+            //删除
+            $('tbody').on('click','td a',function(){
+                $(this).parent().parent().remove();
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div class="wrap">
+        <input type="button" value="清空内容" id="btn">
+        <input type="button" value="添加" id="btnAdd">
+        <table>
+            <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>剧名</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>001</td>
+                    <td>安徒生童话</td>
+                    <td><a href="javaScript:;">删除</a></td>
+                </tr>
+                <tr>
+                    <td>001</td>
+                    <td>安徒生童话</td>
+                    <td><a href="javaScript:;">删除</a></td>
+                </tr>
+                <tr>
+                    <td>001</td>
+                    <td>安徒生童话</td>
+                    <td><a href="javaScript:;">删除</a></td>
+                </tr>
+                <tr>
+                    <td>001</td>
+                    <td>安徒生童话</td>
+                    <td><a href="javaScript:;">删除</a></td>
+                </tr>
+                <tr>
+                    <td>001</td>
+                    <td>安徒生童话</td>
+                    <td><a href="javaScript:;">删除</a></td>
+                </tr>
+                <tr>
+                    <td>001</td>
+                    <td>安徒生童话</td>
+                    <td><a href="javaScript:;">删除</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
