@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .wrap {
+            width: 260px;
+            height: 30px;
+            background-color: black;
+            margin: 100px auto;
+            padding: 10px;
+            line-height: 30px;
+        }
+
+        .stars {
+            width: 60%;
+            height: 100%;
+            margin: 0 auto;
+        }
+
+        .stars li {
+            list-style: none;
+            float: left;
+            margin-right: 10px;
+            color: gold;
+            font-size: 24px;
+            cursor: pointer;
+        }
+    </style>
+    <script src="../js/jquery/jquery-1.12.4.js"></script>
+    <script>
+        $(() => {
+            let fullStar = '★';
+            let lessStar = '☆';
+            $('.stars li').mouseenter(function () {
+                //让自己前面的星星变成实心
+                $(this).text(fullStar).prevAll().text(fullStar);
+                //后面的星星变成空心
+                $(this).nextAll().text(lessStar);
+            }).mouseleave(function () {
+                //全部变为空心
+                $(this).text(lessStar).siblings().text(lessStar);
+                //当前以及当前的前面是实心
+                $('li.current').text(fullStar).prevAll().text(fullStar);
+            }).click(function () {
+                $(this).addClass('current').siblings().removeClass('current');
+                // $(this).mouseleave();
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="stars">
+            <ul>
+                <li>☆</li>
+                <li>☆</li>
+                <li>☆</li>
+                <li>☆</li>
+                <li>☆</li>
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>
