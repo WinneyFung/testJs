@@ -3,6 +3,7 @@
     right: 60px;
     bottom: 80px;
     z-index: 100001;
+    animation: more 0.2s linear infinite alternate;
 }
 
 .go {
@@ -11,15 +12,279 @@
     position: fixed;
     right: 30px;
     top: 30px;
-    z-index: 10001  ;
+    z-index: 10001;
 }
 
 .content {
     width: 900px;
     height: 600px;
-    position: fixed;
+    position: absolute;
     left: 50%;
     bottom: 0;
     margin-left: -450px;
     background-color: rgba(0, 0, 0, 0.1);
 }
+
+.screen0 {
+    background: url('../images/01-bg.png') no-repeat center bottom;
+}
+
+.screen0 .goods {
+    position: absolute;
+    top: 230px;
+}
+
+.screen0 .fly {
+    position: absolute;
+    top: 20px;
+    right: -50px;
+    /* lenear 匀速动画 infinite无限执行 alternate 逆执行 */
+    animation: fly01 1s linear infinite alternate;
+}
+
+.screen0 .sofa {
+    position: absolute;
+    top: 130px;
+    left: 230px;
+    animation: sofa01 0.8s linear infinite alternate;
+}
+
+/* 第一屏动画 定义过渡动画 start*/
+@keyframes fly01 {
+    from {
+        transform: translateY(-30px);
+    }
+
+    to {
+        transform: translateY(30px);
+    }
+}
+
+@keyframes sofa01 {
+    from {
+        transform: translateY(-20px);
+    }
+
+    to {
+        transform: translateY(20px);
+    }
+}
+
+@keyframes more {
+    from {
+        transform: translateY(-10px);
+    }
+
+    to {
+        transform: translateY(10px);
+    }
+}
+
+/* 第一屏动画 定义过渡动画 end */
+
+
+/* 第2屏动画 定义过渡动画 start */
+.screen1 {
+    background: url('../images/02-bg.png') no-repeat center bottom;
+}
+
+.screen1 .goods {
+    width: 441px;
+    height: 218px;
+    position: absolute;
+    bottom: 300px;
+    left: 50%;
+    margin-left: -220px;
+    margin-bottom: -90px;
+    /* 首先先隐藏在右下角   默认的转换原点中心 */
+    transform-origin: right bottom;
+    /*设置为0 即影藏*/
+    transform: scale(0);
+}
+
+.screen1 .sofa {
+    /* 缩放 */
+    transform: scale(0.5);
+    position: absolute;
+    top: 135px;
+    left: 292px;
+    z-index: 100002;
+    /* 隐藏 */
+    opacity: 0;
+}
+
+.screen1 .input {
+    position: absolute;
+    left: 574px;
+    top: 120px;
+    /* 状态3 终止状态 */
+    /* transform: scale(0.7); */
+    /* 状态2 居中显示 */
+    /* transform: translate(-238px, 130px); */
+    /* 状态1 从最外边隐藏 */
+    /* transform: translate(2000px, 130px); */
+    transform-origin: top right;
+    /* 动画播放状态控制 默认属性是回到原点backwards forwards保持终态 */
+    animation: input01 3s linear forwards;
+    opacity: 0;
+}
+
+
+@keyframes input01 {
+    0% {
+        /* 状态1 从最外边隐藏 */
+        transform: translate(2000px, 130px);
+        opacity: 1;
+    }
+
+    33.3% {
+        /* 状态2 居中显示 */
+        transform: translate(-238px, 130px);
+    }
+
+    67.3% {
+        /* 状态2 居中显示 */
+        transform: translate(-238px, 130px);
+    }
+
+    100% {
+        /* 状态3 终止状态 */
+        transform: scale(0.7);
+        opacity: 1;
+    }
+}
+
+.screen1 .input .search {
+    position: absolute;
+
+}
+
+.screen1 .input .key {
+    position: absolute;
+    left: 100px;
+    top: 4px;
+    opacity: 0;
+}
+
+.screen1.now .input .key {
+    opacity: 1;
+    transition: all 1s linear 1s;
+}
+
+.screen1 .text {
+    text-align: center;
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    margin-left: -180px;
+}
+
+.screen1 .text .text1 {}
+
+.screen1 .text .text2 {
+    /* 不占有位置 */
+    position: absolute;
+    /* 隐藏元素 */
+    opacity: 0;
+}
+
+.screen1.now .text .text1 {
+    /* 不占有位置 */
+    position: absolute;
+    /* 隐藏元素 */
+    opacity: 0;
+}
+
+.screen1.now .text .text2 {
+    /* 不占有位置 */
+    position: absolute;
+    /* 隐藏元素 */
+    opacity: 1;
+    transition: opacity 1s;
+}
+
+.screen1.now .goods {
+    /*none 清空所有转换属性*/
+    transform: none;
+    transition: all 1s linear 2s;
+}
+
+/* 添加离开动画 */
+.screen1.leaved .sofa {
+    /* 最好设置和页面一样的速度 设置scrollingSpeed：默认值700  */
+    animation: sofa1 1s linear;
+}
+
+@keyframes sofa1 {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 1;
+        /* 沙发需要下移并且右移 */
+        transform: translate(-80px, 780px);
+    }
+}
+
+/* 第2屏动画 定义过渡动画 end */
+
+/* 第3屏动画 定义过渡动画 start */
+.screen2 {
+    background: url("../images/03-bg.png") no-repeat center bottom;
+}
+
+.screen2 .change img {
+    position: absolute;
+    left: 488px;
+    bottom: 187px;
+}
+
+.screen2 .cart img {
+    position: absolute;
+    left: 488px;
+    bottom: 114px;
+}
+
+.screen2 .change img:last-child {
+    position: absolute;
+    left: 488px;
+    bottom: 187px;
+    display: none;
+}
+
+.screen2 .cart img:last-child {
+    position: absolute;
+    left: 488px;
+    bottom: 114px;
+    display: none;
+}
+
+.screen2.now .change img:first-child {
+    display: none;
+}
+
+.screen2.now .cart img:first-child {
+    display: none;
+}
+
+.screen2.now .change img:last-child {
+    display: block;
+}
+
+.screen2.now .cart img:last-child {
+    display: block;
+}
+
+.screen2 .sofa img {
+    position: absolute;
+    left: 214px;
+    bottom: 246px;
+    display: none;
+}
+
+.screen2.now .sofa img {
+    display: block;
+}
+
+/* 第3屏动画 定义过渡动画 end */
