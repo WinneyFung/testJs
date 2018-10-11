@@ -8,6 +8,7 @@
         <ul>
             <li v-for="(todo,index) in todoList" :key="index"  :class="{done:todo.done}" @click="troggle(index)">{{index+1}}.{{todo.text}}</li>
         </ul>
+        <p>{{remain}}/{{todoList.length}}</p>
     </div>
 </div>
 </template>
@@ -41,6 +42,11 @@ export default {
     troggle(index) {
       let hasDone = this.todoList[index].done;
       this.todoList[index].done = !hasDone;
+    }
+  },
+  computed: {
+    remain() {
+      return this.todoList.filter(todo => !todo.done).length;
     }
   }
 };
