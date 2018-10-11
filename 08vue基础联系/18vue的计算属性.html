@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <style>
+        .app {
+            margin-top: 60px;
+            text-align: center;
+            font-family: "微软雅黑";
+            }
+
+            div {
+                margin-top: 10px;
+            }
+
+            span {
+                padding: 10px;
+            }
+
+            ul {
+                width: 500px;
+                list-style: none;
+                margin: 40px auto;
+            }
+
+            ul li:nth-child(odd) {
+                background-color: #f6f6f6;
+            }
+
+            ul li:nth-child(even) {
+            background-color: #ccc;
+            }
+    </style>
+</head>
+
+<body>
+    <div class="app">
+        <div><span>姓:</span><input type="text" v-model="fName"><br></div>
+        <div><span>名:</span><input type="text" v-model="lName"><br></div>
+        <div><span>姓名(单向1):</span><input type="text" v-model="fullName1"><br></div>
+        <div><span>姓名(单向2):</span><input type="text" v-model="fullName2"><br></div>
+        <div><span>姓名(双向1):</span><input type="text" v-model="fullNam3"><br></div>
+        <p>{{fullNam3}}</p>
+
+        <ul>
+            <li>1.计算属性:在computed属性对象中定义计算属性方法,在页面中使用'{{方法名}}'来显示计算结果</li>
+            <li>2.监视属性:通过vm的$watch或者watch属性来配置监视指定的属性,当属性变化时,回调函数自动执行,在函数内部计算</li>
+            <li>3.计算属性高级:通过getter/setter实现对属性数据的显示和监视,计算属性存在缓存中,多次读取执行一次getter属性</li>
+        </ul>
+
+        <ul>
+            <li>1computed只需要定义计算属性方法,不需要在data定义,而且在初始化的时候就执行一次,以及相关属性发生变化的时候会重新执行方法</li>
+            <li>2.watch监视属性,需要在data中定义,属性发生变化时执行回调函数</li>
+            <li>3.计算属性高级也不需要定义属性,但是需要在computed中定义这个对象,并且改对象有对应的setter和getter方法</li>
+        </ul>
+    </div>
+</body>
+<script>
+    const vue = new Vue({
+        el: ".app",
+        data() {
+            return {
+                fName: "A",
+                lName: "B",
+                fullName2: "",
+                // fullNam3: ""
+            }
+        },
+        computed: {
+            fullName1() {
+                //初始化的时候执行 ,当属性发送变化时执行
+                return this.fName + "_" + this.lName;
+                // return "啊";
+            },
+            fullNam3: {
+                get() {
+                    console.log("get", "fullNam3");
+                    return this.fName + "_" + this.lName;
+                },
+                set(value) {
+                    console.log("set", "fullNam3");
+                    const names = value.split("_");
+                    [
+                        this.fName, this.lName = "未知"
+                    ] = names;
+                }
+            }
+        },
+        watch: {
+            //只有数据变化的时候才执行 初始化的时候不会执行 的
+            fName: function (nVal, oVal) {
+                this.fullName2 = nVal + "_" + this.lName;
+            }
+        },
+        methods: {}
+    });
+    vue.$watch("lName", function (nVal) {
+        this.fullName2 = this.fName + "_" + nVal;
+    });
+</script>
+
+</html>

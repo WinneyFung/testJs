@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <style>
+        .app {
+            margin-top: 60px;
+            text-align: center;
+            font-family: "微软雅黑";
+        }
+
+        ul {
+            list-style: none;
+        }
+        ul li {
+            border-top: 1px solid orangered;
+            height: 30px;
+            line-height: 30px;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app">
+        <ul>
+            <li v-for="(person,index) in personList">
+                <span>{{person.name}}---{{person.age}}</span>
+                <button @click="update(index)">更新</button>
+                <button @click="del(index)">删除</button>
+            </li>
+        </ul>
+        <button @click="add">添加</button>
+    </div>
+</body>
+<script>
+    const vue = new Vue({
+        el: ".app",
+        data() {
+            return {
+                personList:[
+                    {name:"winney1",age:17},
+                    {name:"winney2",age:18},
+                    {name:"winney3",age:19},
+                    {name:"winney4",age:23},
+                    {name:"winney5",age:20},
+                ]
+            }
+        },
+        methods: {
+            update(index){
+                this.personList.splice(index,1,{name:"new winney",age:16});
+            },
+            del(index){
+                //从index开始删除1个元素
+                this.personList.splice(index,1);
+            },
+            add(){
+                this.personList.push({name:"add winney",age:25});
+            }
+        }
+    })
+</script>
+
+</html>

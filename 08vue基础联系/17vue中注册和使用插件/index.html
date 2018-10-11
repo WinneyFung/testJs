@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <script src="./myPlugin.js"></script>
+    <style>
+        .app {
+            margin-top: 60px;
+            text-align: center;
+            font-family: "微软雅黑";
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app">
+        <p v-my-directive="msg">{{msg}}</p>
+        <p v-my-directive="msg"></p>
+    </div>
+</body>
+<script>
+    //已经挂在window下面了, window.MyPlugin = MyPlugin;
+    // 声明使用插件(安装插件: 调用插件的install())
+    //所以声明插件的时候,要把插件放在window下,并且要有install方法
+    Vue.use(MyPlugin);
+    const vue = new Vue({
+        el: ".app",
+        data() {
+            return {
+                msg: "hello,winney"
+            }
+        },
+    });
+    Vue.myGlobalMethod();
+    vue.$myMethod();
+</script>
+
+</html>

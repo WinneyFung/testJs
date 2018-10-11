@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <style>
+        .app {
+            margin-top: 60px;
+            text-align: center;
+            font-family: "微软雅黑";
+        }
+
+        button {
+            position: fixed;
+            left: 50%;
+            top: 300px;
+        }
+
+        p{
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app">
+        <span v-if="ok">成功</span>
+        <span v-else>失败</span>
+            <span v-show="ok">v-show</span>
+            <button @click="trogle">切换</button>
+            <p style="display: '';">note:需要频繁切换效果的时候用v-show,因为v-if的原理是创建或者销毁DOM,而v-show则是修改display的样式</p>
+    </div>
+</body>
+<script>
+    const vue = new Vue({
+        el: ".app",
+        data() {
+            return {
+                ok: true
+            }
+        },
+        methods: {
+            trogle(){
+                this.ok = !this.ok;
+                if (this.ok) {
+                    console.dir(document.getElementsByTagName("span")[1]);
+                }
+            }
+        }
+    })
+</script>
+
+</html>

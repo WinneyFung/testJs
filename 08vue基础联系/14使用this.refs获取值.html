@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <style>
+    </style>
+</head>
+
+<body>
+    <div class="app">
+        <p ref="myRef">干巴爹哦</p>
+        <button @click="hint">提示</button>
+    </div>
+</body>
+<script>
+    const vue = new Vue({
+        el: ".app",
+        methods: {
+            hint() {
+                console.log(this.$refs.myRef);
+                console.dir(this.$refs.myRef);
+                // alert(this.$refs.myRef);
+            }
+        }
+    })
+</script>
+
+</html>

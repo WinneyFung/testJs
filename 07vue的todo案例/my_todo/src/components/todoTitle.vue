@@ -3,7 +3,10 @@
 </template>
 <script>
 export default {
-  props: ["title"]
+  props: ["title"],
+  data() {
+    return {};
+  }
 };
 </script>
 <style>
