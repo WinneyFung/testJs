@@ -4,7 +4,7 @@
             <input type="text" v-model="nTodo" @keyup.enter="add"><button @click="add">添加</button><button @click="clean">清空</button>
     </div>
     <div class="todos">
-        <h3>{{mytitle}}</h3>
+        <todo-title title="我的计划--0.0"></todo-title>
         <ul>
             <li v-for="(todo,index) in todoList" :key="index"  :class="{done:todo.done}" @click="troggle(index)">{{index+1}}.{{todo.text}}</li>
         </ul>
@@ -13,8 +13,12 @@
 </div>
 </template>
 <script>
+import todoTitle from "@/components/todoTitle";
 export default {
   name: "index",
+  components: {
+    "todo-title": todoTitle
+  },
   data() {
     return {
       mytitle: "今天计划",
@@ -84,14 +88,6 @@ export default {
 }
 .todos li:nth-child(odd) {
   background-color: #fff;
-}
-
-.todos h3 {
-  height: 40px;
-  line-height: 40px;
-  font-weight: normal;
-  width: 320px;
-  background-color: #0dacf0;
 }
 </style>
 
