@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>
+        promise对象的错误具有冒泡性质，会一直向后传递，知道被捕获为止。也就是说，错误
+        总是<strong>会被下一个catch语句捕获</strong>
+    </p>
+    <script>
+        //promise里面嵌套promise
+        /* new Promise((resolve, reject) => {
+            resolve(1);
+            console.log(2);
+        }).then(r => {
+            console.log('s');
+            console.log(r);
+        }); */
+
+        //promise状态一旦变为fulfilled 就不能变回rejected
+        /*         const promise = new Promise(function (resolve, reject) {
+                    resolve('ok');  //输出的是ok
+                    throw new Error('test');
+                });
+                promise
+                    .then(function (value) {
+                        console.log(value)
+                    })
+                    .catch(function (error) {
+                        console.log(error)
+                    }); */
+
+        const promise = new Promise(function (resolve, reject) {
+            throw new Error('test');
+            resolve('ok'); //同理 一旦状态变更为reject 也不会再转变为fulfilled
+        });
+        promise
+            .then(function (value) {
+                console.log(value)
+            })
+            .catch(function (error) {
+                console.log(error)
+            });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        .window {
+            width: 1200px;
+            margin: 100px auto;
+            padding: 10px;
+            border: 1px solid #666;
+        }
+
+        .window .win span {
+            display: block;
+            padding-top: 8px;
+        }
+
+        .window .win {
+            border: #cde7ef 1px solid;
+            width: 270px;
+            color: #666;
+            float: left;
+            padding: 10px;
+            margin-right: 4px;
+            margin-top: 4px;
+            font-size: 13px;
+            line-height: 16px;
+            min-height: 130px;
+
+        }
+
+        .clear {
+            clear: both;
+        }
+
+        .window .win .trafficGuide {
+            display: none;
+        }
+
+        .window .win:hover .trafficGuide {
+            display: block;
+        }
+
+        .window li {
+            position: relative;
+            width: 300px;
+            float: left;
+            border-color: #f7deb6;
+            min-height: 160px;
+        }
+
+        .window li .win {
+            position: relative;
+            background-color: #f1f1f3;
+        }
+
+
+        .window li:hover .win {
+            position: absolute;
+            z-index: 10;
+            top: 0px;
+            left: 0px;
+            right: 0px;
+            border-color: #f7deb6;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app">
+        <div class="winTab">
+
+        </div>
+        <div class="window">
+            <ul>
+                <li v-for="(win,index) in winList" :key="index">
+                    <div class="win">
+                        <h4>{{win.name}}</h4>
+                        <span class="address">{{win.address}}</span>
+                        <span class="officeHour">{{win.officeHour}}</span>
+                        <span class="trafficGuide">{{win.trafficGuide}}</span>
+                        <span class="phone">{{win.phone}}</span>
+                    </div>
+                </li>
+            </ul>
+            <div class="clear"></div>
+        </div>
+    </div>
+</body>
+<script>
+    new Vue({
+        el: ".app",
+        data: {
+            winList: [{
+                    "phone": "0756-2287666",
+                    "rn": "1",
+                    "address": "珠海市红山路230号",
+                    "orgCode": "006990455",
+                    "windowArea": "1",
+                    "name": "珠海市行政服务中心一楼综合受理窗口",
+                    "trafficGuide": "23路、26路、35路到市行政服务中心站下",
+                    "officeHour": "每周一至周五上午8：30—12：00，下午14：30—17：30（国家法定节假日除外）。",
+                    "windowCode": "win16627"
+                }, {
+                    "phone": "0756-2287666",
+                    "rn": "1",
+                    "address": "珠海市红山路230号",
+                    "orgCode": "006990455",
+                    "windowArea": "1",
+                    "name": "珠海市行政服务中心一楼综合受理窗口",
+                    "trafficGuide": "23路、26路、35路到市行政服务中心站下",
+                    "officeHour": "每周一至周五上午8：30—12：00，下午14：30—17：30（国家法定节假日除外）。",
+                    "windowCode": "win16627"
+                }, {
+                    "phone": "0756-2287666",
+                    "rn": "1",
+                    "address": "珠海市红山路230号",
+                    "orgCode": "006990455",
+                    "windowArea": "1",
+                    "name": "珠海市行政服务中心一楼综合受理窗口",
+                    "trafficGuide": "23路、26路、35路到市行政服务中心站下",
+                    "officeHour": "每周一至周五上午8：30—12：00，下午14：30—17：30（国家法定节假日除外）。",
+                    "windowCode": "win16627"
+                }, {
+                    "phone": "0756-2533354,0756-2533358",
+                    "rn": "1",
+                    "address": "珠海市香洲区梅华东路465号",
+                    "orgCode": "698168760",
+                    "windowArea": "1",
+                    "name": "珠海市动物卫生监督所（珠海市植物检疫站）",
+                    "trafficGuide": "可乘坐18、68、55、13、99在大镜山站下车即到；",
+                    "officeHour": "星期一至星期五上午8:30-12:00、下午14:30-17:30，法定节假日除外。",
+                    "windowCode": "win15537"
+                },
+                {
+                    "phone": "0756-2533354,0756-2533358",
+                    "rn": "1",
+                    "address": "珠海市香洲区梅华东路465号",
+                    "orgCode": "698168760",
+                    "windowArea": "1",
+                    "name": "珠海市动物卫生监督所（珠海市植物检疫站）",
+                    "trafficGuide": "可乘坐18、68、55、13、99在大镜山站下车即到；",
+                    "officeHour": "星期一至星期五上午8:30-12:00、下午14:30-17:30，法定节假日除外。",
+                    "windowCode": "win15537"
+                },
+                {
+                    "phone": "0756-2533354,0756-2533358",
+                    "rn": "1",
+                    "address": "珠海市香洲区梅华东路465号",
+                    "orgCode": "698168760",
+                    "windowArea": "1",
+                    "name": "珠海市动物卫生监督所（珠海市植物检疫站）",
+                    "trafficGuide": "可乘坐18、68、55、13、99在大镜山站下车即到；",
+                    "officeHour": "星期一至星期五上午8:30-12:00、下午14:30-17:30，法定节假日除外。",
+                    "windowCode": "win15537"
+                },
+                {
+                    "phone": "0756-2533354,0756-2533358",
+                    "rn": "1",
+                    "address": "珠海市香洲区梅华东路465号",
+                    "orgCode": "698168760",
+                    "windowArea": "1",
+                    "name": "珠海市动物卫生监督所（珠海市植物检疫站）",
+                    "trafficGuide": "可乘坐18、68、55、13、99在大镜山站下车即到；",
+                    "officeHour": "星期一至星期五上午8:30-12:00、下午14:30-17:30，法定节假日除外。",
+                    "windowCode": "win15537"
+                }
+            ],
+        }
+    });
+</script>
+
+</html>

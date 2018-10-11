@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>catch后面还能跟promise，并且catch后面还能继续使用链式编程then，只不过，then后面如果没有catch的话，then内部发生错误就会被promise内部‘吃掉’</p>
+    <p>下面例子中的y的报错就没有被处理</p>
+</body>
+<script>
+    const someAsyncThing = function () {
+        return new Promise(function (resolve, reject) {
+            // 下面一行会报错，因为x没有声明
+            resolve(x + 2);
+        });
+    };
+
+    someAsyncThing().then(function () {
+        return someOtherAsyncThing();
+    }).catch(function (error) {
+        console.log('oh no', error);
+        // 下面一行会报错，因为 y 没有声明
+        y + 2;
+    }).then(function () {
+        console.log('carry on');
+    });
+    //最后输出的结果是：
+    // oh no [ReferenceError: x is not defined]
+
+
+
+    //正确的写法
+    someAsyncThing().then(function () {
+        return someOtherAsyncThing();
+    }).catch(function (error) {
+        console.log('oh no', error);
+        // 下面一行会报错，因为y没有声明
+        y + 2;
+    }).catch(function (error) {
+        console.log('carry on', error);
+    });
+    // oh no [ReferenceError: x is not defined]
+    // carry on [ReferenceError: y is not defined]
+</script>
+
+</html>

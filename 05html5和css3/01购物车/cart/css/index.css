@@ -285,6 +285,165 @@
 
 .screen2.now .sofa img {
     display: block;
+    z-index: 10001;
+}
+
+.screen2.leaved .sofa img {
+    /*1.组合写法  多个转换属性之间空格  transform:rotate() translateX() skew() scale()*/
+    /*2.如果你先旋转  那么坐标轴也会旋转*/
+    /*3. 最好是先位移在旋转*/
+    /*  transform: translate(200px, 720px) rotate(45deg);
+    transition: all 1s linear; */
+    animation: sofa2 1s linear;
+    display: block;
+}
+
+@keyframes sofa2 {
+    from {}
+
+    to {
+        transform: translate(200px, 720px) rotate(45deg);
+        transition: all 1s linear;
+    }
 }
 
 /* 第3屏动画 定义过渡动画 end */
+/* 第4屏动画 定义过渡动画 start */
+.screen3 {
+    background: url("../images/04-bg.png") no-repeat center bottom;
+}
+
+.screen3.now .cloud {
+    position: absolute;
+    left: -300px;
+    top: -100px;
+    animation: cloud3 20s linear infinite alternate;
+}
+
+@keyframes cloud3 {
+    from {}
+
+    to {
+        left: 1000px;
+    }
+}
+
+.screen3 .text {
+    text-align: center;
+    margin-top: 100px;
+}
+
+.screen3 .text img:last-child {
+    opacity: 0;
+    position: absolute;
+}
+
+.screen3 .text.show img:first-child {
+    opacity: 0;
+    position: absolute;
+}
+
+.screen3 .text.show img:last-child {
+    position: static;
+    opacity: 1;
+}
+
+.screen3 .cart {
+    position: relative;
+    text-align: center;
+    margin: 70px 10px 0 0;
+    z-index: 20000;
+}
+
+.screen3 .sofa {
+    transform: rotate(45deg);
+    position: absolute;
+    left: 380px;
+    top: 153px;
+    opacity: 0;
+}
+
+.screen3.now .sofa {
+    opacity: 1;
+    transform: translateX(1000px);
+    transition: transform 3s linear;
+}
+
+.screen3.now .cart {
+    transform: translateX(1000px);
+    transition: all 3s linear;
+}
+
+.screen3 .address {
+    position: absolute;
+    width: 284px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    margin-top: 30px;
+    display: none;
+}
+
+.screen3 .address img:last-child {
+    position: absolute;
+    left: 50%;
+    top: 30px;
+    transform: translateX(-50%);
+    margin-top: 30px;
+    display: none;
+}
+
+/* 第4屏动画 定义过渡动画 end */
+/* 第5屏动画 定义过渡动画 start */
+.screen4 {
+    background: url("../images/05-bg.png") no-repeat center bottom;
+}
+
+.screen4 .card {
+    position: relative;
+}
+
+.screen4 .card .orderImg {
+    position: absolute;
+    left: 120px;
+    top: 60px;
+}
+
+.screen4 .card .cardImg {
+    position: absolute;
+    z-index: 100;
+    left: 0;
+    top: 140px;
+}
+
+.screen4 .sofa {
+    position: absolute;
+    left: 100px;
+    top: 360px;
+    transform: rotate(35deg);
+}
+
+.screen4 .mouse {
+    position: relative;
+    top: 0px;
+    left: 660px;
+}
+
+.screen4 .mouse .m1,
+.screen4 .mouse .m2 {
+    position: absolute;
+    top: -510px;
+    left: 0px;
+}
+
+.screen4 .mouse .m2 {
+    display: none;
+}
+
+.screen4 .hand {
+    position: relative;
+    left: -26px;
+    top: 170px;
+}
+
+/* 第5屏动画 定义过渡动画 end */

@@ -39,6 +39,19 @@ $(() => {
       $(".more").on("click", () => {
         $.fn.fullpage.moveSectionDown();
       });
+
+      //监听动画结束事件
+      $(".screen3 .cart").on("transitionend", () => {
+        //将文字转换 文字转换的动画用css3实现
+        console.log($(".screen3 .text"));
+        console.log($(".screen3 .address"));
+        $(".screen3 .text").addClass("show");
+        //弹出收货地址
+        $(".screen3 .address")
+          .show()
+          .find("img:last")
+          .fadeIn(1000);
+      });
     },
     //页面离开
     onLeave: function(index, nextIndex, direction) {
@@ -48,7 +61,11 @@ $(() => {
         $(".section")
           .eq(index - 1)
           .addClass("leaved");
-        console.log($(".screen1.leaved .sofa").css("opacity "));
+      } else if (index == 3 && nextIndex == 4) {
+        //给第二页添加leave
+        $(".section")
+          .eq(index - 1)
+          .addClass("leaved");
       }
     }
   });

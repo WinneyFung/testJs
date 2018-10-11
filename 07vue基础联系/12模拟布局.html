@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        .window {
+            width: 1200px;
+            margin: 100px auto;
+            padding: 10px;
+            border: 1px solid #666;
+        }
+
+        .window .win span {
+            display: block;
+            padding-top: 8px;
+        }
+
+        .window .win {
+            border: #cde7ef 1px solid;
+            width: 270px;
+            color: #666;
+            float: left;
+            padding: 10px;
+            margin-right: 4px;
+            margin-top: 4px;
+            font-size: 13px;
+            line-height: 16px;
+            min-height: 130px;
+
+        }
+
+        .clear {
+            clear: both;
+        }
+
+        .window .win .officeTime {
+            display: none;
+        }
+
+        .window .win:hover .officeTime {
+            display: block;
+        }
+
+        .window li {
+            position: relative;
+            width: 300px;
+            float: left;
+            border-color: #f7deb6;
+            min-height: 160px;
+        }
+
+        .window li .win {
+            position: relative;
+            background-color: #f1f1f3;
+        }
+
+
+        .window li:hover .win {
+            position: absolute;
+            z-index: 10;
+            top: 0px;
+            left: 0px;
+            right: 0px;
+            border-color: #f7deb6;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app">
+        <div class="winTab">
+
+        </div>
+        <div class="window">
+            <ul>
+                <li v-for="(win,index) in winList" :key="index">
+                    <div class="win">
+                        <h4>{{win.title}}</h4>
+                        <span class="info">{{win.info}}</span>
+                        <span class="officeTime">{{win.officeTime}}</span>
+                        <span class="moreInfo">{{win.moreInfo}}</span>
+                        <span class="phone">{{win.phone}}</span>
+                    </div>
+                </li>
+            </ul>
+            <div class="clear"></div>
+        </div>
+    </div>
+</body>
+<script>
+    new Vue({
+        el: ".app",
+        data: {
+            winList: [{
+                    title: "窗口1",
+                    info: "支持办理现金取款、存取、转账",
+                    officeTime: "工作日：早上8:00至中午12:00,下午14:00至下午18:00",
+                    moreInfo: "老幼病残优先",
+                    phone: "020-999999"
+                }, {
+                    title: "窗口2",
+                    info: "支持办理现金取款、存取、转账",
+                    officeTime: "工作日：早上8:00至中午12:00,下午14:00至下午18:00",
+                    moreInfo: "老幼病残优先",
+                    phone: "020-999999"
+                }, {
+                    title: "窗口3",
+                    info: "支持办理现金取款、存取、转账",
+                    officeTime: "工作日：早上8:00至中午12:00,下午14:00至下午18:00",
+                    moreInfo: "老幼病残优先",
+                    phone: "020-999999"
+                }, {
+                    title: "窗口4",
+                    info: "支持办理现金取款、存取、转账",
+                    officeTime: "工作日：早上8:00至中午12:00,下午14:00至下午18:00",
+                    moreInfo: "老幼病残优先",
+                    phone: "020-999999"
+                }, {
+                    title: "窗口5",
+                    info: "支持办理现金取款、存取、转账",
+                    officeTime: "工作日：早上8:00至中午12:00,下午14:00至下午18:00",
+                    moreInfo: "老幼病残优先",
+                    phone: "020-999999"
+                }, {
+                    title: "窗口6",
+                    info: "支持办理现金取款、存取、转账",
+                    officeTime: "工作日：早上8:00至中午12:00,下午14:00至下午18:00",
+                    moreInfo: "老幼病残优先",
+                    phone: "020-999999"
+                }, {
+                    title: "窗口7",
+                    info: "支持办理现金取款、存取、转账",
+                    officeTime: "工作日：早上8:00至中午12:00,下午14:00至下午18:00",
+                    moreInfo: "老幼病残优先",
+                    phone: "020-999999"
+                },
+                {
+                    title: "窗口8",
+                    info: "支持办理现金取款、存取、转账",
+                    officeTime: "工作日：早上8:00至中午12:00,下午14:00至下午18:00",
+                    moreInfo: "老幼病残优先,持有钻石白金卡也可以优先，老幼病残优先,持有钻石白金卡也可以优先",
+                    phone: "020-999999"
+                }, {
+                    title: "珠海市香洲区翠景路99号香洲区行政中心306室",
+                    info: "周一至周五： 上午8: 30 - 12: 00， 下午14: 30 - 17: 30（ 法定节假日除外）",
+                    phone: "02077777,8888888",
+                    moreInfo: "jjj",
+                    officeTime: "乘坐1路、 5 路、 6 路、 8 路、 15 路、 18 路、 22 路、 43 路、 56 路、 68 路、 204 路、 602 路、 602 A路、 中山993路、 999 路公交车至香洲区府下车。"
+                }, {
+                    title: "窗口9",
+                    info: "支持办理现金取款、存取、转账",
+                    officeTime: "工作日：早上8:00至中午12:00,下午14:00至下午18:00",
+                    moreInfo: "老幼病残优先",
+                    phone: "020-999999"
+                }, {
+                    title: "窗口10",
+                    info: "支持办理现金取款、存取、转账",
+                    officeTime: "工作日：早上8:00至中午12:00,下午14:00至下午18:00",
+                    moreInfo: "老幼病残优先",
+                    phone: "020-999999"
+                },
+                {
+                    title: "窗口11",
+                    info: "支持办理现金取款、存取、转账",
+                    officeTime: "工作日：早上8:00至中午12:00,下午14:00至下午18:00",
+                    moreInfo: "老幼病残优先,持有钻石白金卡也可以优先，老幼病残优先,持有钻石白金卡也可以优先",
+                    phone: "020-999999"
+                }, {
+                    title: "12珠海市香洲区翠景路99号香洲区行政中心306室",
+                    info: "周一至周五： 上午8: 30 - 12: 00， 下午14: 30 - 17: 30（ 法定节假日除外）",
+                    phone: "02077777,8888888",
+                    moreInfo: "jjj",
+                    officeTime: "乘坐1路、 5 路、 6 路、 8 路、 15 路、 18 路、 22 路、 43 路、 56 路、 68 路、 204 路、 602 路、 602 A路、 中山993路、 999 路公交车至香洲区府下车。"
+                },
+            ],
+        }
+    });
+</script>
+
+</html>

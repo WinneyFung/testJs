@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+
+</head>
+
+<body>
+    <div id="app">
+        <blog-title title="谈理想"></blog-title>
+        <blog-title title="谈人生"></blog-title>
+        <blog-title title="谈社会"></blog-title>
+
+        <br>
+        <blog-title v-for="(post,index) in posts" :key="index" :title="post.title"></blog-title>
+    </div>
+</body>
+<script>
+    //注册一个博文组件
+    Vue.component('blog-title', {
+        props: ['title'],
+        data: function () {
+            return {
+
+            }
+        },
+        template: '<h3>{{title}}</h3>'
+    });
+
+    const vue = new Vue({
+        el: '#app',
+        data: {
+            posts: [{
+                    id: 1,
+                    title: 'My journey with Vue'
+                },
+                {
+                    id: 2,
+                    title: 'Blogging with Vue'
+                },
+                {
+                    id: 3,
+                    title: 'Why Vue is so fun'
+                }
+            ]
+        }
+    });
+</script>
+
+</html>

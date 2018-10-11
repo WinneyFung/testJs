@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        h3 {
+            font-size: 16px;
+            font-weight: normal;
+        }
+
+        .app {
+            width: 500px;
+            height: 300px;
+            border: 1px solid #ccc;
+            background-color: #f1f2f3;
+            margin: 100px auto;
+        }
+
+        .post {
+            margin-top: 10px;
+            padding-left: 10px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app">
+        <blog-post v-for="(post,index) in posts" :key="index" :post="post" :style="{ fontSize:postFontSize + 'em' }"
+            @enlarge-txt="enlargeTxt"></blog-post>
+    </div>
+</body>
+<script>
+    Vue.component('blog-post', {
+        props: ['post'],
+        //使用折行 ie不支持，需要使用经过 Babel 或 TypeScript 之类的工具) 编译的情况下支持 IE
+        //可以通过事件抛出值，放在emit的第一个参数后面 父组件可以用'$event'来接收
+        template: ` <div class="post">
+                        <button @click="$emit('enlarge-txt',0.3)">放大字号</button>
+                        <h3>{{post.title}}</h3>
+                        <div v-html="post.content"></div>
+                    </div>`
+    });
+    new Vue({
+        el: '.app',
+        data: {
+            postFontSize: 1,
+            posts: [{
+                    id: 1,
+                    title: '猪八戒没有理想',
+                    content: "猪八戒被百年下凡间"
+                },
+                {
+                    id: 2,
+                    title: '猪八戒的理想吃肉肉',
+                    content: "猪八戒想嫦娥，却又强制娶凡间妹子"
+
+                },
+                {
+                    id: 3,
+                    title: '猪八戒最后吃西瓜',
+                    content: "猪八戒想嫦娥，却又强制娶凡间妹子，最后出家，西天取经。"
+
+                }
+            ]
+        },
+        methods: {
+            enlargeTxt: function (increSize) {
+                this.postFontSize += increSize;
+            }
+        }
+    });
+</script>
+
+</html>

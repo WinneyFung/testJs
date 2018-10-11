@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>
+        如果使用promise没有调用使用catch捕获错误，promise内部发生的错误只会再内部发生，不会影响promise外的代码执行。
+    </p>
+    <script>
+        const someAsyncThing = function () {
+            return new Promise(function (resolve, reject) {
+                // 下面一行会报错，因为x没有声明
+                resolve(x + 2);
+            });
+        };
+
+        someAsyncThing().then(function () {
+            console.log('everything is great');
+        });
+
+        /*         someAsyncThing().then(function () {
+                    console.log('everything is great');
+                }).catch((e) => {
+                    console.log(e);
+                }); */
+
+        setTimeout(() => {
+            console.log(123)
+        }, 2000);
+        // Uncaught (in promise) ReferenceError: x is not defined
+        // 123
+    </script>
+</body>
+
+</html>
