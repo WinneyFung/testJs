@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .app {
+            margin-top: 60px;
+            font-family: "微软雅黑";
+
+        }
+
+        .wrap {
+            width: 600px;
+            margin: 0 auto;
+        }
+
+        ul {
+            list-style: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app">
+        <div class="wrap">
+            <ul>
+                <li> 1.将多个对象合并到某个对象。</li>
+                <li>2.通过assign为属性执行默认属性</li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        const DEFAULTS = {
+            logLevel: 0,
+            outputFormat: 'html'
+        };
+
+        function processContent(options) {
+            //由于存在浅拷贝的问题，DEFAULTS对象和options对象的所有属性的值，最好都是简单类型，不要指向另一个对象。否则，DEFAULTS对象的该属性很可能不起作用。
+            options = Object.assign({}, DEFAULTS, options);
+            console.log(options);
+            // ...
+        }
+    </script>
+</body>
+
+</html>

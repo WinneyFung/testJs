@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .app {
+            margin-top: 60px;
+            font-family: "微软雅黑";
+
+        }
+
+        .wrap {
+            width: 600px;
+            margin: 0 auto;
+        }
+
+        ul {
+            list-style: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app">
+        <div class="wrap">
+            <ul>
+                <li> 注意，属性名表达式如果是一个对象，默认情况下会自动将对象转为字符串[object Object]，这一点要特别小心
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        //定义了两个属性值 分别为_wheels和wheels
+        //其中wheels的存取会分别执行get wheels()函数,set wheels()函数
+        const cart = {
+            _wheels: 4,
+
+            get wheels() {
+                return this._wheels;
+            },
+
+            set wheels(value) {
+                if (value < this._wheels) {
+                    throw new Error('数值太小了！');
+                }
+                this._wheels = value;
+            }
+        }
+        console.log(cart.wheels);
+        try {
+            cart.wheels = 3;
+        } catch (error) {
+            console.log(error)
+        }
+        console.log(cart.wheels);
+
+        let key = "foo";
+        let keyObj = {
+            a: 'a'
+        };
+        let keyObj2 = {
+            b: 'b'
+        }
+        const obj = {
+            key,
+            keyObj,
+            keyObj2
+        }
+        //如果使用对象当作key 实际的key为[object Object]
+        const obj2 = {
+            [key]: "mimi",
+            [keyObj]: "key OBj",
+            [keyObj2]: "key Obj222"
+        }
+        console.log(obj);
+        console.log(obj2)
+    </script>
+</body>
+
+</html>

@@ -79,11 +79,11 @@
             },
             fullNam3: {
                 get() {
-                    console.log("get", "fullNam3");
+                    // console.log("get");
                     return this.fName + "_" + this.lName;
                 },
                 set(value) {
-                    console.log("set", "fullNam3");
+                    console.log("set", this.fullNam3, value);
                     const names = value.split("_");
                     [
                         this.fName, this.lName = "未知"

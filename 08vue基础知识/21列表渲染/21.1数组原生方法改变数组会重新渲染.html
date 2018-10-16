@@ -30,7 +30,7 @@
     <div class="app">
         <ul>
             <li v-for="(person,index) in personList">
-                <span>{{person.name}}---{{person.age}}</span>
+                <span>{{index}}---{{person.name}}---{{person.age}}</span>
                 <button @click="update(index)">更新</button>
                 <button @click="del(index)">删除</button>
             </li>

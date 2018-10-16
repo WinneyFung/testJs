@@ -22,6 +22,8 @@
         el: ".app",
         methods: {
             hint() {
+                //获取的是一个dom对象
+                //使用ref然后通过this.$refs.refName获取DOM元素的过程 可以类比为通过document.getElementById
                 console.log(this.$refs.myRef);
                 console.dir(this.$refs.myRef);
                 // alert(this.$refs.myRef);

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .app {
+            margin-top: 60px;
+            font-family: "微软雅黑";
+
+        }
+
+        .wrap {
+            width: 600px;
+            margin: 0 auto;
+        }
+
+        ul li {
+            list-style: none;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app">
+        <div class="wrap">
+            <ul>
+                <li> 1.注意，属性名表达式如果是一个对象，默认情况下会自动将对象转为字符串[object Object]，这一点要特别小心
+                </li>
+                <li>2.一般直接对象.方法.name就能够获取方法名</li>
+                <li>3.获取对象的getter和setter的方法方式比较特殊</li>
+                <li>4.需要通过 Object.getOwnPropertyDescriptor(实例对象,对象属性名)来获取</li>
+                <li>5.有两种特殊情况：bind方法创造的函数，name属性返回bound加上原函数的名字；Function构造函数创造的函数，name属性返回anonymous。</li>
+                <li>
+                    如果对象的方法是一个 Symbol 值，那么name属性返回的是这个 Symbol 值的描述。
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        const sbKey = Symbol("something must be wrong.");
+        const obj = {
+            _age: 19,
+            test() {
+                console.log(this.test.name);
+            },
+            get age() {
+                return this._age;
+            },
+            set age(val) {
+                this._age = val;
+            },
+            [sbKey]() {
+                return "symbol method/"
+            }
+        }
+        obj.test();
+        const descriptor = Object.getOwnPropertyDescriptor(obj, 'age');
+        console.log(descriptor.get.name); //get age
+        console.log(descriptor.set.name); //set age
+
+        const f = new Function();
+        console.log(f.name); //anonymous
+        console.log(f.bind(obj).name); //bound anonymous
+        console.log(obj.test.bind(window).name); //bound test
+        console.log(obj[sbKey].name) //[something must be wrong.]
+        console.log(obj[sbKey]()); //symbol method/
+    </script>
+</body>
+
+</html>

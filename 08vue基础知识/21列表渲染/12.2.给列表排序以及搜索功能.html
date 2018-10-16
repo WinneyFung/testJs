@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <style>
+        .app {
+            margin-top: 60px;
+            text-align: center;
+            font-family: "微软雅黑";
+        }
+
+        ul {
+            list-style: none;
+        }
+        ul li {
+            border-top: 1px solid orangered;
+            height: 30px;
+            line-height: 30px;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app">
+        <input type="text" placeholder="查找姓名" v-model="searchName" />
+        <ul>
+            <li v-for="(person,index) in filterPerson">
+                <span>{{index+1}}---{{person.name}}---{{person.age}}</span>
+                <button @click="update(index)">更新</button>
+                <button @click="del(index)">删除</button>
+            </li>
+        </ul>
+        <button @click="add">添加</button>
+        <button @click="setOrderType(2)">年龄升序</button>
+        <button @click="setOrderType(1)">年龄降序</button>
+        <button @click="setOrderType(0)">原本顺序</button>
+    </div>
+</body>
+<script>
+    const vue = new Vue({
+        el: ".app",
+        data() {
+            return {
+                personList: [{
+                        name: "猪八戒",
+                        age: 17
+                    },
+                    {
+                        name: "猪悟能",
+                        age: 18
+                    },
+                    {
+                        name: "孙悟空",
+                        age: 19
+                    },
+                    {
+                        name: "鹿晗",
+                        age: 23
+                    },
+                    {
+                        name: "吴亦凡",
+                        age: 20
+                    },
+                ],
+                searchName: "",
+                orderType: 0 //0:原本排序 1:升序 2:降序
+            }
+        },
+        methods: {
+            setOrderType(index) {
+                this.orderType = index;
+            },
+            update(index) {
+                this.personList.splice(index, 1, {
+                    name: "new winney",
+                    age: 16
+                });
+            },
+            del(index) {
+                //从index开始删除1个元素
+                this.personList.splice(index, 1);
+            },
+            add() {
+                this.personList.push({
+                    name: "add winney",
+                    age: 25
+                });
+            }
+        },
+        computed: {
+            //--------------------需要处理 查找后修改的问题-----------------------
+            /*   filterPerson() {
+                  const {
+                      personList,
+                      searchName,
+                      orderType
+                  } = this;
+                  let arr = [...personList];
+                  if (searchName.trim()) {
+                      arr = personList.filter(p => {
+                          return p.name.toLowerCase().indexOf(searchName.toLowerCase()) !== -1;
+                      });
+                  }
+                  if (orderType) {
+                      if (orderType === 2) {
+                          //降序
+                          arr.sort((p1, p2) => p1.age - p2.age < 0)
+                      } else {
+                          arr.sort((p1, p2) => p2.age - p1.age < 0)
+                      }
+                  }
+                  return arr;
+              } */
+            filterPerson: {
+                get() {
+                    const {
+                        personList,
+                        searchName,
+                        orderType
+                    } = this;
+                    let arr = [...personList];
+                    if (searchName.trim()) {
+                        arr = personList.filter(p => {
+                            return p.name.toLowerCase().indexOf(searchName.toLowerCase()) !== -1;
+                        });
+                    }
+                    if (orderType) {
+                        if (orderType === 2) {
+                            //降序
+                            arr.sort((p1, p2) => p1.age - p2.age < 0)
+                        } else {
+                            arr.sort((p1, p2) => p2.age - p1.age < 0)
+                        }
+                    }
+                    return arr;
+                },
+                set(value) {
+                    console.log(value);
+                    get();
+                }
+            }
+        }
+    })
+</script>
+
+</html>

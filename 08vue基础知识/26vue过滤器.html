@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <!-- //日期格式插件 -->
+    <script type="text/javascript" src="https://cdn.bootcss.com/moment.js/2.22.1/moment.js"></script>
+    <style>
+        .app {
+            margin-top: 60px;
+            text-align: center;
+            font-family: "微软雅黑";
+        }
+
+        ul {
+            list-style: none;
+            width: 400px;
+            margin: 10px auto;
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app">
+        <h3>时间</h3>
+        <span>未格式化时间:</span><span>{{date}}</span>
+        <hr>
+        <span>格式化时间:</span><span>{{date | dateFilter}}</span>
+        <hr>
+        <span>格式化时间:</span><span>{{date |dateFilter("YYYY-MM-DD ss")}}</span>
+        <hr>
+        <ul>
+            <li>1. 理解过滤器
+                功能: 对要显示的数据进行特定格式化后再显示
+                注意: 并没有改变原本的数据, 可是产生新的对应的数据</li>
+            <li>2.编码
+                <ul>
+                    <li v-text="usage1"></li>
+                    <li v-text="usage2"></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</body>
+<script>
+    Vue.filter("dateFilter", function (value, formatter = "YYYY-MM-DD HH:mm:ss") {
+        return moment(value).format(formatter);
+    });
+    const vue = new Vue({
+        el: ".app",
+        data() {
+            return {
+                date: new Date(),
+                usage1: ` 1). 定义过滤器
+                    Vue.filter(filterName, function(value[,arg1,arg2,...]){
+                    // 进行一定的数据处理
+                    return newValue
+                    })`,
+                usage2: `
+                    2). 使用过滤器
+                    <div>{{myData | filterName}}</div>
+                    <div>{{myData | filterName(arg)}}</div>`,
+            }
+        },
+        methods: {},
+        mounted() {
+            this.timerId = setInterval(() => {
+                this.date = new Date()
+            }, 500);
+        },
+    })
+</script>
+
+</html>
