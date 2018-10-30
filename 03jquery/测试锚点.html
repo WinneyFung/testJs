@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/jquery/jquery-1.12.4.js"></script>
+    <script src="../js/jquery/jquery.color.js"></script>
+    <script>
+        $(function () {
+
+            $(window).scroll(function () {
+                //为页面添加页面滚动监听事件
+                var wst = $(window).scrollTop() //滚动条距离顶端值
+                for (i = 1; i < 6; i++) { //加循环
+                    if ($("#a" + i).offset().top <= wst) {
+                        //判断滚动条位置
+                        $('#nav a').removeClass("c"); //清除c类
+                        $("#a" + i + i).addClass("c");
+                        //给当前导航加c类 
+                    }
+                }
+            })
+            $('#nav a').click(function () {
+                $('#nav a').removeClass("c");
+                $(this).addClass("c");
+            });
+        });
+    </script>
+    <style>
+        #nav .c {
+            color: red
+        }
+
+        .testa:nth-child(even) {
+            width: 100%;
+            height: 300px;
+            background-color: red;
+        }
+
+        .testa:nth-child(odd) {
+            width: 100%;
+            height: 300px;
+            background-color: blueviolet;
+        }
+
+        #nav {
+            color: #fff;
+            position: fixed;
+            top: 50%;
+            height: 20px;
+            border: 1px solid orangered;
+            background-color: black;
+        }
+
+        #nav a {
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="nav">
+        <a id="a11" href="#a1" class="c">书籍目录</a>
+        <a id="a22" href="#a2">作品试读</a>
+        <a id="a33" href="#a3">购买须知</a>
+        <a id="a44" href="#a4">注意事项</a>
+        <a id="a55" href="#a5">用户点评</a>
+    </div>
+    <br /><br />
+    页面结构如下：
+    <div class="testa" id="a1">书籍目录</div>
+    <div class="testa" id="a2">作品试读</div>
+    <div class="testa" id="a3">购买须知</div>
+    <div class="testa" id="a4">注意事项</div>
+    <div class="testa" id="a5">用户点评</div>
+</body>
+
+</html>

@@ -9,11 +9,15 @@ import PubSub from "pubsub-js";
 //将pubsub挂载到vue实例上
 Vue.config.productionTip = false;
 Vue.prototype.$PubSub = PubSub;
-
+//引入store
+import store from "./store";
+import { currency } from "./utils/currency";
+Vue.filter("currency", currency);
 /* eslint-disable no-new */
 new Vue({
   el: "#app",
   router,
   components: { App },
-  template: "<App/>"
+  template: "<App/>",
+  store
 });

@@ -1,0 +1,20 @@
+<html>
+
+<head>
+    <script src="./jquery-1.12.4.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("button").click(function () {
+                $(window.frames["iframe1"].document).scrollTop("10");
+            });
+        });
+    </script>
+</head>
+
+<body>
+
+    <iframe src="http://www.w3school.com.cn/example/html/demo_iframe.html" height="60px" name="iframe1">
+        <p>Your browser does not support iframes.</p>
+    </iframe>
+    <button type="button">Click me</button>
+</body>
