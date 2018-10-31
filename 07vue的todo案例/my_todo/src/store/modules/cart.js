@@ -63,10 +63,14 @@ const mutations = {
 const actions = {
   checkout({ commit }, cartProducts) {
     var items = [...state.items]; // state.items
+    //发出请求
     commit(CHECKOUT_REQ);
+    //调用提交订单接口服务
     shop.buyProducts(
       cartProducts,
+      //成功的回调函数
       () => commit(CHECKOUT_SUCCESS),
+      //失败的回调函数
       () => commit(CHECKOUT_FAILURE, { items })
     );
   }

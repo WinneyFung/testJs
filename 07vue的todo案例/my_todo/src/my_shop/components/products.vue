@@ -45,6 +45,8 @@ a {
 button {
   cursor: pointer;
   outline: none;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
+    0 0 8px rgba(245, 201, 59, 0.6);
 }
 .p-constainer li {
   height: 50px;
@@ -79,6 +81,8 @@ button {
   border: 1px solid #666;
   background-color: #888;
   color: #333;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
+    0 0 8px rgba(110, 110, 109, 0.6);
 }
 .star {
   color: #ffc83d;

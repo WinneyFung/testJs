@@ -11,7 +11,11 @@
            <input class="c-add" type="button" value="+" @click="addToCart(product)">
         </li>
     </ul>
-    <h4>总价：{{totalPrice | currency}}</h4>
+    <div class="order-contatiner">
+      <h4>总价：{{totalPrice | currency}}</h4>
+      <button @click="checkout(products)" :disabled="products.length===0" class="btn">提交订单</button>
+      <p v-show="checkoutStatus">提交状态： {{checkoutStatus}}</p>
+    </div>
 </div>
 </template>
 
@@ -23,7 +27,10 @@ export default {
     return {};
   },
   computed: {
-    ...mapGetters({ products: "cartProduts" }),
+    ...mapGetters({
+      products: "cartProduts",
+      checkoutStatus: "checkoutStatus"
+    }),
     totalPrice() {
       return this.products.reduce(
         (preTotal, product) => preTotal + product.count * product.price,
@@ -32,7 +39,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(["minFromCart"]),
+    ...mapActions(["minFromCart", "checkout"]),
     addToCart(product) {
       const p = this.$store.state.products.products.find(
         p => p.id === product.id
@@ -44,7 +51,6 @@ export default {
         p => p.id === product.id
       );
       const maxCount = p.max;
-      debugger;
       const count = product.count ? Number.parseInt(product.count) : 0;
       if (count > maxCount) {
         product.count = maxCount;
@@ -80,5 +86,17 @@ export default {
   margin: 0 2px;
   float: right;
   padding: 0 2px;
+}
+.btn {
+  display: inline-block;
+  padding: 6px;
+  width: 100px;
+  margin-right: 10px;
+}
+
+.order-contatiner button {
+  position: relative;
+  left: 50%;
+  /* margin-right: 50px; */
 }
 </style>
