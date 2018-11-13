@@ -6,12 +6,24 @@
    有多个功能需要暴露
  */
 const TODOS_KEY = "todos_key";
+const CARTS_KEY = "carts_key";
 export default {
   readTodos() {
     return JSON.parse(localStorage.getItem(TODOS_KEY) || "[]");
   },
   saveTodos(todos) {
     localStorage.setItem(TODOS_KEY, JSON.stringify(todos));
+  },
+  readCarts() {
+    const cart = localStorage.getItem(CARTS_KEY);
+    if (cart == "undefined") {
+      return [];
+    }
+    return JSON.parse(cart || "[]");
+  },
+  saveCarts(carts) {
+    console.log(carts);
+    localStorage.setItem(CARTS_KEY, JSON.stringify(carts));
   }
 };
 

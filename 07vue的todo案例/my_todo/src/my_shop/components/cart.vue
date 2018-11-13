@@ -21,10 +21,21 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
+import storageUtils from "@/utils/storageUtils";
+import productsVue from "./products.vue";
 export default {
   name: "cart",
   data() {
     return {};
+  },
+  watch: {
+    //监听vuex里的状态
+    "$store.state.cart.items": {
+      deep: true,
+      handler: function(newer, older) {
+        storageUtils.saveCarts(newer);
+      }
+    }
   },
   computed: {
     ...mapGetters({

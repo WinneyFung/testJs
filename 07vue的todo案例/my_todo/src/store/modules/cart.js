@@ -7,9 +7,9 @@ import {
   EDIT_CART_COUNT
 } from "../type";
 import shop from "@/my_shop/api/shop";
-
+import storageUtils from "@/utils/storageUtils";
 const state = {
-  items: [], // 每个元素对象: id/count
+  items: storageUtils.readCarts(), // 每个元素对象: id/count
   checkoutStatus: null
 };
 
