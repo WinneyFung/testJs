@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .left {
+            float: left;
+            width: 200px;
+            /* 主要设置的float：left以及width的值 width的值决定右边布局margin-right的值大小 */
+            min-height: 600px;
+            background: red;
+            display: table;
+            color: #fff;
+        }
+
+        .right {
+            margin-left: 210px;
+            /* 主要设置的margin-left的指 */
+            background: yellow;
+            text-align: center;
+            min-height: 600px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="left">放广告或者博客目录之类的</div>
+    <div class="right">
+        实现模式：float+margin
+        <p>两栏布局：一栏定宽，一栏自适应。这样子做的好处是定宽的那一栏可以做广告，自适应的可以作为内容主体。</p>
+    </div>
+    <!-- 两栏布局：一栏定宽，一栏自适应。这样子做的好处是定宽的那一栏可以做广告，自适应的可以作为内容主体。 -->
+</body>
+
+</html>

@@ -1,0 +1,83 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>无缝滚动</title>
+</head>
+
+<body>
+    <div id="demo">
+        <div id="indemo">
+            <div id="demo1">
+                <a href="#">图片一</a>
+                <a href="#">图片二</a>
+                <a href="#">图片三</a>
+                <a href="#">图片四</a>
+                <a href="#">图片五</a>
+                <a href="#">图片六</a>
+            </div>
+            <div id="demo2"></div>
+        </div>
+        <style>
+            #demo {
+                background: #FFF;
+                overflow: auto;
+                border: 1px dashed #CCC;
+                width: 500px;
+            }
+
+            #indemo {
+                float: left;
+                width: 2000px;
+            }
+
+            #indemo a {
+                width: 100px;
+                height: 100px;
+                float: left;
+                background-color: blue;
+                margin-left: 5px;
+                text-align: center;
+                line-height: 100px;
+                color: red;
+                text-decoration: none;
+            }
+
+            #demo1 {
+                float: left;
+            }
+
+            #demo2 {
+                float: left;
+            }
+        </style>
+        <script>
+            var speed = 10;
+            var tab = document.getElementById("demo");
+            var tab1 = document.getElementById("demo1");
+            var tab2 = document.getElementById("demo2");
+            tab2.innerHTML = tab1.innerHTML;
+            console.log(tab1.offsetWidth);
+            console.log(tab2.offsetWidth);
+            tab.scrollLeft = 100;
+            console.log(tab.scrollLeft);
+
+            function Marquee() {
+                if (tab2.offsetWidth - tab.scrollLeft <= 0) {
+                    tab.scrollLeft -= tab1.offsetWidth
+                } else {
+                    tab.scrollLeft++;
+                }
+            }
+            var MyMar = setInterval(Marquee, speed);
+            tab.onmouseover = function () {
+                clearInterval(MyMar)
+            };
+            tab.onmouseout = function () {
+                MyMar = setInterval(Marquee, speed)
+            };
+        </script>
+    </div>
+</body>
+
+</html>

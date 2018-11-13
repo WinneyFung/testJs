@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .left {
+            width: 200px;
+            height: 300px;
+            background: yellow;
+            float: left;
+        }
+
+        .right {
+            width: 150px;
+            height: 300px;
+            background: green;
+            float: right;
+        }
+
+        .middle {
+            height: 300px;
+            background: red;
+            margin-left: 220px;
+            margin-right: 160px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="left">左栏</div>
+    <div class="right">
+        <p>右栏</p>
+    </div>
+    <div class="middle">
+        <p>中间栏必须放在left和right两栏的后面；否则right会被挤下来，middle并没有脱离文档流</p>
+        <p>缺点是：1. 当宽度小于左右两边宽度之和时，右侧栏会被挤下去；2. html的结构不正确</p>
+    </div>
+</body>
+
+</html>

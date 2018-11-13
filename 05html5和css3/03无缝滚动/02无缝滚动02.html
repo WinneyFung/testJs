@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .screen {
+            width: 600px;
+            height: 215px;
+            margin: 100px auto;
+            background-color: pink;
+            position: relative;
+            overflow: auto;
+        }
+
+        img {
+            /*去掉图片底部三像素问题*/
+            vertical-align: top;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            border: 0;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .screen ul li {
+            float: left;
+        }
+
+        .screen ul {
+            width: 500%;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        #scroll li {
+            height: 300px;
+            width: 200px;
+            background-color: orange;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="screen">
+        <ul id="scroll">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+    </div>
+    <script>
+        var ul = document.getElementById("scroll");
+        var screen = document.getElementsByClassName("screen")[0];
+        for (var i = 0; i <= 3; i++) {
+            var li = document.createElement("li");
+            var child = ul.children[i];
+            li.innerHTML = child.innerHTML;
+            ul.appendChild(li);
+        }
+        var timer = null;
+        timer = setInterval(autoScroll, 1);
+        var num = 0;
+
+        function autoScroll() {
+            num -= 0.25;
+            num <= -1200 ? num = 0 : num;
+            ul.style.left = num + "px";
+        }
+        screen.onmouseover = function () {
+            clearInterval(timer);
+        }
+        screen.onmouseout = function () {
+            timer = setInterval(autoScroll, 1);
+        }
+    </script>
+
+</body>
+
+</html>

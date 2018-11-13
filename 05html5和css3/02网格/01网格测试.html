@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .wrapper {
+            width: 300px;
+            height: 400px;
+            background-color: red;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: 100px 100px 100px;
+            grid-template-rows: 100px 100px 100px;
+        }
+
+        .grid-item {
+            grid-column: 2;
+            grid-row-start: 1;
+            grid-row-end: 3;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="grid-container wrapper">
+
+    </div>
+</body>
+
+</html>

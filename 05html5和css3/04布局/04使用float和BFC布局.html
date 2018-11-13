@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .wrapper {
+            /* 清除浮动 */
+            overflow: hidden;
+        }
+
+        .middle {
+            width: 100%;
+            float: left;
+        }
+
+        .middle .main {
+            margin: 0 110px 0 220px;
+            background: red;
+        }
+
+        .left {
+            width: 200px;
+            height: 300px;
+            float: left;
+            background: green;
+            margin-left: -100%;
+        }
+
+        .right {
+            width: 100px;
+            height: 300px;
+            float: left;
+            background: yellow;
+            margin-left: -100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="middle">
+            <div class="main">
+                main需要margin左右两侧宽度的属性,同时需要设置main的parent:middle为float:left,且width:100%;
+                最后要将middle\left\right这三栏都放置在wrapper的div中,样式需要设定为overflow:hidden来消除浮动
+            </div>
+        </div>
+        <div class="left">
+            左侧left需要float的值为left,同时需要设置margin-left的值为-100%
+        </div>
+        <div class="right">
+            右栏需要float的值为left,同时设置margin-left的值为自己宽度的负值
+        </div>
+    </div>
+</body>
+
+</html>

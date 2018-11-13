@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .wrapper {
+            overflow: hidden;
+        }
+
+        .middle {
+            float: left;
+            width: 100%;
+        }
+
+        .middle .main {
+            margin: 0 400px 0 300px;
+            background-color: skyblue;
+            height: 1000px;
+
+        }
+
+        .left {
+            float: left;
+            margin-left: -100%;
+            width: 300px;
+            height: 1000px;
+            background-color: red;
+        }
+
+        .right {
+            float: left;
+            margin-left: -400px;
+            width: 400px;
+            height: 1000px;
+            background-color: yellow;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="middle">
+            <div class="main">
+                div[.wrapper]的需要设置样式overflow:hidden来消除浮动;<br>
+                div[.middle]的需要float:left并且width设置为100%;<br>
+                div[.main]的需要设置margin属性,margin左右的值为左右边栏的宽度<br>
+                div[.left]的需要设置float:left属性,margin-left:-100%;<br>
+                div[.right]的需要设置float:left属性,margin-left:-自身的宽度;
+            </div>
+        </div>
+        <div class="left">
+            结构为wrapper->[middle->[main]];
+            wrapper->[left]
+            wrapper->[rigth]
+        </div>
+        <div class="right">
+            缺点:1. 结构不正确(并不是左中右的结构,实际结构为中左右)<br>
+            2. 多了一层标签,需要一层大的wrapper包含左中右div,并且中的div需要包含main;
+        </div>
+    </div>
+</body>
+
+</html>

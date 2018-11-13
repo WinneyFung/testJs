@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .left {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100px;
+            height: 600px;
+            background-color: green;
+        }
+
+        .middle {
+            margin: 0px 130px 0px 100px;
+            height: 600px;
+            background-color: red;
+        }
+
+        .right {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 130px;
+            height: 600px;
+            background-color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="left">左栏</div>
+    <div class="middle">
+        <p>好处是：html结构正常。
+
+            缺点时：当父元素有内外边距时，会导致中间栏的位置出现偏差</p>
+    </div>
+    <div class="right">右栏</div>
+</body>
+
+</html>
