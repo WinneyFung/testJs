@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>利用display的包裹性和定位元素具有百分比高度</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+    <style>
+        .box {
+            display: inline-block;
+            position: relative;
+        }
+
+        .next,
+        .prev {
+            position: absolute;
+            width: 50%;
+            height: 100%;
+            opacity: 0.5;
+        }
+
+        .next {
+            right: 0px;
+            background-color: red;
+        }
+
+        .prev {
+            left: 0px;
+            background-color: orangered;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <a href="#" class="prev">prev</a>
+        <a href="#" class="next">next</a>
+        <img src="../../../images/2-small.jpg" alt="img">
+    </div>
+</body>
+<script>
+    console.log(window.getComputedStyle(document.querySelector(".prev")).display)
+</script>
+
+</html>

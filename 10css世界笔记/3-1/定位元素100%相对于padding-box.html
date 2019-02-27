@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+    <style>
+        .box {
+            height: 160px;
+            padding: 30px;
+            box-sizing: border-box;
+            background-color: #beceeb;
+        }
+
+        .child {
+            height: 100%;
+            background: #cd0000;
+        }
+
+        .rel {
+            position: relative;
+        }
+
+        .rel>.child {
+            width: 100%;
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="child">高度100px</div>
+    </div>
+    <hr>
+    <div class="box rel">
+        <div class="child">高度160px</div>
+    </div>
+</body>
+
+</html>

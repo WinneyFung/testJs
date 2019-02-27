@@ -1,2 +1,4 @@
 07vue的todo案例/my_mpvue_test/
 08vue的todo案例/my_mpvue_test/
+node_modules/
+node_modules/*

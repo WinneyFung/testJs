@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+</head>
+
+<body>
+    <p>
+        手机通过gps定位;pc通过ip地址(需要ip库查询);
+        <li>window.navigation.geolocation</li>
+        <li>策略:单次获取(getCurrentPosition);监听(watchPosition)</li>
+    </p>
+    <button id="locationBtn"> 获取位置信息</button>
+</body>
+
+<script>
+    window.onload = function () {
+        const btn = document.getElementById("locationBtn");
+        btn.onclick = getLocation;
+    }
+
+    function getLocation() {
+        console.log("获取位置信息中...");
+        if (window.navigator.geolocation) {
+            window.navigator.geolocation.getCurrentPosition((res) => {
+                console.log(res)
+            }, error => {
+                console.log(error)
+            }, {
+                timeout: 10000,
+                enableHighAccuracy: true, //是否设置高精度
+                maximumAge: 20 * 3600 * 3600
+                //frequency://频率  使用watchPosition时调用
+            });
+        }
+    }
+</script>
+
+</html>

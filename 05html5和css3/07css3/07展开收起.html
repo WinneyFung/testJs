@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box {
+            height: 200px;
+            width: 200px;
+            background-color: black;
+        }
+
+        .draw-enter-active,
+        .draw-leave-active {
+            transition: all 1s ease;
+        }
+
+        .draw-enter,
+        .draw-leave-to
+
+        /* .fade-leave-active below version 2.1.8 */
+            {
+            height: 0;
+        }
+
+        p {
+            width: 300px;
+            max-height: 100px;
+            border: 1px dashed salmon;
+            overflow: hidden;
+            transition: all .3s ease;
+
+        }
+
+        .ss p {
+            max-height: 2000px;
+        }
+    </style>
+</head>
+
+<div id="app">
+    <button @click="boxshow = !boxshow">点击展开/关闭</button>
+    <transition name="draw">
+        <!--这里的name 和 css 类名第一个字段要一样-->
+        <div class="box" v-show="boxshow"></div>
+    </transition>
+
+
+    <div class="pp" :class="{'ss':p.expanded}" v-for="(p,i) in pArr" :key="i" :ref="p.id">
+
+        <p><span>{{p.v}}</span>
+        </p>
+        <a href="#" @click.prevent="onclick(i)" v-if="pArr[i]['sa']">展开</a>
+    </div>
+
+
+</div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            boxshow: false,
+            pArr: [{
+                    id: '0',
+                    v: "那天人文环境氛围大火球哦分如果除非不求哦发热管"
+                },
+                {
+                    id: "6a6af2b01d954359abd073811cc57d70",
+                    v: "你好哈哈哈安徽hi你好哈哈哈安徽hide我金泰妍下hi成功发红i没嫩刮擦而侮辱妇女下降高度挨饿微软发好发吃不起未经官方金泰妍下hi成功发红i没嫩刮擦而侮辱妇女下降高度挨饿微软发好发吃不起未经官方de我金泰妍下hi成功发红i没嫩刮擦而侮辱妇女下降高度挨饿微软发好发吃不起未经官方金泰妍下hi成功发红i没嫩刮擦而侮辱妇女下降高度挨饿微软发好发吃不起未经官方"
+                },
+                {
+                    id: '2',
+                    v: "你好哈哈哈安徽hi你好哈哈哈安徽hide我金泰妍下hi成功发红i没嫩刮擦而侮辱妇女下降高度挨饿微软发好发吃不起未经官方金泰妍下hi成功发红i没嫩刮擦而侮辱妇女下降高度挨饿微软发好发吃不起未经官方de我金泰妍下hi成功发红i没嫩刮擦而侮辱妇女下降高度挨饿微软发好发吃不起未经官方金泰妍下hi成功发红i没嫩刮擦而侮辱妇女下降高度挨饿微软发好发吃不起未经官方"
+                },
+            ]
+        },
+        mounted() {
+            const aoo = this.pArr;
+            console.log(this.$refs);
+            this.$nextTick().then(() => {
+                aoo.forEach(p => {
+                    console.log(this.$refs)
+                    if (this.$refs[p.id][0].clientHeight > 100) {
+                        this.$set(p, 'sa', true);
+                    }
+                });
+            });
+            // console.log(this.$refs[aoo[0][id]][0])
+        },
+        methods: {
+            onclick(i) {
+                const {
+                    pArr
+                } = this;
+                let p = pArr[i];
+                if (!p.expanded) {
+                    this.$set(p, 'expanded', true);
+                } else {
+                    this.$set(p, 'expanded', false);
+                }
+            }
+        },
+    });
+</script>
+
+</html>

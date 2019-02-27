@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        li {
+            background-color: #f4f;
+        }
+
+        li:hover {
+            background-color: #ff7;
+        }
+
+        dt,
+        dd {
+            height: 40px;
+            line-height: 40px;
+            padding: 0 20px;
+            float: left;
+        }
+
+        dl::after,
+        dl::before {
+            content: '';
+            display: block;
+        }
+
+        dl::after {
+            clear: both;
+            overflow: hidden;
+        }
+
+        dt {
+            background-color: aqua;
+            color: #ff7;
+        }
+
+        dd {
+            background-color: #ff7;
+            color: aqua;
+            margin-inline-start: 0px;
+        }
+
+        dd,
+        dt {
+            animation: dmove 1s;
+        }
+
+        @keyframes dmove {}
+    </style>
+</head>
+
+<body>
+    <ul id="test">
+        <li>这是第一条</li>
+        <li>这是第二条</li>
+        <li>这是第三条</li>
+    </ul>
+
+    <dl id="dlId">
+        <dt>姓名</dt>
+        <dd>winney</dd>
+        <dt>年龄</dt>
+        <dd>88</dd>
+    </dl>
+</body>
+<script>
+    let $ul = document.getElementById("test");
+    let $lis = Array.from($ul.children);
+    console.log($ul)
+    $lis.forEach(($li, i) => {
+        console.log($li, i)
+        $li.addEventListener('click', (function (i) {
+            return function () {
+                console.log(i)
+            }
+        })(i))
+    });
+
+    let $d = document.getElementById('dlId');
+    let $ds = Array.from($d.children);
+    $ds.forEach(($d, i) => {
+        $d.addEventListener('click', (function (i) {
+            return function () {
+                console.log(i);
+            }
+        })(i))
+    });
+</script>
+
+</html>

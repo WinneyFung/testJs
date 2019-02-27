@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <div id="testid">jhhhh</div>
+    <div class="tc">gicuqwre</div>
+    <a href="jjj">hhhh</a>
+</body>
+<script>
+    /*     编写一个JavaScript函数，
+     输入指定类型的选择器(仅需支持id， class， tagName三种简单CSS选择器， 无需兼容组合选择器) 
+     可以返回匹配的DOM节点， 需考虑浏览器兼容性和性能。 */
+    function $(querySelector) {
+        if (!querySelector) {
+            return null;
+        }
+
+        const idRegExp = /^(#)([a-zA-Z0-9_-]+)$/;
+        if (idRegExp.test(querySelector)) {
+            querySelector = querySelector.match(idRegExp)[2];
+            console.log(querySelector)
+            return document.getElementById(querySelector);
+        }
+
+        const classRegExp = /^(.)([a-zA-Z0-9_-]+)$/;
+        if (classRegExp.test(querySelector)) {
+            querySelector = querySelector.match(classRegExp)[2];
+            console.log(querySelector);
+            return document.getElementsByClassName(querySelector)
+        }
+
+        return document.getElementsByTagName(querySelector);
+    }
+
+    console.log($('a'));
+    console.log($('#testid'));
+    console.log($('.tc'));
+</script>
+
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue"></script>
+    <style>
+        div {
+            cursor: pointer
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <test :select-name="selectName" :click-div="clickDiv"></test>
+    </div>
+</body>
+<script>
+    Vue.component("test", {
+        props: ['selectName', 'clickDiv'],
+        template: '<div @click="clickDiv">我是按钮{{selectName}}</div>',
+        methods: {
+            a() {
+                console.log(this.selectName);
+            }
+        }
+    });
+    var app = new Vue({
+        el: '#app',
+        data: {
+            selectName: '哈哈哈哈',
+            clickDiv: () => {
+                console.log('click')
+            }
+        }
+    });
+</script>
+
+</html>

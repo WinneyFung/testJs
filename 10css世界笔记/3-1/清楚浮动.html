@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+    <style>
+        .box {
+            padding: 10px;
+            background-color: orange;
+        }
+
+        .inner {
+            float: left;
+            background-color: red;
+        }
+
+        .clear:after {
+            content: " ";
+            display: block;
+            /* display: list-item; */
+            clear: both;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box clear">
+        <div class="inner">
+            text
+        </div>
+    </div>
+</body>
+
+</html>
