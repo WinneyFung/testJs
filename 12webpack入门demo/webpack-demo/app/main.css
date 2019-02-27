@@ -30,11 +30,16 @@ ul {
     padding: 0;
 }
 
-.red {
+.box {
     width: 200px;
     padding: 10px 5px;
     border: 2px dashed green;
     margin: 0 auto;
     border-radius: 5px;
+    font-size: 14px;
+}
+
+.red {
+    font-size: 18px;
     color: red;
 }

@@ -4,8 +4,9 @@ const greeterJoson = require("./greeter.json");
 class Greeter extends Component {
   render() {
     return (
-      <div>
-        <h2 className="red">{greeterJoson.greeterTxt}</h2>
+      <div className="box">
+        <h2 className="red">{greeterJoson.title}</h2>
+        <p>{greeterJoson.txt}</p>
       </div>
     );
   }

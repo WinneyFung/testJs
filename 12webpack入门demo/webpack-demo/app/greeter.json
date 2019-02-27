@@ -1,3 +1,4 @@
 {
-    "greeterTxt": "这是json文件夹里里面的内容，hello loaders,hello react"
+    "title": "世界",
+    "txt": "世界是大大的，人是小小的"
 }

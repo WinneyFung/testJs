@@ -34,3 +34,36 @@ node_modules/.bin/webpack app/main.js
 #### 添加loader
 
 在`wabpack.config.js`中添加loader后,需要重启server,才生效.
+
+#### 添加压缩插件报错
+
+因为博文使用的webpack版本是3的,但是跟做demo时用了4,所以需要做修改;
+
+参考[webpack4.0版本中的js压缩问题](https://my.oschina.net/hyzccc/blog/1797358)
+
+`webpack.config.js`配置:
+
+```javascript
+ optimization: {
+        minimizer: [
+            new UglifyJsPlugin({
+                uglifyOptions: {
+                    compress: false
+                }
+            })
+        ]
+    },
+```
+
+具体步骤为:
+
+- 用npm安装uglifyjs-webpack-plugin插件
+
+  `cnpm install --save-dev uglifyjs-webpack-plugin`
+
+- 引入到`webpack.config.js`配置文件
+
+  `const UglifyJsPlugin = require("uglifyjs-webpack-plugin")` 
+
+- 与plugin并排添加上面的配置代码
+
