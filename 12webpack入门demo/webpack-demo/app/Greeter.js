@@ -1,5 +1,14 @@
-module.exports = function() {
-  const greet = document.createElement("div");
-  greet.textContent = "hello，即将打开webpack大门哈哈哈";
-  return greet;
-};
+import React from "react";
+import { Component } from "react";
+const greeterJoson = require("./greeter.json");
+class Greeter extends Component {
+  render() {
+    return (
+      <div>
+        <h2 className="red">{greeterJoson.greeterTxt}</h2>
+      </div>
+    );
+  }
+}
+
+export default Greeter;

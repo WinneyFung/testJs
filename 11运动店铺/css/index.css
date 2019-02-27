@@ -346,11 +346,22 @@
 
 .good-msg ul {
     padding-top: 11px;
+    list-style-type: square;
+    list-style-position: inside;
+    color: #999;
 }
 
 .good-msg li {
     line-height: 23px;
     padding-left: 26px;
+}
+
+.good-msg li:hover {
+    line-height: 23px;
+    padding-left: 24px;
+    background-color: #fcfcfc;
+    color: green;
+    border-left: 2px solid green;
 }
 
 /* e=商品列表 */
