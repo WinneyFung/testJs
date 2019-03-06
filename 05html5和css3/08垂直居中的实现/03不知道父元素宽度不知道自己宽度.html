@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .container {
+            position: relative;
+            width: 800px;
+            background-color: #f00;
+        }
+
+        .box {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateY(-50%) translateX(-50%);
+            background-color: #f0f;
+        }
+    </style>
+    <!--[if lte IE 10]><link rel="stylesheet" href="css.css"><![endif]-->
+
+
+</head>
+
+<body>
+    <div class="container">
+        hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+        <div class="box hack">hhhhhhhhhhhhhhh</div>
+        hdowi yfh好福气哦i预热哦
+        hdowi yfh好福气哦i预热哦
+        hdowi yfh好福气哦i预热哦
+        hdowi yfh好福气哦i预热哦
+        hdowi yfh好福气哦i预热哦
+    </div>
+    <script>
+        let arr = [1, 23, 44, 45, 1, 23, 44, 44, 1, 23, 44, 45, 1, 23, 44, 44];
+        console.log(arr);
+        console.log([...new Set(arr)]);
+        console.log('-------------------------------------');
+
+        function quchong() {
+            let obj = {};
+            let a2 = arr.filter(a => obj.hasOwnProperty(a) ? false : (obj[a] = true));
+            console.log(a2)
+            console.log(obj)
+        }
+        quchong();
+    </script>
+</body>
+
+</html>

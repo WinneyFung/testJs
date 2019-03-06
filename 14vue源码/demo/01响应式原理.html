@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function callback(value) {
+            console.log(`被修改的value:${value}`);
+            console.log("执行回调函数");
+        }
+
+        function callback2() {
+            console.log('get..')
+        }
+
+        function proxy(obj, key, value, proxyObj) {
+            Object.defineProperty(obj, key, {
+                enumerable: true,
+                configurable: true,
+                get(key) {
+                    callback2();
+                    return value;
+                },
+                set(value) {
+                    if (value == obj[key]) {
+                        return;
+                    }
+                    proxyObj[key] = value;
+                    // callback(value);
+                }
+            })
+        }
+
+        function observer(proxyObj, obj) {
+            const keys = Object.keys(obj);
+            keys.forEach(k => {
+                proxy(obj, k, obj[k], proxyObj);
+            });
+        }
+
+        class MyVue {
+            constructor(vmOptions) {
+                this._data = vmOptions.data;
+                observer(this, this._data);
+            }
+        }
+
+        let vm = new MyVue({
+            data: {
+                name: 'winn'
+            }
+        });
+
+        // console.log(vm._data.name);
+        vm._data.name = 'zhuzhu';
+        console.log(vm.name);
+    </script>
+</body>
+
+</html>

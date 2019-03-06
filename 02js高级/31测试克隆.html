@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <p id="para1">你哈珀嘿嘿嘿</p>
+    <script>
+        var p = document.getElementById("para1");
+        var pc = p.cloneNode(true);
+        pc.textContent = '很好滴哦违规燃放';
+        document.body.appendChild(pc)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .red {
+            color: red;
+        }
+
+        .tc::before {
+            display: inline-block;
+            content: '';
+            height: 0;
+            width: 0;
+            border: 10px solid orangered;
+            border-bottom: 0px;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+
+        }
+
+        .tc::after {
+            display: inline-block;
+            content: '';
+            width: 0;
+            height: 0;
+            border-bottom: 10px solid olive;
+            border-top: 0;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="tc" id="er">
+        out
+        <div class="tc">inmt</div>
+    </div>
+    <script>
+        function update(vNode) {}
+        class VNode {
+            constructor(tag, data, children, text, elm) {
+                /* 当前节点的标签名 */
+                this.tag = tag;
+                /*  当前节点的数据，如attr，props */
+                this.data = data;
+                /* 当前节点的子节点，数组 */
+                this.children = children;
+                /* 当前节点对应的实际dom */
+                this.elm = elm;
+                /*当前节点的文本*/
+                this.text = text;
+            }
+        }
+
+        //创建文本节点
+        function createTextVNode(txt) {
+            return new VNode(undefined, undefined, undefined, String(txt));
+        }
+
+
+        //创建空白节点
+        function createEmptyVNode() {
+            return createTextVNode('');
+        }
+
+        //克隆节点
+        function clone(vNode) {
+            return new VNode(vNode.tag, vNode.data, vNode.children, vnode.text, vnode.elm);
+        }
+
+        let node1 = new VNode('span', {
+            classList: ['red', 'tc']
+        }, undefined, 'hello vnode');
+
+        console.log(node1)
+        let dom = document.createElement(node1.tag);
+        dom.textContent = node1.text;
+        // dom.setAttribute('class', 'red');
+        dom.classList.add(...node1.data.classList);
+        document.body.appendChild(dom);
+
+        console.log(document.getElementById('er').outerHTML);
+    </script>
+</body>
+
+</html>
