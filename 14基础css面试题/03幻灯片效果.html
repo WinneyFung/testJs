@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 300px;
+            height: 300px;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            animation: imgMove 10s ease infinite;
+        }
+
+        @keyframes imgMove {
+            0% {
+                background: url('../images/1-small.jpg') no-repeat center;
+                background-size: contain;
+            }
+
+            33.3% {
+                background: url('../images/2-small.jpg') no-repeat center;
+                background-size: contain;
+            }
+
+            66.6% {
+                background: url('../images/3-small.jpg') no-repeat center;
+                background-size: contain;
+            }
+
+            100% {
+                background: url('../images/1-small.jpg') no-repeat center;
+                background-size: contain;
+            }
+        }
+
+        p:first-child {
+            background: #f00;
+        }
+
+        .p {
+            /* background: rgba(255, 0, 0, .5); */
+
+        }
+
+        p:last-child {
+            opacity: 0.5;
+            background: #f00;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <div class="box"></div> -->
+    <p class="p">hhhh我是p标签</p>
+    <p>hhhh我是p标签</p>
+</body>
+
+</html>

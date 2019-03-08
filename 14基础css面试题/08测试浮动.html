@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        a {
+            display: inline-block;
+            width: 200px;
+            height: 20px;
+            padding: 6px 10px;
+            margin: 10px;
+            background-color: #ccc;
+        }
+
+        .box {
+            /* position: absolute; */
+            /* display: inline-block; */
+            overflow: hidden;
+            /* border: 1px solid transparent; */
+        }
+
+        .f {
+            float: left;
+            width: 100px;
+            height: 100px;
+            margin-bottom: 20px;
+            background-color: #f00;
+        }
+
+        .r {
+            float: right;
+            /* position: absolute; */
+            width: 200px;
+            height: 100px;
+            /* margin-top: 10px; */
+            background-color: #0f0;
+        }
+
+
+        .box2 {
+            /* height: 200px; */
+            border: 1px solid #0f0;
+            background-color: #ccc;
+        }
+
+        .box2 div {
+            width: 100px;
+            height: 100px;
+        }
+
+        .box2 div:first-child {
+            margin-top: 40px;
+            background-color: #f00;
+        }
+
+        .box2 div:last-child {
+            background-color: #f0f;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="f"></div>
+        <div class="r"></div>
+    </div>
+    <a href="#">立即办理</a>
+    <div class="box2">
+        <div class="f2"></div>
+        <div class="r2"></div>
+    </div>
+</body>
+
+</html>
