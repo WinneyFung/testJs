@@ -4,5 +4,7 @@
 import React from "react";
 import { render } from "react-dom";
 import Greeter from "./Greeter";
+import Todo from "./Todo";
 import "./main.css"; //使用require导入css文件
-render(<Greeter />, document.getElementById("root"));
+import "../template/style.css";
+render(<Todo />, document.getElementById("root"));

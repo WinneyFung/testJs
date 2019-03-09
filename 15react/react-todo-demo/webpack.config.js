@@ -19,8 +19,7 @@ module.exports = {
   },
   //配置node_modules
   module: {
-    rules: [
-      {
+    rules: [{
         test: /(\.jsx|\.js)$/,
         use: {
           loader: "babel-loader"
@@ -29,8 +28,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [
-          {
+        use: [{
             loader: "style-loader"
           },
           {
@@ -44,6 +42,10 @@ module.exports = {
             loader: "postcss-loader"
           }
         ]
+      },
+      {
+        test: /\.(gif|jpg|png|woff|svg|eot|ttf)\??.*$/,
+        loader: 'url-loader?limit=8192'
       }
     ]
   },
