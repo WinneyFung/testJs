@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>demo - Hello World</title>
+  <script src="./node_modules/babel-standalone/babel.min.js"></script>
+  <script src="./node_modules/react/umd/react.development.js"></script>
+  <script src="./node_modules/react-dom/umd/react-dom.development.js"></script>
+  <style>
+    .box {
+      width: 300px;
+      padding: 20px;
+      margin: 0 auto;
+      border-radius: 6px;
+      border: 1px dashed rgb(196, 35, 35);
+    }
+  </style>
+</head>
+
+<body>
+  <header>header</header>
+  <div id="root">
+  </div>
+  <footer>footer</footer>
+  <script type="text/babel">
+//   自动会阻止注入攻击
+    const container = document.querySelector('#root'); 
+    const element = (
+        <h1>{'<a href="#">我是a标签</a>'}</h1>
+    );
+    ReactDOM.render(element, container);
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>demo - Hello World</title>
+  <script src="../node_modules/babel-standalone/babel.min.js"></script>
+  <script src="../node_modules/react/umd/react.development.js"></script>
+  <script src="../node_modules/react-dom/umd/react-dom.development.js"></script>
+  <style>
+    .box {
+      width: 300px;
+      padding: 20px;
+      margin: 0 auto;
+      border-radius: 6px;
+      border: 1px dashed rgb(196, 35, 35);
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 4px 20px;
+        border: 1ps solid #888;
+        background-color: #ccc;
+        transition: all .2s ease;
+        cursor: pointer;
+    }
+
+    .btn:hover {
+        background-color: skyblue;
+    }
+  </style>
+</head>
+
+<body>
+  <header>header</header>
+  <div id="root">
+  </div>
+  <footer>footer</footer>
+  <script type="text/babel">
+  function handerClick(event) {
+      alert(event.target.innerHTML);
+  }
+    const container = document.querySelector('#root'); 
+    const element = (
+        <a onClick={handerClick} className='btn'>点我</a>
+    );
+    ReactDOM.render(element, container);
+  </script>
+</body>
+
+</html>

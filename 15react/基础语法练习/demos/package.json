@@ -1,0 +1,16 @@
+{
+  "name": "demos",
+  "version": "1.0.0",
+  "description": "react demos by winney",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "babel-standalone": "^6.26.0",
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4"
+  }
+}

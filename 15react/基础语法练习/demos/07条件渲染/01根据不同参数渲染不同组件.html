@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>demo - Hello World</title>
+  <script src="../node_modules/babel-standalone/babel.min.js"></script>
+  <script src="../node_modules/react/umd/react.development.js"></script>
+  <script src="../node_modules/react-dom/umd/react-dom.development.js"></script>
+  <style>
+    .box {
+      width: 300px;
+      padding: 20px;
+      margin: 0 auto;
+      border-radius: 6px;
+      border: 1px dashed rgb(196, 35, 35);
+    }
+  </style>
+</head>
+
+<body>
+  <header>header</header>
+  <div id="root">
+  </div>
+  <footer>footer</footer>
+  <script type="text/babel">
+    const container = document.querySelector('#root'); 
+    function UserCreeting(props) {
+        return (<h1>欢迎回来{props.name}</h1>);
+    }
+
+    function GuestCreeting(props) {
+        return (<h1>请登录</h1>);
+    }
+
+    function Greeting(props) {
+        const {isLogin} = props;
+        if (isLogin) {
+            return <UserCreeting name={props.name}/>
+        } else {
+            return <GuestCreeting/>
+        }
+    }
+
+    ReactDOM.render(<Greeting isLogin={true} name='winney'/>, container);
+  </script>
+</body>
+
+</html>
