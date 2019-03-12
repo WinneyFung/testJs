@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>demo - Hello World</title>
+  <script src="./node_modules/babel-standalone/babel.min.js"></script>
+  <script src="./node_modules/react/umd/react.development.js"></script>
+  <script src="./node_modules/react-dom/umd/react-dom.development.js"></script>
+  <style>
+    .box {
+      width: 300px;
+      padding: 20px;
+      margin: 0 auto;
+      border-radius: 6px;
+      border: 1px dashed rgb(196, 35, 35);
+    }
+  </style>
+</head>
+
+<body>
+  <header>header</header>
+  <div id="root">
+  </div>
+  <footer>footer</footer>
+  <script type="text/babel">
+//   s=直接绑定一个数组
+//   const arr = [<li>苹果</li>,<li>苹果</li>,<li>十多blip过程</li>,<li>苹果</li>]
+//   const ele = (<ul>{arr}</ul>)
+//   e=直接绑定一个数组
+/***动态生成一个数组来进行列表渲染***/
+const todos = [{id:0,txt:'吃饭饭'},{id:1,txt:'打豆豆'},{id:2,txt:'睡觉觉'}]
+  const ele = (<ul>{todos.map(item=><li key={item.id}>{item.txt}</li>)}</ul>)
+    const container = document.querySelector('#root'); ReactDOM.render(ele, container);
+  </script>
+</body>
+
+</html>

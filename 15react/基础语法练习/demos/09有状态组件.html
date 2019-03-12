@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./node_modules/babel-standalone/babel.min.js"></script>
+    <script src="./node_modules/react/umd/react.development.js"></script>
+    <script src="./node_modules/react-dom/umd/react-dom.development.js"></script>
+</head>
+<body>
+    <div id="root">
+        <script type="text/babel">
+        const container = document.querySelector('#root');
+        class Mybox extends React.Component {
+            constructor() {
+                super();
+                this.state = {
+                    name:'www',
+                    age:18
+                };
+                
+            // this.handlerOlder = handlerOlder.bind(this);
+            }
+
+            handlerOlder() {
+                console.log(this);
+                let {state} = this;
+                state.age ++;
+                this.setState(state);
+            }
+
+            render() {
+                return (
+                    <div>
+                        <p>姓名：{this.state.name}</p>
+                        <p>年龄：{this.state.age}</p>
+                        <button onClick={this.handlerOlder.bind(this)}>长大一岁</button>
+                    </div>
+                )
+            }
+        }
+
+        ReactDOM.render(<Mybox/>,container);
+        </script>
+</body>
+</html>

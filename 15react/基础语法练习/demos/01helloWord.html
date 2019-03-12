@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>demo - Hello World</title>
+  <script src="./node_modules/babel-standalone/babel.min.js"></script>
+  <script src="./node_modules/react/umd/react.development.js"></script>
+  <script src="./node_modules/react-dom/umd/react-dom.development.js"></script>
+  <style>
+    .box {
+      width: 300px;
+      padding: 20px;
+      margin: 0 auto;
+      border-radius: 6px;
+      border: 1px dashed rgb(196, 35, 35);
+    }
+  </style>
+</head>
+
+<body>
+  <header>header</header>
+  <div id="root">
+  </div>
+  <footer>footer</footer>
+  <script type="text/babel">
+    const container = document.querySelector('#root'); ReactDOM.render(
+    <div className="box">
+      <h1>hello,react</h1>
+      <p>陌上花开，可缓缓归</p>
+    </div>, container);
+  </script>
+</body>
+
+</html>

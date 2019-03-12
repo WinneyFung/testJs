@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="./node_modules/babel-standalone/babel.js"></script>
+    <script src="./node_modules/react/umd/react.development.js"></script>
+    <script src="./node_modules/react-dom/umd/react-dom.development.js"></script>
+</head>
+
+<body>
+    <div class="c">
+        <label for="l">第一个单选</label>
+        <input type="radio" name="l" id="l">
+        <label for="2">第二个单选</label>
+        <input type="radio" name="l" id="2">
+    </div>
+    <div id="root">
+    </div>
+    <script type="text/babel">
+    const container = document.getElementById('root');
+    const element = (<div> 
+       <label htmlFor="r">是否有证书</label>
+       <input type="radio" name="radio" id="r"/>
+     </div>)
+    ReactDOM.render(element,container);
+    </script>
+</body>
+</html>
