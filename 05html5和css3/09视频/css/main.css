@@ -1,0 +1,97 @@
+        body {
+            padding: 0;
+            margin: 0;
+            font-family: 'microsoft yahei', 'Helvetica', simhei, simsun, sans-serif;
+            background-color: #F7F7F7;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .fl {
+            float: left;
+        }
+
+        .fr {
+            float: right;
+        }
+
+        figcaption {
+            font-size: 24px;
+            text-align: center;
+            margin: 20px;
+        }
+
+        .player {
+            position: relative;
+            width: 720px;
+            height: 360px;
+            margin: 0 auto;
+            border-radius: 4px;
+            /* text-align: center; */
+            background: #000 url('../images/loading.gif') center/300px no-repeat;
+            color: #fff;
+        }
+
+        video {
+            /* display: none; */
+            height: 100%;
+        }
+
+        .player .controls {
+            width: 700px;
+            height: 40px;
+            position: absolute;
+            bottom: 8px;
+            left: 10px;
+            margin: 0 auto;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, .2);
+        }
+
+        .player .controls a {
+            font-size: 20px;
+            color: #fff;
+            line-height: 40px;
+
+        }
+
+        .player .controls a:first-child {
+            margin-left: 20px;
+        }
+
+        .player .controls a:last-child {
+            margin-right: 20px;
+        }
+
+        .progress {
+            width: 400px;
+            height: 10px;
+            margin-left: 20px;
+            margin-top: 16px;
+            position: relative;
+        }
+
+        .timer {
+            height: 10px;
+            line-height: 10px;
+            margin-left: 20px;
+            margin-top: 16px;
+        }
+
+        .progress .line {
+            width: 400px;
+            height: 10px;
+            position: absolute;
+            border-radius: 8px;
+            background-color: #888;
+        }
+
+        .progress .bar {
+            width: 70px;
+            height: 10px;
+            position: absolute;
+            border-radius: 8px;
+            background-color: #fff;
+        }
