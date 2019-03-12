@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        @keyframes waveMove {
+            0% {
+                background-position: 0 100%;
+            }
+
+            100% {
+                background-position: 20px 100%;
+            }
+        }
+
+        .box {
+            min-width: 400px;
+        }
+
+        .myLink:hover {
+            background: url("../images/wave.svg") repeat-x 0 100%;
+            background-size: 24px auto;
+            text-decoration: none;
+            animation: waveMove 1s infinite linear;
+        }
+
+        .dc {
+            width: 25%;
+            display: table-cell;
+            padding-left: 20px;
+            box-sizing: border-box;
+            background-color: #f0f;
+
+            border-top: 40px solid #fff;
+            /* padding-top: 40px; */
+        }
+
+        .list_row:first-child .dc {
+            border-top: 0;
+        }
+
+        .even {
+            background-color: #ff0;
+        }
+
+        .list_row {
+            /* display: table-row; */
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="list_row">
+            <div class="dc">
+                排行第一
+            </div>
+            <div class="dc even">
+                排行老二
+                <p>微博：坐在办公室，只听轰隆隆几声巨响，晴天也能打雷吗？原来街对面的芭莎咖啡厅被炸成了两截。这定点爆破也太失败了，也不清下场，把路过的汽车震得灰头土脸，愣在路中央不知如何是好。其次，房子只炸了一半，另一半屹立不倒，是乍药太水还是房子质量太好？</p>
+            </div>
+            <div class="dc">
+                排行老三
+                <a href="#" class="myLink">了解更多</a>
+                <p>陌上花开,可缓缓归</p>
+            </div>
+            <div class="dc even">
+                排行老三
+                <a href="#" class="myLink">了解更多</a>
+                <p>陌上花开,可缓缓归</p>
+            </div>
+        </div>
+
+        <div class="list_row">
+            <div class="dc">
+                排行第一
+            </div>
+            <div class="dc even">
+                排行老二
+                <p>微博：坐在办公室，只听轰隆隆几声巨响，晴天也能打雷吗？原来街对面的芭莎咖啡厅被炸成了两截。这定点爆破也太失败了，也不清下场，把路过的汽车震得灰头土脸，愣在路中央不知如何是好。其次，房子只炸了一半，另一半屹立不倒，是乍药太水还是房子质量太好？</p>
+            </div>
+            <div class="dc">
+                排行老三
+                <a href="#" class="myLink">了解更多</a>
+                <p>陌上花开,可缓缓归</p>
+            </div>
+            <div class="dc even">
+                排行老三
+                <a href="#" class="myLink">了解更多</a>
+                <p>陌上花开,可缓缓归</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

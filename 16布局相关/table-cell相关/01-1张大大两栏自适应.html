@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 60%;
+            margin: 60px auto 0;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+
+        .fix:after,
+        .fix:before {
+            display: table;
+            content: "";
+            clear: both;
+        }
+
+        .mr10 {
+            margin-right: 10px;
+        }
+
+        .l {
+            float: left;
+        }
+
+        .fix {
+            zoom: 1;
+        }
+
+        .f9 {
+            font-size: 0.9em;
+        }
+
+        .content {
+            display: table-cell;
+            *display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box f9 fix">
+        <a href="#prettyGirl" class="l mr10"><img border="0" src="../images/1-small.jpg" /></a>
+        <div class="content">
+            <p><a href="#prettyGirl">大美女一枚</a> 来自上海</p>
+            <p class="mt5">签名：想找个保鲜盒把你给我的那些感动都装起来。当你让我伤心的时候就拿出来回味一下。</p>
+            <p class="mt5">微博：坐在办公室，只听轰隆隆几声巨响，晴天也能打雷吗？原来街对面的芭莎咖啡厅被炸成了两截。这定点爆破也太失败了，也不清下场，把路过的汽车震得灰头土脸，愣在路中央不知如何是好。其次，房子只炸了一半，另一半屹立不倒，是乍药太水还是房子质量太好？</p>
+        </div>
+    </div>
+</body>
+
+</html>

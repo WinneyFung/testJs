@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            list-style: none;
+            margin-left: 5px;
+            margin-top: 10px;
+        }
+
+        .box {
+            min-width: 600px;
+            max-width: 50%;
+            margin: 60px auto 0;
+        }
+
+        .box li {
+            float: left;
+            width: 25%;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .box div {
+            width: 144px;
+            height: 144px;
+            display: table-cell;
+            border: 2px solid #ccc;
+            vertical-align: middle;
+            text-align: center;
+        }
+
+        .fix::after,
+        .fix::before {
+            content: '';
+            display: block;
+            visibility: hidden;
+            clear: both;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <ul class="fix">
+            <li>
+                <div><img src="../images/mm2.jpg" alt=""></div>
+            </li>
+            <li>
+                <div><img src="../images/刘雯.jpg" alt=""></div>
+            </li>
+            <li>
+                <div><img src="../images/mm2.jpg" alt=""></div>
+            </li>
+            <li>
+                <div><img src="../images/mm2.jpg" alt=""></div>
+            </li>
+            <li>
+                <div><img src="../images/mm2.jpg" alt=""></div>
+            </li>
+            <li>
+                <div><img src="../images/mm2.jpg" alt=""></div>
+            </li>
+            <li>
+                <div><img src="../images/mm2.jpg" alt=""></div>
+            </li>
+            <li>
+                <div><img src="../images/mm2.jpg" alt=""></div>
+            </li>
+            <li>
+                <div><img src="../images/mm2.jpg" alt=""></div>
+            </li>
+            <li>
+                <div><img src="../images/mm2.jpg" alt=""></div>
+            </li>
+        </ul>
+        <p>清风徐来</p>
+    </div>
+</body>
+
+</html>
