@@ -18,3 +18,14 @@
 因为jq为了桌面浏览器做了很多兼容，特别是ie
 目前移动端的浏览器大多是谷歌，qq，360，百度，他们的内核大多数要么是webkit或者blink
 建议使用h5的api或者zepto.js（基于高版本浏览器的js库）
+# 触摸事件
+## 事件类型
+1. touchstart 触摸开始
+2. touchmove 触摸移动
+3. touchend 触摸结束
+4. touchcancel 取消触摸（一般只接电话，弹出消息）
+## touchEvent对象的属性
+1. touchList 触摸点集合,一个手指就是一个触摸点
+2. changeTouches 改变后的触摸点
+3. targetTouched 当前元素的触摸点集合
+4. touches 页面的所有的触摸点

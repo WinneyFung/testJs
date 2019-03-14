@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 200px;
+            height: 200px;
+            background-color: #f00;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box"></div>
+    <script>
+        window.onload = function () {
+            const $box = document.querySelector('.box');
+            console.log($box)
+            $box.addEventListener('touchstart', (e) => {
+                console.log(e);
+                console.log('start');
+            });
+            $box.addEventListener('touchmove', (e) => {
+                console.log(e);
+                console.log('move');
+            });
+            $box.addEventListener('touchend', (e) => {
+                console.log(e);
+                console.log('end');
+            });
+            $box.addEventListener('touchcancel', (e) => {
+                console.log(e);
+                console.log('cancel');
+            });
+        }
+    </script>
+</body>
+
+</html>
