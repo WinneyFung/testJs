@@ -36,3 +36,8 @@
 3. swipeRight 向右滑动 判断水平方向的位移>0
 4. swipeDown 向下滑动 判断垂直方向的位移
 5. swipeUp 向上滑动
+#tap事件
+移动端本身具有原生的click事件，但是为了更好的区分touch，所以加了300ms的延迟
+在这300ms内没有触发touchmove事件，那么就是click事件了
+缺点：影响用户体验，加长点击相应时间
+改进：封装tap事件，和swipe事件一样，也是通过touch事件衍生出来

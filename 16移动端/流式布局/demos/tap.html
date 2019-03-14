@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 200px;
+            height: 200px;
+            background-color: #f00;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box"></div>
+    <script>
+        window.onload = function () {
+            function bindTapEvent(ele, callback) {
+                let isMove = false;
+                let startTime = 0;
+                ele.addEventListener('touchstart', function (e) {
+                    startTime = Date.now();
+                });
+
+                ele.addEventListener('touchmove', function (e) {
+                    isMove = true;
+                });
+
+                ele.addEventListener('touchend', function (e) {
+                    if (Date.now() - startTime < 150 && !isMove) {
+                        callback && callback.call(this, e);
+                    }
+                    isMove = false;
+                });
+            }
+
+            const $box = document.querySelector('.box');
+            bindTapEvent($box, function (e) {
+                console.log('tab事件');
+            });
+            $box.onclick = function () {
+                console.log('click');
+            }
+        }
+    </script>
+</body>
+
+</html>
