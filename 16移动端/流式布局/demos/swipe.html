@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 200px;
+            height: 200px;
+            background-color: #f00;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box"></div>
+    <script>
+        window.onload = function () {
+            function addSwipeEvent(ele, {
+                swipeUp,
+                swipeDown,
+                swipeLeft,
+                swipeRight
+            }) {
+                let distanceX = 0;
+                let distanceY = 0;
+                let startX = 0;
+                let startY = 0;
+                /*标记是否移动过*/
+                let isMove = false;
+                ele.addEventListener('touchstart', function (e) {
+                    startX = e.touches[0].clientX;
+                    startY = e.touches[0].clientY;
+                });
+                ele.addEventListener('touchmove', function (e) {
+                    isMove = true;
+                    distanceX = e.touches[0].clientX - startX;
+                    distanceY = e.touches[0].clientY - startY;
+                })
+                ele.addEventListener('touchend', function (e) {
+                    if (isMove) {
+                        if (Math.abs(distanceX) > 50) {
+                            distanceX < 0 ? swipeLeft && swipeLeft.call(this, e) : swipeRight && swipeRight
+                                .call(
+                                    this, e);
+                        }
+                        if (Math.abs(distanceY) > 50) {
+                            distanceY < 0 ? swipeUp && swipeUp.call(this, e) : swipeDown && swipeDown.call(
+                                this, e);
+                        }
+                    }
+                    /**重置参数*/
+                    distanceX = 0;
+                    distanceY = 0;
+                    startX = 0;
+                    startY = 0;
+                    isMove = false;
+                });
+            }
+
+            addSwipeEvent(document.querySelector('.box'), {
+                swipeLeft() {
+                    console.log(this, '左滑')
+                },
+                swipeRight() {
+                    console.log(this, '右滑')
+                },
+                swipeDown(){
+                    console.log(this,'下滑');
+                },
+                swipeUp() {
+                    console.log(this,'上滑');
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

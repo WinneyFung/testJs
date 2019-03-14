@@ -29,3 +29,10 @@
 2. changeTouches 改变后的触摸点
 3. targetTouched 当前元素的触摸点集合
 4. touches 页面的所有的触摸点
+# 封装移动端的手势事件
+通过touchsart,touchmove,touchend来判断位移大于一定的距离（比如50），则认定在做一个手势
+1. swipe 滑动
+2. swipeLeft 向左滑动 判断水平方向的位移<0
+3. swipeRight 向右滑动 判断水平方向的位移>0
+4. swipeDown 向下滑动 判断垂直方向的位移
+5. swipeUp 向上滑动
