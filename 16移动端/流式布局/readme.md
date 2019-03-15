@@ -43,3 +43,22 @@
 改进：封装tap事件，和swipe事件一样，也是通过touch事件衍生出来
 #fastclick.js插件
 为了解决300ms的延迟，除了利用touch事件封装tap事件外，还可以利用fastclick.js插件
+#总结
+1. 适配的问题，移动端设备尺寸不一致
+2. 流式布局：随着浏览器的尺寸的改变做自适应
+3. 视口：在移动端特有的视口会对页面进行缩放
+4. 视口设置 ：标准设置（width=device-width,initial-scale=1.0,user-scalable=no）
+5. 非标准设置：淘宝的多种比例的缩放（页面的缩放 640 1242px)
+6. 640px 750px px是css单位，真机的分辨率不是px
+7. 移动设备有物理像素的概念 1px里面可以放置多个物理像素
+8. 物理像素比： 非矢量的网页内容会失真
+9. 解决移动端图片:在标准视口中使用2倍图
+10. 移动端的尺寸计算设置为从边框开始 `box-sizing:borderbox`
+11. 移动端特有的属性，咋移动端使用css3属性尽可能添加私有前缀；比如`-webkit-appearance: none; -webkit-tap-highlight-color: transparent;`
+12. 网页的最大宽度限制的原因:和主流的设计稿640px,750p相关
+13. 基于流体式布局就是基于百分比布局
+14. 双飞翼为常见的头部布局，还有两栏自适应（一栏浮动，另外一栏添加`overflow:hidden`使用bfc）
+15. 移动端常见滚动效果原理（touchstart,touchmove,touchend）（使用里面的touches,changedTouches），结合css3的transition和transform
+16. 移动端滚动插件（Iscroll）
+17. 使用touch事件封装手势swipe事件和点击tap事件
+18. 封装tap事件是因为移动端的click事件有300ms延迟

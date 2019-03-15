@@ -33,6 +33,8 @@
                 ele.addEventListener('touchend', function (e) {
                     if (Date.now() - startTime < 150 && !isMove) {
                         callback && callback.call(this, e);
+                        //阻止原声的click事件
+                        e.preventDefault();
                     }
                     isMove = false;
                 });
