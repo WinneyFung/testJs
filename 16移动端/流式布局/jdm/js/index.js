@@ -77,11 +77,11 @@ const banner = function () {
     }
     addTimer();
     $imgBox.addEventListener('transitionend', function () {
-        if (index === imgLen - 1) {
+        if (index >= imgLen - 1) {
             index = 1;
             cancelTransition($imgBox);
             slide(index * imgWidth);
-        } else if (index === 0) {
+        } else if (index <= 0) {
             index = imgLen - 2;
             cancelTransition($imgBox);
             slide(index * imgWidth);
@@ -98,7 +98,7 @@ const banner = function () {
     $imgBox.addEventListener('touchmove', function (e) {
         let moveX = e.touches[0].clientX;
         /*因为slide函数接受的绝对值 */
-        let distance = -imgWidth * index +  moveX - startX;
+        let distance = -imgWidth * index + moveX - startX;
         addTransition();
         slide(Math.abs(distance));
     });
@@ -123,4 +123,30 @@ const banner = function () {
     });
 
 };
-const downtime = function () {};
+const downtime = function () {
+    let startTime = new Date('2019/03/14 22:00:00');
+    let endTime = new Date('2019/03/14 23:00:00');
+    let sumTime = endTime - startTime;
+    console.log(endTime.getTime(), startTime.getTime());
+    let timer = setInterval(function () {
+        let now = Date.now();
+        if (now > endTime) {
+            clearInterval(timer);
+        } else {
+            sumTime = endTime - now;
+            const $times = document.querySelector('.times').querySelectorAll('span');
+            const h = Math.floor(((sumTime / 1000) / 60) / 60);
+            const m = Math.floor(((sumTime / 1000) / 60) % 60);
+            const s = Math.floor((sumTime / 1000) % 60);
+            $times[0].textContent = Math.floor(h / 10);
+            $times[1].textContent = h % 10;
+
+            $times[3].textContent = Math.floor(m / 10);
+            $times[4].textContent = m % 10;
+
+            $times[6].textContent = Math.floor(s / 10);
+            $times[7].textContent = s % 10;
+            sumTime -= 1000;
+        }
+    }, 1000);
+};

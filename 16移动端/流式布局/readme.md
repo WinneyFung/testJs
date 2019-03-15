@@ -41,3 +41,5 @@
 在这300ms内没有触发touchmove事件，那么就是click事件了
 缺点：影响用户体验，加长点击相应时间
 改进：封装tap事件，和swipe事件一样，也是通过touch事件衍生出来
+#fastclick.js插件
+为了解决300ms的延迟，除了利用touch事件封装tap事件外，还可以利用fastclick.js插件
