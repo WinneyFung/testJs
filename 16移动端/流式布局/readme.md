@@ -62,3 +62,4 @@
 16. 移动端滚动插件（Iscroll）
 17. 使用touch事件封装手势swipe事件和点击tap事件
 18. 封装tap事件是因为移动端的click事件有300ms延迟
+    
