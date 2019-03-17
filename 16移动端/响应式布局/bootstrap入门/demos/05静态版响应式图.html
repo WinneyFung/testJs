@@ -1,0 +1,145 @@
+<!--h5文档申明-->
+<!DOCTYPE html>
+<!--文档语言申明  en zh-CN zh-tw -->
+<html lang="zh-CN">
+
+<head>
+    <!--文档编码申明-->
+    <meta charset="utf-8">
+    <!--要求当前网页使用浏览器最高版本的内核来渲染-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--视口的设置：视口的宽度和设备一致，默认的缩放比例和PC端一致，用户不能自行缩放-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <!-- 优先加载和浏览器解释 -->
+    <title>金银屋</title>
+    <!-- Bootstrap 核心样式-->
+    <link href="../bootstrap入门/lib/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <!-- 在 IE 9 一下引入-->
+    <!--[if lt IE 9]>
+    <script src="../lib/html5shiv/html5shiv.min.js"></script>
+    <script src="../lib/respond/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+
+<body>
+    <!-- 顶部通栏 -->
+    <header class="top-bar hidden-xs hidden-sm">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2">
+                    <a href="#" class="app">
+                        <span class="icon icon-phone"></span>
+                        <span>手机金银屋</span>
+                        <img src="./images/code.jpg" alt="">
+                        <span class="glyphicon glyphicon-menu-down"></span>
+                    </a>
+                </div>
+                <div class="col-md-5">
+                    <sapn class="icon icon-tel"></sapn>
+                    <span> 4006-89-4006（服务时间：9:00-21:00）</span>
+                </div>
+                <div class="col-md-2">
+                    <a href="#">常见问题</a>
+                    <a href="#">财富登录</a>
+                </div>
+                <div class="col-md-3">
+                    <a href="#" class="regest btn btn-danger">免费注册</a>
+                    <a href="#" class="login btn">登录</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- 导航栏 -->
+    <nav class="custom-nav navbar navbar-default">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+                    aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">
+                    <span class="icon icon-logo vm"></span>
+                    <span class="icon icon-name vm"></span>
+                </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">我要打代码 <span class="sr-only">(current)</span></a></li>
+                    <li><a href="#">我爱打代码</a></li>
+                    <li><a href="#">代码是快乐源泉</a></li>
+                    <li><a href="#">爱好</a></li>
+                    <li><a href="#">简单</a></li>
+                    <li><a href="#">小确幸</a></li>
+
+                </ul>
+                <ul class="nav navbar-nav navbar-right hidden-sm">
+                    <li><a href="#">个人中心</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- 轮播图 -->
+    <section class="banner">
+        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+            </ol>
+
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <a href="#" class="pc-img hidden-xs" style="background-image:url(./images/slide_01_2000x410.jpg)"></a>
+                    <a href="#"><img src="./images/slide_01_640x340.jpg" alt="" srcset="" class="m-img hidden-sm hidden-md hidden-lg"></a>
+                </div>
+                <div class="item">
+                    <a href="#" class="pc-img  hidden-xs" style="background-image:url(./images/slide_02_2000x410.jpg)"></a>
+                    <a href="#"><img src="./images/slide_01_640x340.jpg" alt="" srcset="" class="m-img hidden-sm hidden-md hidden-lg"></a>
+                </div>
+                <div class="item">
+                    <a href="#" class="pc-img hidden-xs" style="background-image:url(./images/slide_03_2000x410.jpg)"></a>
+                    <a href="#"><img src="./images/slide_01_640x340.jpg" alt="" srcset="" class="m-img  hidden-sm hidden-md hidden-lg"></a>
+                </div>
+                <div class="item">
+                    <a href="#" class="pc-img hidden-sm hidden-xs" style="background-image:url(./images/slide_04_2000x410.jpg)"></a>
+                    <a href="#"><img src="./images/slide_01_640x340.jpg" alt="" srcset="" class="m-img hidden-sm hidden-md hidden-lg"></a>
+                </div>
+            </div>
+
+            <!-- Controls -->
+            <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </section>
+    <!-- 信息 -->
+    <section class="msg"></section>
+    <!-- 预约 -->
+    <section class="book"></section>
+    <!-- 产品信息 -->
+    <section class="product"></section>
+    <!-- 新闻 -->
+    <section class="news"></section>
+    <!-- 合作伙伴 -->
+    <section class="partner"></section>
+    <script src="../bootstrap入门/lib/jquery/jquery.js"></script>
+    <script src="../bootstrap入门/lib/bootstrap/js/bootstrap.js"></script>
+</body>
+
+</html>
