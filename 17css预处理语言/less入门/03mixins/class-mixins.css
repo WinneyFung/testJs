@@ -1,0 +1,11 @@
+@charset "utf-8";
+.fl {
+  float: left;
+}
+.bt {
+  border-top: 10px;
+}
+.mixins {
+  float: left;
+  border-top: 10px;
+}

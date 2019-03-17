@@ -1,0 +1,15 @@
+@charset "utf-8";
+/* 
+函数混入 和类名混入不一样的地方
+ 书写上多了大括号
+ 编译后，函数不会保留
+ 并且可以传参
+ 参数可以有默认值
+  */
+/*可以将兼容代码写在函数里面，减少代码量*/
+.box {
+  float: left;
+  transition: all 2s ease 1s;
+  -moz-transition: all 2s ease 1s;
+  border-radius: 100px;
+}

@@ -1,0 +1,18 @@
+@charset 'utf-8';
+@classNames: a,b,c;
+@len: length(@classNames);
+.getImgae(@className) {
+    .@{className} {
+        background: url("./resource/@{className}.png") top/100% no-repeat;
+    }
+}
+
+.getImgae(a);
+
+.loop(@i) when(@i <= @len) {
+    @cn: extract(@classNames,@i);
+    .getImgae(@cn);
+    .loop(@i+1);
+}
+
+.loop(1);

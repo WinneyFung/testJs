@@ -1,0 +1,14 @@
+@charset "utf-8";
+.nav {
+  width: 1000px;
+}
+.nav .nav-item {
+  display: inline-block;
+  padding: 10px 20px;
+}
+.nav .nav-item:before {
+  content: "伪元素或者伪类的连接要用&连接";
+}
+.nav .nav-item > .link {
+  width: 100px;
+}

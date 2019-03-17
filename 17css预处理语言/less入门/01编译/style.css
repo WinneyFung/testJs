@@ -1,0 +1,13 @@
+.r {
+  color: red;
+}
+.bb {
+  border-bottom: 1px solid #ddd;
+}
+.rbb {
+  color: red;
+  border-bottom: 1px solid #ddd;
+}
+.rbb .rbb-child {
+  color: yellow;
+}

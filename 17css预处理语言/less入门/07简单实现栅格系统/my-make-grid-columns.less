@@ -1,0 +1,36 @@
+@charset "utf-8";
+@columns-name: col;
+@grid-count: 12;
+.columns-base-css() {
+    position: relative;
+}
+
+.make-grid-columns(@len: @grid-count) {
+    .col(@i) {
+        @classList: ~".@{columns-name}-xs-@{i},.@{columns-name}-sm-@{i},.@{columns-name}-md-@{i},.@{columns-name}-lg-@{i}";
+        .col(@i + 1, ~"@{classList}");
+    }
+    .col(@i, @list) when (@i =< @len){
+        @classList: ~".@{columns-name}-xs-@{i},.@{columns-name}-sm-@{i},.@{columns-name}-md-@{i},.@{columns-name}-lg-@{i}";
+        .col(@i + 1, ~"@{classList},@{list}");
+    }
+    .col(@i, @list) when (@i > @len) {
+        @{list} {
+          .columns-base-css();
+        }
+    }
+    .col(1)
+}
+
+// .make-grid-columns(@grid-count);
+
+@len: @grid-count;
+.my-make-grid-columns(@i) when(@i<=@len) {
+    @classList: ~".@{columns-name}-xs-@{i},.@{columns-name}-sm-@{i},.@{columns-name}-md-@{i},.@{columns-name}-lg-@{i}";
+    @{classList} {
+        .columns-base-css();
+    }
+    .my-make-grid-columns(@i+1);
+}
+
+.my-make-grid-columns(1);
