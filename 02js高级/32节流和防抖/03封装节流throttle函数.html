@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body style="height:800px;">
+    <div style="width:200px;height:50px;background:#333" id="send">点我</div>
+    <div style="width:200px;height:500000px;background:#ccc" id="send2">点我2</div>
+    <script>
+        function throttle(func, wait) {
+            let timer;
+            return function () {
+                const context = this;
+                const args = arguments;
+                if (!timer) {
+                    timer = setTimeout(() => {
+                        func.apply(context, args);
+                        timer = null;
+                    }, wait)
+                }
+            }
+        }
+
+        function _throttle(func, wait) {
+            let oldTime = 0;
+            return function () {
+                const context = this;
+                const args = arguments;
+                let newTime = Date.now();
+                let bettween = newTime - oldTime;
+                if (bettween >= wait) {
+                    func.apply(context, args);
+                    oldTime = newTime;
+                }
+            }
+        }
+
+
+        window.onload = function () {
+            let running = false;
+            //节流:dom事件一直被触发，但是执行却被按照一定的频率
+            document.addEventListener('scroll', _throttle(function (e) { console.log(this); console.log(e); }, 1000));
+
+        }
+    </script>
+</body>
+
+</html>

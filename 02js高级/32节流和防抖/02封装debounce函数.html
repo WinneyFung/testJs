@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body style="height:800px;">
+    <div style="width:200px;height:50px;background:#333" id="send">点我</div>
+    <div style="width:200px;height:50px;background:#ccc" id="send2">点我2</div>
+    <script>
+        //双剑结合版
+        function _debounce(func, wait, immediate) {
+            let timer;
+            return function () {
+                const context = this;
+                const args = arguments;
+                if (timer) {
+                    clearTimeout(timer);
+                }
+                if (immediate) {
+                    let canRun = !timer;
+                    if (canRun) {
+                        func.apply(context, arguments);
+                    }
+                    timer = setTimeout(() => timer = null, wait);
+                } else {
+                    timer = setTimeout(() => {
+                        func.apply(context, arguments);
+                    }, wait);
+                }
+            }
+        }
+        //非立即执行
+        function _udebounce(func, wait) {
+            let timer;
+            return function () {
+                let context = this;
+                let args = arguments;
+                if (timer) {
+                    clearTimeout(timer);
+                }
+                timer = setTimeout(() => {
+                    func.apply(context, args)
+                }, wait);
+            }
+        }
+
+        //立即执行
+        function _immediate_debounce(func, wait) {
+            let timer;
+            return function () {
+                let context = this;
+                let args = arguments;
+                let canRun = !timer;
+                if (timer) {
+                    clearTimeout(timer);
+                }
+                timer = setTimeout(() => {
+                    timer = null;
+                }, wait);
+                if (canRun) {
+                    func.apply(context, args);
+                }
+            }
+        }
+
+        function debounce(func, wait) {
+            let timeout;
+            return function () {
+                let context = this;
+                let args = arguments;
+                if (timeout) {
+                    clearTimeout(timeout)
+                };
+
+                let callNow = !timeout;
+                timeout = setTimeout(() => {
+                    timeout = null;
+                }, wait)
+
+                if (callNow) func.apply(context, args)
+            }
+        }
+    </script>
+    <script>
+        window.onload = function () {
+            $btn = document.querySelector('#send');
+            $btn2 = document.querySelector('#send2');
+
+            //防抖：连续触发只会执行一次
+            $btn.addEventListener('click', _debounce(function (e) {
+                console.log(this);
+                console.log(e);
+            }, 1000, true));
+
+        }
+    </script>
+</body>
+
+</html>

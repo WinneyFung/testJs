@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body style="height:800px;">
+    <div style="width:200px;height:50px;background:#333" id="send">点我</div>
+    <div style="width:200px;height:50px;background:#ccc" id="send2">点我2</div>
+    <script>
+        window.onload = function () {
+            $btn = document.querySelector('#send');
+            $btn2 = document.querySelector('#send2');
+
+            //防抖：连续触发只会执行一次
+            $btn.addEventListener('click', function (e) {
+                console.log(e);
+                console.log(this, '事件发生');
+                if (window.clicked) {
+                    clearTimeout(window.clicked);
+                }
+                const context = this;
+                window.clicked = setTimeout(function (e) {
+                    console.log(e);
+                    console.log(this);
+                    console.log('事件进入防抖后才执行。。。');
+                }.bind(context, e), 1000);
+            });
+
+            let running = false;
+            //节流:dom事件一直被触发，但是执行却被按照一定的频率
+            window.addEventListener('scroll',function(e){
+                if (!running) {
+                    running = true;
+                    const context = this;
+                    const args = arguments;
+                    setTimeout(function(e){
+                        console.log(e);
+                        running = false;
+                    }.bind(context,args),1000);
+                }
+            });
+
+        }
+    </script>
+</body>
+
+</html>
