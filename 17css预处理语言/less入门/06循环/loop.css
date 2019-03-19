@@ -1,13 +1,13 @@
 @charset 'utf-8';
 .a {
-  background: url("./resource/a.png") top / 100% no-repeat;
+  background: url("resource/a.png") top / 100% no-repeat;
 }
 .a {
-  background: url("./resource/a.png") top / 100% no-repeat;
+  background: url("resource/a.png") top / 100% no-repeat;
 }
 .b {
-  background: url("./resource/b.png") top / 100% no-repeat;
+  background: url("resource/b.png") top / 100% no-repeat;
 }
 .c {
-  background: url("./resource/c.png") top / 100% no-repeat;
+  background: url("resource/c.png") top / 100% no-repeat;
 }

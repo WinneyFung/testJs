@@ -1,0 +1,15 @@
+@charset "utf-8";
+.getHtmlFontSize(@fsize) {
+    html {
+        font-size: @fsize;
+    }
+}
+
+.getAdapter(@i) when(@i > 0) {
+    @mWidth: extract(@adapterDevices,@i);
+    @media screen and (min-width:@mWidth) {
+        @fSize: @baseFontSize/@psdWidth*@mWidth;
+        .getHtmlFontSize(@fSize);
+    }
+    .getAdapter(@i - 1);
+}

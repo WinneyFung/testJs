@@ -1,0 +1,26 @@
+@charset "utf-8";
+
+@media (max-width:640px) {
+    html {
+        font-size: 100px;
+    }
+}
+
+
+.getJzz(@m-width) {
+    @media (max-width: @m-width) {
+        html {
+            font-size: 100px/640px*@m-width;
+        }
+    }
+}
+
+@devices: 320px,640px,758px,992px,1000px;
+@d-len: length(@devices);
+.loop(@i) when(@i <= @d-len) {
+    @m-width: extract(@devices,@i);
+    .getJzz(@m-width);
+    .loop(@i+1);
+}
+
+.loop(1);
