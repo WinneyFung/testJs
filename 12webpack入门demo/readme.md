@@ -180,7 +180,8 @@ webpack的常用插件的更多配置可以找到对应的`查看对用的配置
     port:8081,//配置端口号
     contentBase: "./public", //本地服务器所加载的页面所在的目录
     historyApiFallback: false, //不跳转
-    inline: true //实时刷新
+    inline: true, //实时刷新，
+    open: true //自动打开浏览器
   },
 ```
 
@@ -381,4 +382,326 @@ webpack的配置:
         }]
     },
 ```
+
+### 多页面打包配置
+
+```javascript
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+module.exports = {
+    mode: 'development',
+    entry: {
+        'home': "./src/home.js",
+        'index': "./src/index.js"
+    },
+    output: {
+        //使用[name]代表 home，index
+        filename: '[name].js',
+        path: path.resolve(__dirname, 'dist')
+    },
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: "index.html",
+            filename: 'index.html',
+            chunks: ['index']
+        }),
+        new HtmlWebpackPlugin({
+            template: 'index.html',
+            filename: 'home.html',
+            chunks: ['home']
+        })
+    ]
+}
+```
+
+### 配置源码映射sourcemap
+
+> 可以通过`devtool:'**-map'`配置源码映射,可配置的值有:
+>
+> `devtoo`l:'source-map':增加一个映射文件 帮我们调试源代码
+>
+> `devtool:'eval-source-map'`:不会产生单独的`*.map.*文件,但是可以显示行和列
+>
+> `devtool:'cheap-module-source-map'`:单独的`*.map.*文件,但是可以显示行,不显示列信息
+>
+> `devtool:'cheap-module-eval-source-map'`:不产生`*.map*文件,集成在打包后的文件中,但是可以显示行,不显示列信息
+
+### watch字段配置
+
+可以通过`watch`字段配置`webpack`自动打包,当监听到文件发生变化时,会实时打包文件.配置如下:
+
+```javascript
+watch:true,
+watchOptions:{
+    poll:100,//每秒问1000次 是否需要打包
+      aggregateTimeout: 500,//防抖设置的时间
+        ignored: /node_modules/ //不要进行监听的文件夹
+  },
+```
+
+### 处理开发时的跨域问题
+
+```javascript
+const http = new XMLHttpRequest();
+http.open('get', '/api/recipes/all?pageNum=1', true);
+http.onreadystatechange = function (e) {
+   if (this.readyState==4) {
+       console.log(this.response,'.......................')
+   }
+}
+http.onload = function(e) {
+    console.log(e.target.response);
+}
+http.send();
+```
+
+具体配置:
+
+```javascript
+    devServer: {
+        port: 8081,
+        progress: true,
+        inline: true, //实时刷新
+        contentBase: path.resolve(__dirname, 'custom_dist/'),
+        proxy: {
+            '/api': {
+                target: 'http://localhost:8888',
+                pathRewrite: {
+                    '^/api': ''
+                }
+            }
+        }
+    }
+```
+
+### resovle属性的配置
+
+`resolve`属性专门用于配置解决第三方依赖时，模块查找的位置；
+
+以及提供`alias`配置引入包的别名；
+
+使用`extension`配置缺省后缀名时查找的顺序；
+
+具体配置：
+
+```javascript
+resolve:{
+  modules:['./node_modules','./cutom_dist'],
+    alias:{
+      'bootstrap':'bootstrap/dist/css/bootstrap.css'
+    }
+}
+```
+
+### 定义环境变量
+
+假设在入口文件引入文件,`import "./envVarible";`：
+
+```javascript
+if (ENV == 'production') {
+    console.log('生产环境');
+} else if (ENV == 'dev') {
+    console.log('开发环境');
+}
+```
+
+这时候会报错：`Uncaught ReferenceError: ENV is not defined`
+
+修改配置文件，使用`webpack`自带的`DefinePlugin`插件，定义全局变量：
+
+```javascript
+new Webpack.DefinePlugin({
+  ENV:JSON.stringify('production'),
+  IS_DEV:'true',
+  IS_EXPRESSION:'1+2'
+}),
+```
+
+有了上面的配置，相当于定义字符串类型的全局变量`ENV`，值为:`production`;布尔类型的全局变量`IS_DEV`，值为:`true`;数字类型的全局变量`IS_EXPRESSION`，值为:`3`;
+
+所以可知：对于引号或者的字符，如果是表达式，则将表达式运算结果值赋给变量，如果是`true`或者`false`的值，那么就将布尔值扶植给全局变量，如果引号里面是一串普通字符串，那么将字符串识别为变量，将变量值赋值给全局变量；
+
+### 使用webpack-merge配置文件分类
+
+将`webpack`配置文件分成三份：分别是`webpack.base.js;webapck.dev.js;webpack.prod.js`
+
+`dev`环境用于配置开发时的配置，`prod`用于配置生产时的配置，包含一些生产的优化，压缩之类的；`base`配置基础配置；使用`webpack-merge`插件合并两个配置文件；
+
+示例：
+
+`package.json`文件配置脚本命令：
+
+```json
+  "scripts": {
+    "build": "webpack --cofig webpack.prod.js",
+    "dev": "webpack-dev-server --inline --progress --config ./webpack.dev.js",
+    "eslint": "eslint",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+```
+
+
+
+`base`文件配置公共配置；
+
+`dev`文件作如下配置：
+
+```javascript
+const { smart } = require('webpack-merge');
+const base = require('./webpack.base.js');
+module.exports = smart(base,{
+    mode: "development",//默认有两种 production development
+});
+```
+
+`prod`文件作如下配置：
+
+```javascript
+const { smart } = require('webpack-merge');
+const base = require('./webpack.base.js');
+module.exports = smart(base,{
+    mode: "production",//默认有两种 production development
+});
+```
+
+### module的noParse属性作用
+
+`noParse`配置的库，表示不去解释其依赖关系
+
+```javascript
+  module: {
+        noParse:/jquery/, //不去解释jquery的依赖库
+        rules: [
+            {
+                test: /\.js$/,
+                loader: 'babel-loader',
+                options: {
+                    presets: [
+                        '@babel/preset-env',
+                        '@babel/preset-react'
+                    ]
+                }
+            }
+        ]
+    }
+```
+
+### 优化webpack
+
+#### 使用dllPlugin
+
+`dllPlugin`是`webpack`自带的插件，动态链接库，可以把预先需要的包，比如`react,react-dom`预先打包，然后建立动态链接，最后打包后的`main`的大小会变小，`react,react-dom`等依赖，变为动态连接
+
+动态连接配置`react,react-dom`的配置文件，并且编译：
+
+```javascript
+const Webpack = require('webpack');
+const path = require('path');
+module.exports = {
+    mode:'development',
+    entry:{
+        react:['react','react-dom']
+    },
+    output:{
+        filename:'_dll_[name].js',
+        path:path.resolve(__dirname,'dist/'),
+        library:'_dll_[name]'
+    },
+    plugins:[
+        new Webpack.DllPlugin({
+            name:'_dll_[name]',
+            path:path.resolve(__dirname,'dist','manifest.json')
+        })
+    ]
+}
+```
+
+编译后会，在配置好的文件夹里会产生`_dll_react.js,manifest.json`文件；
+
+如何引入这个打包后的文件呢？需要使用`webapck.DllReferencePlugin`插件，当找不到对应的`mainfest.json`文件的时候，`webpack`才会重新打包；并且需要在静态`html`文件中写死对`_dll_react.js`的引入；
+
+```javascript
+    plugins:[
+        new Webpack.DllReferencePlugin({
+            manifest:path.resolve(__dirname,'dist','manifest.json')
+        })
+    ],
+```
+
+#### 使用hapyWepack多线程打包
+
+#### webpack生产模式下的打包
+
+使用`import`引入模块，会在生产环境会自动删除没用的代码，`tree-shaking`把没用到的代码，自动删除；
+
+并且存在`scope hosting`作用域提升，在webpack中自动省略一些可以优化的代码
+
+#### 抽离公共的代码
+
+如果有两个入口文件，都共同引入几个文件，则可以将文件抽取出来，具体配置如下：
+
+```javascript
+optimization: {
+  splitChunks: {
+    //缓存组
+    cacheGroups: {
+      //分割代码块
+      common: {
+        chunks: 'initial',
+          minSize: 0,
+            minChunks: 2
+      },
+        vendor: {
+          priority: 1,//增加处理优先级
+            test: /node_modules/,//将组件库的单独抽离处理
+              chunks: 'initial',
+                minSize: 0,
+                  minChunks: 2
+        }
+    }
+  }
+}
+```
+
+#### 实现懒加载
+
+实现模块懒加载（即动态加载，使用的是`import（）`函数）
+
+`babel`需要配置插件
+
+```javascript
+ module: {
+        noParse: /jquery/, //不去解释jquery的依赖库
+        rules: [
+            {
+                test: /\.js$/,
+                loader: 'babel-loader',
+                //优化只解释配置src下的js文件
+                exclude: /node_modules/,
+                include: path.resolve('src'),
+                options: {
+                    presets: [
+                        '@babel/preset-env',
+                        '@babel/preset-react'
+                    ],
+                    plugins: ["@babel/plugin-syntax-dynamic-import"]
+                }
+            }
+        ]
+    }
+```
+
+具体代码：
+
+```javascript
+let button = document.createElement('button');
+button.innerHTML = '点击动态加载js文件';
+button.addEventListener('click', function (e) {
+    console.log('click')
+    import('./a').then(moudle => console.log(moudle.a));
+});
+document.body.appendChild(button);
+```
+
+#### 热更新
 

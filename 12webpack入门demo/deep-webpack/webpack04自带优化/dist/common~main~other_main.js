@@ -1,0 +1,1 @@
+(window.webpackJsonp = window.webpackJsonp || []).push([[0], [, , function (q, n, o) { "use strict"; n.a = { sum: function (q, n) { return q + n }, minus: function (q, n) { return q - n } } }, , function (q, n) { console.log("qqqqqqqqqqqqqqqqqqq") }]]);

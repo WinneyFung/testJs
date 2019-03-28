@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[2],[,function(q,n,o){"use strict";o.r(n),o.d(n,"a",function(){return a}),console.log("qqqqqqqqqqqqqqqqqqq");var a={name:"a模块"}}]]);

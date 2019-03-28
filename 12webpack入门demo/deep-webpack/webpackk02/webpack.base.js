@@ -5,7 +5,6 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 module.exports = {
-    mode: "development",//默认有两种 production development
     entry: './src/index.js',
     devtool: 'source-map',
     devServer: {

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var arr = ['winney', 'winneyfung', 'break', 'zhuzu', 'moon','noom','star'];
+
+        const getRepeat = function (preWord, nextWord) {
+            let len = preWord.length;
+            let repeat = 0;
+            let lastChar = preWord[len - 1];
+            let nlIdx = nextWord.indexOf(lastChar);
+            if (nlIdx > -1 && nlIdx != 0) {
+                repeat++;
+                let j = nlIdx - 1;
+                for (let i = len - 2; i >= 0 && j >= 0; i-- , j--) {
+                    if (nextWord[j] !== preWord[i]) {
+                        return repeat;
+                    } else {
+                        repeat++;
+                    }
+                }
+            } else if (nlIdx == 0) {
+                return 1;
+            }
+            return repeat;
+        }
+
+        const isContains = function (preWord, nextWord) {
+            return (preWord.lastIndexOf(nextWord) != -1 || nextWord.lastIndexOf(preWord) != -1);
+        }
+        const permuteWithRule = function (words) {
+            let result = "";
+            const process = function (words, prevReuslt) {
+                if (words.length > 1) {
+                    words.forEach((word, i) => {
+                        let currentResult;
+                        let remianWords = words.slice();
+                        if (!prevReuslt) {
+                            currentResult = [].concat(word);
+                            remianWords.splice(i, 1);
+                            process(remianWords, currentResult);
+                        } else {
+                            currentResult = prevReuslt;
+                            const curLen = currentResult.length;
+                            let lastWord = currentResult[curLen - 1];
+                            if (!isContains(lastWord, word)) {
+                                currentResult = currentResult.concat(word.substr(getRepeat(lastWord, word)));
+                                remianWords.splice(i, 1);
+                                process(remianWords, currentResult);
+                            }
+                        }
+                    });
+                } else {
+                    let row = prevReuslt ? prevReuslt.concat(words) : [].concat(words);
+                    row = row.join("");
+                    if (row.length > result.length) {
+                        result = row;
+                    }
+                }
+            }
+            process(words);
+            return result;
+        }
+
+        const getMaxTrain = function (words) {
+            return permuteWithRule([...words, ...words]);
+        }
+        console.log(getMaxTrain(arr));
+
+    </script>
+</body>
+
+</html>
