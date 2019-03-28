@@ -705,3 +705,207 @@ document.body.appendChild(button);
 
 #### 热更新
 
+# 实现简易版的webapck
+
+## 配置命令
+
+初始化一个`npm`管理的项目，在`package.json`中做如下配置：
+
+```json
+{
+  "name": "winney_pack",
+  "version": "1.0.0",
+  "description": "the faker of webpack",
+  "main": "index.js",
+  "bin": {
+    "winney_pack": "./bin/winney_pack.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
+```
+
+创建相应的文件，即创建`./bin/winney_pack.js`文件；
+
+文件内容需要指定运行环境
+
+```javascript
+#! /usr/bin/env node
+console.log('hello webapck')
+```
+
+并且执行命令`npm link `，将`winney_pack`命令绑定到全局执行；
+
+与此同时，搭建一个项目，用于测试简易版的webpack；
+
+然后在这个项目下，运行：`npm link winney_pack`，这个项目连接上简易版`webapck`
+
+然后在这个项目下执行`winney_pack`,会输出内容：`hello webpack`
+
+## 读取文件
+
+大致思路，在执行文件中，`new`一个`compiler`对象；有一个`compiler`类，运行里面的`run`方法，方法执行`buildModule`和`emitFile方法`；
+
+`buildModule`方法会构建模块间的依赖关系，读取源文件，维护一个以相对路径文件名作为属性，文件内容作为属性值的对象；其中文件内容会被`parse`函数改造，比如将`require`改造；并且会返回文件间的相互依赖关系
+
+```javascript
+//Compiler.js 
+const path = require('path');
+const process = require('process');
+const fs = require('fs');
+class Compiler {
+    constructor(config) {
+        this.config = config;
+        //需要保存入口文件路径  entry output
+        this.entryId = '';
+        //保存所有入口文件依赖
+        this.modules = {};
+        //入口路径
+        this.entry = config.entry;
+        //工作路径
+        this.root = process.cwd()
+    }
+
+    /**
+     * 根据模块路径获取文件内容
+     * @param {*} modulePath 
+     */
+    getSource(modulePath) {
+        let content = fs.readFileSync(modulePath, 'utf-8');
+        return content;
+    }
+
+    parse(source, parentDir) {
+        console.log('parse模块开始...');
+        console.log(source, parentDir);
+        console.log('parse模块结束...');
+
+        return {
+            sourceCode: '',
+            dependencies: []
+        }
+
+    }
+
+    run() {
+        //执行 并且创建模块的依赖关系
+        this.buildModule(path.resolve(this.root, this.entry), true);
+        //发射一个文件  打包后的文件
+        this.emitFile();
+    }
+
+    /**
+     * 构建模块间的依赖关系
+     * @param {*} modulePath 
+     * @param {*} isEntry 是否为入口文件
+     */
+    buildModule(modulePath, isEntry) {
+        let source = this.getSource(modulePath);
+        //获取相对路径名称   modulePath-this.root
+        let moduleName = './' + path.relative(this.root, modulePath);
+
+        console.log('读取模块开始...');
+        console.log(moduleName, source);
+        console.log('读取模块结束...');
+
+        if (isEntry) {
+            this.entryId = moduleName;
+        }
+        //将source的源代码进行改造，比如使用import语法 required语法引入的改造下 返回这个模块之间的依赖关系关系 以及改造后的源代码
+        let { sourceCode, dependencies } = this.parse(source, path.dirname(moduleName));
+        //构建模块间的相互依赖关系 将相对路径以及源代码对应起来
+        this.modules[moduleName] = sourceCode;
+    }
+
+    emitFile() {
+
+    }
+}
+module.exports = Compiler;
+```
+
+执行文件内容如下:
+
+```javascript
+#! /usr/bin/env node
+/**
+ * 1. 需要找到当前执行的路径，拿到webapck.config.js之类的配置文件
+ * 2. 执行Compiler().run()方法 进行编译文件
+ *
+ */
+console.log('start...');
+
+const path = require('path');
+let config = require(path.resolve('webpack.config.js'));
+
+console.log('配置文件内容： ', config);
+console.log();
+
+let Compiler = require('../lib/Compiler.js');
+let compiler = new Compiler(config);
+compiler.run();
+```
+
+## 使用ast语法分析树 构建依赖关系
+
+安装模块
+
+`npm i --save -D  babylon @babel/traverse @babel/tyeps @babel/generator `
+
+**babylon:**将源码转换为ast
+
+**@babel/traverse:**遍历语法树节点
+
+**@babel/types:**替换节点
+
+**@babel/generator:**重新生成
+
+修改`Compiler.js`的`parse（）`，如下：
+
+```javascript
+//引入ast分析依赖 https://astexplorer.net/
+const babylon = require('babylon');
+const t = require('@babel/types');
+const traverse = require('@babel/traverse').default;
+const generator = require('@babel/generator').default;
+```
+
+```javascript
+  parse(source, parentDir) {
+        let ast = babylon.parse(source);
+        let dependencies = [];
+        traverse(ast, {
+            CallExpression(p) {
+                let node = p.node;
+                if (node.callee.name === 'require') {
+                    node.callee.name = '__webpack_require__';
+                    let moduleName = node.arguments[0].value;
+                    // moduleName = moduleName + path.extname(moduleName)?'':'.js';
+                    moduleName = './' + path.join(parentDir, moduleName);
+                    dependencies.push(moduleName);
+                    node.arguments = [t.stringLiteral(moduleName)]
+                }
+            }
+        });
+        let sourceCode = generator(ast).code;
+        //递归查找其他依赖
+        dependencies.forEach(dep => {
+            this.buildModule(path.join(this.root, dep), false)
+        })
+        return { sourceCode, dependencies };
+    }
+```
+
+最终的`this.moudles`对象的内容：
+
+```javascript
+{ './src\\b.js': 'module.exports = {\n  name: \'winney\'\n};',
+  './src\\a.js':
+   'const bb = __webpack_require__("./src\\\\b.js");\n\nmodule.exports = \'a\';',
+  './src\\main.js':
+   'const a = __webpack_require__("./src\\\\a.js");\n\nconst b = __webpack_require__("./src\\\\b.js");\n\nconsole.log(a, b);' }
+```
+

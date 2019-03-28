@@ -1,0 +1,21 @@
+{
+  "name": "winney_pack",
+  "version": "1.0.0",
+  "description": "the faker of webpack",
+  "main": "index.js",
+  "bin": {
+    "winney_pack": "./bin/winney_pack.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/generator": "^7.4.0",
+    "@babel/traverse": "^7.4.0",
+    "@babel/types": "^7.4.0",
+    "babylon": "^6.18.0",
+    "ejs": "^2.6.1"
+  }
+}
