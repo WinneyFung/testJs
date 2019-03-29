@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //返回第二节不重复部分
+        function targetStr(first, second) {
+            if (!first.length || !second.length) {
+                return '';
+            }
+
+            let revFirst = first.split('').reverse().join('');
+            let targetIndex = 0;
+
+            for (let i = 0; i < first.length; i++) {
+                if (revFirst[i] !== second[i]) {
+                    targetIndex = i;
+                    break;
+                }
+            }
+            return second.substring(targetIndex, second.length);
+        }
+
+        //输入所有火车组和目标字母
+        function trainLongest(trains, letter) {
+            let targetTrain = '';
+            letter = letter.toLowerCase();
+
+            trains.forEach((train, index) => {
+                train = train.toLowerCase();
+                if (train[0] === letter) {
+                    let trainArr = train.split(' ');
+                    let concatTrain = trainArr[0];
+                    for (let i = 1; i < trainArr.length; i++) {
+                        if (trainArr[i - 1].indexOf(trainArr[i]) || trainArr[i].indexOf(trainArr[i - 1])) {
+                            concatTrain += trainArr[i];
+                        } else {
+                            concatTrain += targetStr(trainArr[i - 1], trainArr[i]);
+                        }
+                    }
+                    if (concatTrain.length > targetTrain.length) {
+                        targetTrain = concatTrain;
+                    }
+                }
+            });
+
+            console.log(targetTrain)
+
+            return targetTrain.length;
+        }
+
+        let trains = ['winney', 'winneyfung', 'breakfastbreak', 'start', 'bringbigbangsu'];
+
+        console.log(trainLongest(trains, 'b'));
+
+    </script>
+</body>
+
+</html>

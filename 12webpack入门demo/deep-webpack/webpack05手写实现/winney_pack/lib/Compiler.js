@@ -89,7 +89,6 @@ class Compiler {
         fileUtils.write2Output(output, this.assets[output]);
     }
 
-
 }
 
 module.exports = Compiler;

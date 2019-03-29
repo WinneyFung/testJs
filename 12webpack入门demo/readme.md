@@ -909,3 +909,95 @@ const generator = require('@babel/generator').default;
    'const a = __webpack_require__("./src\\\\a.js");\n\nconst b = __webpack_require__("./src\\\\b.js");\n\nconsole.log(a, b);' }
 ```
 
+## 将收集到的模块依赖关系打包输出
+
+首先改写`webpack`打包后的文件，将其改写为`ejs`文件：改写的内容如下
+
+```javascript
+(function(modules) { // webpackBootstrap
+    // The module cache
+    var installedModules = {};
+    // The require function
+    function __webpack_require__(moduleId) {
+        // Check if module is in cache
+        if(installedModules[moduleId]) {
+            return installedModules[moduleId].exports;
+        }
+        // Create a new module (and put it into the cache)
+        var module = installedModules[moduleId] = {
+            i: moduleId,
+            l: false,
+            exports: {}
+        };
+        // Execute the module function
+        modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+        // Flag the module as loaded
+        module.l = true;
+        // Return the exports of the module
+        return module.exports;
+    }
+
+    return __webpack_require__(__webpack_require__.s = "<%-entryId%>");
+})
+/************************************************************************/
+({
+
+<%for(let key in modules){%>
+    "<%-key%>":
+    (function(module, exports, __webpack_require__) {
+         eval(`<%-modules[key]%>`)
+    }),
+<%}%>
+});
+```
+
+在`Compiler.js`文件中添加方法`emitFile()`:具体实现如下：
+
+```javascript
+    emitFile() {
+        let output = path.join(this.config.output.path, this.config.output.filename);
+        let templateStr = this.getSource(path.join(__dirname, '../main.ejs'));
+        const { entryId, modules } = this;
+        let code = ejs.render(templateStr, { entryId, modules });
+        this.assets = {};
+        this.assets[output] = code;
+        fileUtils.write2Output(output, this.assets[output]);
+    }
+```
+
+省略`fileUtils`的相关方法...
+
+## 给webpack添加loader实现
+
+给自己的搭建的项目，添加两个loader，比如自己实现的`my-style-loader.js`以及`my-less-loader`,添加`main.less`文件;然后给`winney_pack`添加可以使用`loader`打包的功能；
+
+首先两个loader的代码如下：
+
+```javascript
+//my-less-loader
+const less = require('less');
+function loader(source) {
+    let css = '';
+    less.render(source, function (err, c) {
+        css = c.css;
+    });
+    return css;
+}
+
+module.exports = loader;
+```
+
+```javascript
+//my-style-loader
+function loader(source) {
+    let style = `let style = document.createElement('style');
+    style.innerHTML = ${JSON.stringify(source)}
+    document.head.appendChild(style);`;
+    return style;
+}
+
+module.exports = loader;
+```
+
+给自己手写的`webpack`添加`loader`的方式，其实就是在`parse`()里面调用的获取文件的内容的时候，判断文件是不是`loader`需要解析的类型，如果是的话，就调用`loader`方法解析文件内容，并且返回解析后 内容作为新的文件内容；
+
