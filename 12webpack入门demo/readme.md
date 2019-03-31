@@ -1001,3 +1001,73 @@ module.exports = loader;
 
 给自己手写的`webpack`添加`loader`的方式，其实就是在`parse`()里面调用的获取文件的内容的时候，判断文件是不是`loader`需要解析的类型，如果是的话，就调用`loader`方法解析文件内容，并且返回解析后 内容作为新的文件内容；
 
+```javascript
+    /**
+     * 根据模块路径获取文件内容
+     * @param {*} modulePath 
+     */
+    getSource(modulePath) {
+        let content = fs.readFileSync(modulePath, 'utf-8');
+        //获取所有的loader
+        const rules = this.config.module.rules;
+        rules.forEach(rule => {
+            if (rule.test.test(modulePath)) {
+                const uses = rule.use;
+                const usesLen = uses.length;
+                for (let i = usesLen - 1; i >= 0; i--) {
+                    const loader = require(uses[i]);
+                    content = loader(content);
+                }
+            }
+        });
+        return content;
+    }
+```
+
+## 给自己写的webpack添加使用plugin的功能
+
+主要用到的设计模式是发布订阅模式，在发布通道中，向订阅者发布可以订阅的事件，另外一方面通过订阅者通过发布通道订阅事件；这样子避免了发布者与订阅者之间产生依赖关系；
+
+使用了`tapable`模块的	`AsyncHook`对象，当事件触发时，响应订阅者的是同步的触发的；
+
+首先写一个简单的`plugin`：
+
+```javascript
+class ConsolePlugin {
+    apply(compiler) {
+        compiler.hooks.entryOptions.tap('console-plugin', () => {
+            console.log('entryOptions...');
+        });
+        compiler.hooks.emit.tap('console-plugin', () => {
+            console.log('emit...');
+        });
+    }
+}
+
+module.exports = ConsolePlugin;
+```
+
+在`compiler`的构造函数中，会注册所有的钩子函数（通过事件通道发布事件），并且会执行所有插件的`apply`方法；所以大多数插件会在`apply()`方法中订阅事件，并且订阅事件，提供事件处理函数，当发布者`call`的时候会被调用；
+
+```javascript
+        //添加钩子函数（发布订阅）
+        this.hooks = {
+            entryOptions: new SyncHook(),
+            compile: new SyncHook(),
+            afterCompiler: new SyncHook(),
+            afterPlugins: new SyncHook(),
+            run: new SyncHook(),
+            emit: new SyncHook(),
+            done: new SyncHook()
+        }
+        let plugins = this.config.plugins;
+        if (Array.isArray(plugins)) {
+            plugins.forEach(plugin => {
+                plugin.apply(this);
+            });
+        }
+        this.hooks.afterPlugins.call();
+```
+
+
+

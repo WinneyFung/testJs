@@ -14,4 +14,7 @@ console.log();
 
 let Compiler = require('../lib/Compiler.js');
 let compiler = new Compiler(config);
+//执行entryOptions钩子函数
+compiler.hooks.entryOptions.call();
 compiler.run();
+compiler.hooks.done.call();

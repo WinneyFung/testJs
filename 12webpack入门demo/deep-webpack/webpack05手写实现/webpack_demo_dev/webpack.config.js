@@ -1,4 +1,5 @@
 const path = require('path');
+const ConsolePlugin = require('./plugin/console-plugin.js');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
     mode: 'development',
@@ -7,22 +8,23 @@ module.exports = {
         path: path.resolve(__dirname, 'deep/dist/'),
         filename: 'bundle.js'
     },
-    module:{
-        rules:[
+    module: {
+        rules: [
             {
-                test:/\.less$/,
-                loader:path.resolve(__dirname,'loader','my-style-loader')
-            },
-            {
-                test:/\.less$/,
-                loader:path.resolve(__dirname,'loader','my-less-loader')
+                test: /\.less$/,
+                use: [
+                    path.resolve(__dirname, 'loader', 'my-style-loader'),
+                    path.resolve(__dirname, 'loader', 'my-less-loader')
+                ]
+
             }
         ]
     },
     plugins: [
-        new HtmlWebpackPlugin({
+        /* new HtmlWebpackPlugin({
             template: path.resolve(__dirname, 'index.html'),
             filename: 'index.html'
-        })
+        }), */
+        new ConsolePlugin()
     ]
 }

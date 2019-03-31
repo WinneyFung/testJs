@@ -8,6 +8,8 @@ const traverse = require('@babel/traverse').default;
 const generator = require('@babel/generator').default;
 const ejs = require('ejs');
 const fileUtils = require('./FileUtils');
+const { SyncHook } = require('tapable');
+//tapable 订阅发布
 class Compiler {
     constructor(config) {
         this.config = config;
@@ -19,6 +21,23 @@ class Compiler {
         this.entry = config.entry;
         //工作路径
         this.root = process.cwd()
+        //添加钩子函数（发布订阅）
+        this.hooks = {
+            entryOptions: new SyncHook(),
+            compile: new SyncHook(),
+            afterCompiler: new SyncHook(),
+            afterPlugins: new SyncHook(),
+            run: new SyncHook(),
+            emit: new SyncHook(),
+            done: new SyncHook()
+        }
+        let plugins = this.config.plugins;
+        if (Array.isArray(plugins)) {
+            plugins.forEach(plugin => {
+                plugin.apply(this);
+            });
+        }
+        this.hooks.afterPlugins.call();
     }
 
     /**
@@ -27,6 +46,18 @@ class Compiler {
      */
     getSource(modulePath) {
         let content = fs.readFileSync(modulePath, 'utf-8');
+        //获取所有的loader
+        const rules = this.config.module.rules;
+        rules.forEach(rule => {
+            if (rule.test.test(modulePath)) {
+                const uses = rule.use;
+                const usesLen = uses.length;
+                for (let i = usesLen - 1; i >= 0; i--) {
+                    const loader = require(uses[i]);
+                    content = loader(content);
+                }
+            }
+        });
         return content;
     }
 
@@ -55,10 +86,14 @@ class Compiler {
     }
 
     run() {
+        this.hooks.run.call();
+        this.hooks.compile.call();
         //执行 并且创建模块的依赖关系
         this.buildModule(path.resolve(this.root, this.entry), true);
+        this.hooks.afterCompiler.call();
         //发射一个文件  打包后的文件
         this.emitFile();
+        this.hooks.emit.call();
     }
 
     /**
